@@ -1,0 +1,36 @@
+.e-10721c16
+{
+	display: flex;
+	width: 100%;
+}
+
+.e-10721c16 > .holder
+{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.e-10721c16 > .holder > .group > .field
+{
+	display: flex;
+	flex-direction: column;
+	gap: var(--ot-spacing-x);
+	padding: var(--ot-spacing-s) var(--ot-spacing-m);
+}
+
+.e-10721c16 > .holder > .group > .field > .label
+{
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--ot-text-2);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* Actions */
+
+.e-10721c16 > .holder > .actions
+{
+	padding: var(--ot-spacing-s) var(--ot-spacing-m);
+}

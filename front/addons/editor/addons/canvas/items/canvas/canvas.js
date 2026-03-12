@@ -13,6 +13,8 @@ elements.ItemAdd({
 	},
 	render: function()
 	{
+		
+
 		this.zoom = 100;
 		this.viewport = 'desktop';
 		this.loading = true;
@@ -356,34 +358,26 @@ elements.ItemAdd({
 			this.selected = section.id;
 		};
 
-		setTimeout(() => { this.loading = false; }, 2500);
-
 		return `
 			<div class="holder">
-				<e-editor-loader ot-if="loading"></e-editor-loader>
-				<e-editor-toolbar :zoom="zoom" :viewport="viewport" :site="site" :_zoom="setZoom" :_viewport="setViewport"></e-editor-toolbar>
-				<div class="workspace">
-					<e-editor-layers :sections="sections" :selected="selected || ''" :active="selectedElement" :_section="selectSection" :_element="selectElement"></e-editor-layers>
-					<div class="canvas">
-						<div class="corner"></div>
-						<e-editor-ruler direction="horizontal" :visible="true" :zoom="zoom" :scroll="scroll"></e-editor-ruler>
-						<e-editor-ruler direction="vertical" :visible="true" :zoom="zoom" :scroll="scroll"></e-editor-ruler>
-						<div class="area" ot-wheel.prevent="wheel" ot-click="deselectAll">
-							<e-editor-grid :visible="true" :zoom="zoom"></e-editor-grid>
-							<div class="viewports">
-								<e-editor-viewport :width="width()" :zoom="zoom" :label="viewport">
-									<div slot="content" class="sections">
-										<e-editor-section ot-for="section in sections" :section="section" :selected="selected === section.id" :active="selectedElement" :_select="selectSection" :_update="updateSection" :_remove="removeSection" :_add="addSection" :_choose="selectElement" :_picker="openPicker"></e-editor-section>
-										<div class="add-first" ot-if="!sections.length" ot-click.stop="() => addSection(null)">
-											<i>add_circle_outline</i>
-											<span>Add Section</span>
-										</div>
+				<div class="canvas">
+					<div class="corner"></div>
+					<e-editor-ruler direction="horizontal" :visible="true" :zoom="zoom" :scroll="scroll"></e-editor-ruler>
+					<e-editor-ruler direction="vertical" :visible="true" :zoom="zoom" :scroll="scroll"></e-editor-ruler>
+					<div class="area" ot-wheel.prevent="wheel" ot-click="deselectAll">
+						<e-editor-grid :visible="true" :zoom="zoom"></e-editor-grid>
+						<div class="viewports">
+							<e-editor-viewport :width="width()" :zoom="zoom" :label="viewport">
+								<div slot="content" class="sections">
+									<e-editor-section ot-for="section in sections" :section="section" :selected="selected === section.id" :active="selectedElement" :_select="selectSection" :_update="updateSection" :_remove="removeSection" :_add="addSection" :_choose="selectElement" :_picker="openPicker"></e-editor-section>
+									<div class="add-first" ot-if="!sections.length" ot-click.stop="() => addSection(null)">
+										<i>add_circle_outline</i>
+										<span>Add Section</span>
 									</div>
-								</e-editor-viewport>
-							</div>
+								</div>
+							</e-editor-viewport>
 						</div>
 					</div>
-					<e-editor-panel :section="selectedSectionData()" :element="selectedElementData()" :schema="elementSchema()" :_update="updateSection" :_edit="updateElement" :_delete="removeElement" :_close="deselectAll" :_back="() => { selectedElement = ''; }"></e-editor-panel>
 				</div>
 				<e-editor-picker :visible="picker !== null" :_pick="addElement" :_close="closePicker"></e-editor-picker>
 			</div>

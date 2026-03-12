@@ -1,0 +1,108 @@
+.e-41ab2d4f
+{
+	display: flex;
+	width: 100%;
+	height: 48px;
+	min-height: 48px;
+	position: relative;
+	z-index: 1000;
+}
+
+.e-41ab2d4f > .holder
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	padding: 0 var(--ot-spacing-m);
+	background: var(--ot-bg-1);
+	border-bottom: 1px solid var(--ot-bg-2-border);
+}
+
+/* Left */
+
+.e-41ab2d4f > .holder > .left
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	min-width: 200px;
+}
+
+/* Center */
+
+.e-41ab2d4f > .holder > .center
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+/* Right */
+
+.e-41ab2d4f > .holder > .right
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	min-width: 200px;
+	justify-content: flex-end;
+}
+
+/* Item */
+
+.e-41ab2d4f .item
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: var(--ot-height-s);
+	height: var(--ot-height-s);
+	border-radius: var(--ot-radius-s);
+	color: var(--ot-text-2);
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.e-41ab2d4f .item:hover
+{
+	background: var(--ot-bg-3-hover);
+	color: var(--ot-text-1);
+}
+
+.e-41ab2d4f .item i
+{
+	font-size: 18px;
+}
+
+.e-41ab2d4f .item a
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Raw — no wrapper styles */
+
+.e-41ab2d4f .item.raw
+{
+	min-width: unset;
+	height: unset;
+	border-radius: unset;
+	background: none;
+	cursor: default;
+}
+
+.e-41ab2d4f .item.raw:hover
+{
+	background: none;
+	color: inherit;
+}

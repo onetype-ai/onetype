@@ -35,8 +35,7 @@ assets.Fn('import', [
     'elements/form/toggle',
     'elements/navigation/navbar',
     'elements/navigation/sidebar',
-    'elements/navigation/tabs',
-    'elements/global/chat',
+    'elements/navigation/tabs'
 ]);
 
 assets.Item({ type: 'js', order: 10, path: resolve(root, 'front') });

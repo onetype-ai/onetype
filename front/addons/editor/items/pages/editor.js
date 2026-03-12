@@ -16,17 +16,29 @@ pages.Item({
         };
     },
     grid: {
-        template: '"content"',
-        columns: '1fr',
-        rows: '1fr',
+        template: '"toolbar toolbar toolbar" "left content right"',
+        columns: 'auto 1fr auto',
+        rows: 'auto 1fr',
         gap: '0'
     },
     areas: {
+        toolbar: function()
+        {
+            return `<e-editor-toolbar></e-editor-toolbar>`;
+        },
+        left: function()
+        {
+            return `<e-editor-tabs position="left"></e-editor-tabs>`;
+        },
         content: function()
         {
-            this.site = this.data.site;
-
-            return `<e-editor-canvas :site="site"></e-editor-canvas>`;
+            return `
+                <e-editor-canvas></e-editor-canvas>
+            `;
+        },
+        right: function()
+        {
+            return `<e-editor-tabs position="right"></e-editor-tabs>`;
         }
     }
 });
