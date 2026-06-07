@@ -16,7 +16,8 @@ assets.Fn('import', [
     'cloudflare/images',
     'actions',
     'sources',
-    'variables'
+    'variables',
+    'settings'
 ], 400);
 
 assets.Item({ type: 'js', order: 500, path: resolve(root, 'front') });

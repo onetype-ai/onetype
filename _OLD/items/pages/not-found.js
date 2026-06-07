@@ -12,7 +12,7 @@ pages.Item({
     areas: {
         navbar: function()
         {
-            return ``;
+            return `<e-navbar></e-navbar>`;
         },
         content: function()
         {
