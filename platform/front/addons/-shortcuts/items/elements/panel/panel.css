@@ -1,0 +1,170 @@
+.e-4bfa67b2
+{
+	display: block;
+}
+
+.e-4bfa67b2 > .box
+{
+	display: flex;
+	flex-direction: column;
+	gap: var(--ot-spacing-m);
+}
+
+/* Group card — header strip + hairline rows, table feel */
+
+.e-4bfa67b2 .group
+{
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-m);
+	overflow: hidden;
+}
+
+.e-4bfa67b2 .group > .head
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--ot-spacing-s) var(--ot-spacing-m);
+	border-bottom: 1px solid var(--ot-bg-2-border);
+}
+
+.e-4bfa67b2 .group > .head > .title
+{
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.e-4bfa67b2 .group > .head > .count
+{
+	min-width: 18px;
+	padding: 0 var(--ot-spacing-x);
+	background: var(--ot-bg-3);
+	border-radius: var(--ot-radius-s);
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	text-align: center;
+}
+
+.e-4bfa67b2 .row
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-m);
+	padding: var(--ot-spacing-s) var(--ot-spacing-m);
+	transition: background var(--ot-transition-fast);
+}
+
+.e-4bfa67b2 .row:hover
+{
+	background: var(--ot-bg-2-hover);
+}
+
+.e-4bfa67b2 .row:not(:last-child)
+{
+	border-bottom: 1px solid var(--ot-bg-2-border);
+}
+
+.e-4bfa67b2 .row > .info
+{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+
+.e-4bfa67b2 .row > .info > .name
+{
+	color: var(--ot-text-1);
+	transition: color var(--ot-transition);
+}
+
+.e-4bfa67b2 .row.disabled > .info > .name
+{
+	color: var(--ot-text-3);
+}
+
+.e-4bfa67b2 .row > .info > .description
+{
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+}
+
+/* Keys — keycap chips, thicker bottom edge */
+
+.e-4bfa67b2 .row > .keys
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-x);
+}
+
+.e-4bfa67b2 .row.disabled > .keys
+{
+	opacity: 0.6;
+}
+
+.e-4bfa67b2 .row > .keys > kbd
+{
+	padding: 2px 7px;
+	background: var(--ot-bg-3);
+	border: 1px solid var(--ot-bg-3-border);
+	border-bottom-width: 2px;
+	border-radius: var(--ot-radius-s);
+	color: var(--ot-text-2);
+	font-size: var(--ot-size-s);
+	font-family: inherit;
+	white-space: nowrap;
+	cursor: pointer;
+	user-select: none;
+	transition: color var(--ot-transition-fast), border-color var(--ot-transition-fast), background var(--ot-transition-fast);
+}
+
+.e-4bfa67b2 .row > .keys > kbd:hover
+{
+	border-color: var(--ot-bg-4-border);
+	color: var(--ot-text-1);
+}
+
+.e-4bfa67b2 .row > .keys > kbd.custom
+{
+	border-color: var(--ot-brand-border);
+	color: var(--ot-text-1);
+}
+
+.e-4bfa67b2 .row > .keys > kbd.recording
+{
+	background: var(--ot-brand-opacity);
+	border-color: var(--ot-brand-border);
+	color: var(--ot-brand);
+	animation: e-4bfa67b2-recording 1.2s ease-in-out infinite;
+}
+
+@keyframes e-4bfa67b2-recording
+{
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.55; }
+}
+
+/* Reset — appears on row hover only */
+
+.e-4bfa67b2 .row > .keys > .reset
+{
+	font-size: 14px;
+	color: var(--ot-text-3);
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity var(--ot-transition-fast), color var(--ot-transition-fast);
+}
+
+.e-4bfa67b2 .row:hover > .keys > .reset
+{
+	opacity: 1;
+}
+
+.e-4bfa67b2 .row > .keys > .reset:hover
+{
+	color: var(--ot-text-1);
+}

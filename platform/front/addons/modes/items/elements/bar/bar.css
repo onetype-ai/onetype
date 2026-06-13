@@ -1,0 +1,61 @@
+.e-479aeea0
+{
+	display: block;
+	width: fit-content;
+	margin: 0 auto;
+	height: 0;
+	pointer-events: none;
+}
+
+.e-479aeea0 > .holder
+{
+	display: flex;
+	align-items: center;
+	gap: 2px;
+	padding: 5px;
+	margin-top: -60px;
+	background: var(--ot-bg-2-opacity);
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-l);
+	backdrop-filter: var(--ot-blur);
+	-webkit-backdrop-filter: var(--ot-blur);
+	pointer-events: auto;
+}
+
+.e-479aeea0 .mode
+{
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: var(--ot-radius-m);
+	color: var(--ot-text-2);
+	cursor: pointer;
+	user-select: none;
+	transition: color var(--ot-transition-fast), background var(--ot-transition-fast);
+}
+
+.e-479aeea0 .mode:hover
+{
+	background: var(--ot-bg-3);
+	color: var(--ot-text-1);
+}
+
+.e-479aeea0 .mode.active
+{
+	background: var(--ot-brand-opacity);
+	color: var(--ot-brand);
+}
+
+.e-479aeea0 .mode > i
+{
+	font-size: 18px;
+	transition: font-variation-settings var(--ot-transition-fast);
+}
+
+.e-479aeea0 .mode.active > i
+{
+	font-variation-settings: 'opsz' 24, 'wght' 400, 'FILL' 1, 'GRAD' 0;
+}

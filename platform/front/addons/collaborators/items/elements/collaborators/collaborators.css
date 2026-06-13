@@ -1,0 +1,111 @@
+/* ===== COLLABORATORS ===== */
+
+.e-deb3929
+{
+	display: block;
+}
+
+.e-deb3929 > .box
+{
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+/* Avatar stack */
+
+.e-deb3929 .people
+{
+	display: flex;
+	align-items: center;
+}
+
+.e-deb3929 .avatar
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border: 1px solid var(--ot-bg-1);
+	border-radius: 50%;
+	font-size: 11px;
+	font-weight: 500;
+	cursor: default;
+	transition: transform var(--ot-transition-fast);
+}
+
+.e-deb3929 .avatar + .avatar
+{
+	margin-left: -7px;
+}
+
+.e-deb3929 .avatar:hover
+{
+	transform: translateY(-1px);
+	z-index: 1;
+}
+
+.e-deb3929 .avatar > i
+{
+	font-size: 16px;
+}
+
+.e-deb3929 .avatar.brand  { background: var(--ot-brand-opacity); color: var(--ot-brand); }
+.e-deb3929 .avatar.blue   { background: var(--ot-blue-opacity); color: var(--ot-blue); }
+.e-deb3929 .avatar.red    { background: var(--ot-red-opacity); color: var(--ot-red); }
+.e-deb3929 .avatar.orange { background: var(--ot-orange-opacity); color: var(--ot-orange); }
+.e-deb3929 .avatar.green  { background: var(--ot-green-opacity); color: var(--ot-green); }
+
+/* Cursor layer */
+
+.e-deb3929 .cursors
+{
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	pointer-events: none;
+}
+
+.e-deb3929 .cursor
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: transform var(--ot-transition-fast);
+}
+
+.e-deb3929 .cursor > svg
+{
+	display: block;
+}
+
+.e-deb3929 .cursor > .tag
+{
+	position: absolute;
+	top: 16px;
+	left: 12px;
+	padding: 1px 6px;
+	border-radius: var(--ot-radius-s);
+	color: var(--ot-bg-1);
+	font-size: 10px;
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.e-deb3929 .cursor.brand  { color: var(--ot-brand); }
+.e-deb3929 .cursor.blue   { color: var(--ot-blue); }
+.e-deb3929 .cursor.red    { color: var(--ot-red); }
+.e-deb3929 .cursor.orange { color: var(--ot-orange); }
+.e-deb3929 .cursor.green  { color: var(--ot-green); }
+
+.e-deb3929 .cursor > svg path
+{
+	fill: currentColor;
+}
+
+.e-deb3929 .cursor.brand > .tag  { background: var(--ot-brand); }
+.e-deb3929 .cursor.blue > .tag   { background: var(--ot-blue); }
+.e-deb3929 .cursor.red > .tag    { background: var(--ot-red); }
+.e-deb3929 .cursor.orange > .tag { background: var(--ot-orange); }
+.e-deb3929 .cursor.green > .tag  { background: var(--ot-green); }

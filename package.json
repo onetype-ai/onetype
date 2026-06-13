@@ -10,21 +10,21 @@
         "url": "https://github.com/onetype-ai/sites-editor.git"
     },
     "imports": {
-        "#auth-service/*": "./back/services/auth/*",
-        "#elements-service/*": "./back/services/elements/*",
-        "#sites/*": "./back/addons/sites/*",
-        "#fonts/*": "./back/addons/fonts/*",
-        "#categories/*": "./back/addons/categories/*",
-        "#extensions/*": "./back/addons/extensions/*",
-        "#pages/*": "./back/addons/sites/addons/pages/*",
-        "#sections/*": "./back/addons/sites/addons/sections/*",
-        "#elements/*": "./back/addons/sites/addons/elements/*",
-        "#variables/*": "./back/addons/sites/addons/variables/*",
-        "#installs/*": "./back/addons/extensions/addons/installs/*",
-        "#tc-resources/*": "./back/extensions/travel-connect/addons/resources/*",
-        "#tc-locations/*": "./back/extensions/travel-connect/addons/locations/*",
-        "#tc-directories/*": "./back/extensions/travel-connect/addons/directories/*",
-        "#tc-offers/*": "./back/extensions/travel-connect/addons/offers/*"
+        "#auth-service/*": "./platform/back/services/auth/*",
+        "#elements-service/*": "./platform/back/services/elements/*",
+        "#sites/*": "./platform/back/addons/sites/*",
+        "#fonts/*": "./platform/back/addons/fonts/*",
+        "#categories/*": "./platform/back/addons/categories/*",
+        "#extensions/*": "./platform/back/addons/extensions/*",
+        "#pages/*": "./platform/back/addons/sites/addons/pages/*",
+        "#sections/*": "./platform/back/addons/sites/addons/sections/*",
+        "#elements/*": "./platform/back/addons/sites/addons/elements/*",
+        "#variables/*": "./platform/back/addons/sites/addons/variables/*",
+        "#installs/*": "./platform/back/addons/extensions/addons/installs/*",
+        "#tc-resources/*": "./platform/back/extensions/travel-connect/addons/resources/*",
+        "#tc-locations/*": "./platform/back/extensions/travel-connect/addons/locations/*",
+        "#tc-directories/*": "./platform/back/extensions/travel-connect/addons/directories/*",
+        "#tc-offers/*": "./platform/back/extensions/travel-connect/addons/offers/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"

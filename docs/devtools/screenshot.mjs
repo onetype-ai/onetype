@@ -42,12 +42,16 @@ socket.addEventListener('message', (event) =>
 
 await new Promise((resolve) => socket.addEventListener('open', resolve));
 
-const params = { format: 'png' };
+// Cap the longest output side below AI image limits, scale via clip.
+const limit = 1500;
+const metrics = await send('Page.getLayoutMetrics', {});
+const viewport = metrics.result.cssLayoutViewport;
 
-if(clip)
-{
-	params.clip = clip;
-}
+const params = { format: 'png' };
+const area = clip || { x: 0, y: 0, width: viewport.clientWidth, height: viewport.clientHeight, scale: 1 };
+
+area.scale = Math.min(1, limit / Math.max(area.width, area.height));
+params.clip = area;
 
 const result = await send('Page.captureScreenshot', params);
 
