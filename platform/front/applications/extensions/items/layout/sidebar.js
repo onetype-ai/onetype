@@ -3,7 +3,7 @@ onetype.AddonReady('layouts', (layouts) =>
 	layouts.Item({
 		id: 'extensions-sidebar',
 		active: true,
-		app: ['extensions'],
+		condition: { app: ['extensions'] },
 		zone: 'root',
 		slot: 'left',
 		render: function()

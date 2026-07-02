@@ -18,7 +18,7 @@ commands.Item({
 	},
 	callback: function(properties, resolve)
 	{
-		const active = settings.Fn('get', 'collections.active', '');
+		const active = $ot.settings.get('collections.active', '');
 		const row = collections.Fn('rows', active).find((entry) => entry.id === properties.id);
 
 		if(!row)
@@ -26,12 +26,12 @@ commands.Item({
 			return resolve(null, 'Item ' + properties.id + ' not found in collection ' + active + '.', 404);
 		}
 
-		if(settings.Fn('get', 'collections.item', '') === properties.id)
+		if($ot.settings.get('collections.item', '') === properties.id)
 		{
 			return resolve({ id: properties.id }, 'Item ' + properties.id + ' is already open.');
 		}
 
-		settings.Fn('set', 'collections.item', properties.id);
+		$ot.settings.set('collections.item', properties.id);
 
 		onetype.Emit('collections.edit', { id: properties.id });
 

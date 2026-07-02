@@ -3,7 +3,7 @@ onetype.AddonReady('layouts', (layouts) =>
 	layouts.Item({
 		id: 'documentation-content',
 		active: true,
-		app: ['documentation'],
+		condition: { app: ['documentation'] },
 		zone: 'root',
 		slot: 'center',
 		config: {

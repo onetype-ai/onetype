@@ -1,0 +1,417 @@
+/* ===== NAVIGATION TABS ===== */
+
+.e-1a8b6ac1
+{
+	display: contents;
+}
+
+/* Box */
+
+.e-1a8b6ac1 > .box
+{
+	display: flex;
+	flex-direction: column;
+}
+
+/* Tabs nav */
+
+.e-1a8b6ac1 > .box > .tabs
+{
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+	scrollbar-width: none;
+	overflow: hidden;
+}
+
+.e-1a8b6ac1 > .box > .tabs::-webkit-scrollbar
+{
+	display: none;
+}
+
+/* Tab base */
+
+.e-1a8b6ac1 .tab
+{
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--ot-spacing-s);
+	white-space: nowrap;
+	cursor: pointer;
+	text-decoration: none;
+	font-family: var(--ot-font-primary);
+	font-weight: 500;
+	color: var(--ot-text-2);
+	user-select: none;
+	transition: background var(--ot-transition), border-color var(--ot-transition), color var(--ot-transition);
+}
+
+.e-1a8b6ac1 .tab:hover:not(.disabled)
+{
+	color: var(--ot-text-1);
+}
+
+.e-1a8b6ac1 .tab.active
+{
+	color: var(--ot-text-1);
+	font-weight: 600;
+}
+
+.e-1a8b6ac1 .tab.disabled
+{
+	cursor: not-allowed;
+	opacity: 0.45;
+}
+
+/* Count badge */
+
+.e-1a8b6ac1 .tab > .count
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 18px;
+	padding: 0 6px;
+	background: var(--ot-bg-2);
+	border-radius: 100px;
+	font-size: 10.5px;
+	font-weight: 600;
+	color: var(--ot-text-3);
+	line-height: 18px;
+	font-family: var(--ot-font-primary);
+}
+
+.e-1a8b6ac1 .tab.active > .count
+{
+	background: var(--ot-brand-opacity);
+	color: var(--ot-brand);
+}
+
+/* Content panels */
+
+.e-1a8b6ac1 > .box > .body
+{
+	padding-top: var(--ot-spacing-l);
+}
+
+/* When a background or border is set, wrap the panel content in a card. */
+
+.e-1a8b6ac1 > .box.border > .body,
+.e-1a8b6ac1 > .box.bg-1 > .body,
+.e-1a8b6ac1 > .box.bg-2 > .body,
+.e-1a8b6ac1 > .box.bg-3 > .body,
+.e-1a8b6ac1 > .box.bg-4 > .body
+{
+	margin-top: var(--ot-spacing-s);
+	padding: var(--ot-spacing-m) var(--ot-spacing-l);
+	border-radius: var(--ot-radius-l);
+}
+
+.e-1a8b6ac1 > .box.bg-1 > .body { background: var(--ot-bg-1); }
+.e-1a8b6ac1 > .box.bg-2 > .body { background: var(--ot-bg-2); }
+.e-1a8b6ac1 > .box.bg-3 > .body { background: var(--ot-bg-3); }
+.e-1a8b6ac1 > .box.bg-4 > .body { background: var(--ot-bg-4); }
+
+.e-1a8b6ac1 > .box.border > .body
+{
+	border: 1px solid var(--ot-bg-2-border);
+}
+
+.e-1a8b6ac1 > .box > .body .panel
+{
+	display: none;
+}
+
+.e-1a8b6ac1 > .box > .body .panel.active
+{
+	display: block;
+	animation: e-1a8b6ac1-fade 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes e-1a8b6ac1-fade
+{
+	from { opacity: 0; transform: translateY(4px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== TONE: UNDERLINE ===== */
+
+.e-1a8b6ac1 > .box.underline > .tabs
+{
+	gap: var(--ot-spacing-l);
+}
+
+.e-1a8b6ac1 > .box.underline > .tabs > .tab
+{
+	padding: 14px 0;
+}
+
+.e-1a8b6ac1 > .box.underline > .tabs > .tab.active::after
+{
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: var(--ot-brand);
+	border-radius: 2px 2px 0 0;
+}
+
+/* ===== TONE: PILLS ===== */
+
+.e-1a8b6ac1 > .box.pills > .tabs
+{
+	gap: var(--ot-spacing-s);
+}
+
+.e-1a8b6ac1 > .box.pills > .tabs > .tab
+{
+	padding: 8px 16px;
+	border-radius: 100px;
+	background: transparent;
+	border: 1px solid transparent;
+}
+
+.e-1a8b6ac1 > .box.pills > .tabs > .tab:hover:not(.disabled)
+{
+	background: var(--ot-bg-2);
+}
+
+.e-1a8b6ac1 > .box.pills > .tabs > .tab.active
+{
+	background: var(--ot-brand-opacity);
+	color: var(--ot-brand);
+}
+
+.e-1a8b6ac1 > .box.pills > .tabs > .tab.active > .count
+{
+	background: var(--ot-brand);
+	color: white;
+}
+
+/* ===== TONE: CONTAINED ===== */
+
+.e-1a8b6ac1 > .box.contained > .tabs
+{
+	padding: var(--ot-spacing-x);
+	background: var(--ot-bg-2);
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-m);
+	gap: 2px;
+}
+
+.e-1a8b6ac1 > .box.contained > .tabs > .tab
+{
+	padding: 8px 14px;
+	border-radius: calc(var(--ot-radius-m) - 2px);
+}
+
+.e-1a8b6ac1 > .box.contained > .tabs > .tab:hover:not(.disabled)
+{
+	background: var(--ot-bg-2-hover);
+}
+
+.e-1a8b6ac1 > .box.contained > .tabs > .tab.active
+{
+	background: var(--ot-brand-opacity);
+	color: var(--ot-brand);
+}
+
+.e-1a8b6ac1 > .box.contained > .tabs > .tab.active > .count
+{
+	background: var(--ot-brand);
+	color: white;
+}
+
+/* ===== TONE: SEGMENTED ===== */
+
+.e-1a8b6ac1 > .box.segmented > .tabs
+{
+	padding: 3px;
+	background: var(--ot-bg-3);
+	border-radius: 100px;
+	gap: 0;
+	display: inline-flex;
+	align-self: flex-start;
+}
+
+.e-1a8b6ac1 > .box.segmented > .tabs > .tab
+{
+	padding: 8px 18px;
+	border-radius: 100px;
+	flex: 1;
+}
+
+.e-1a8b6ac1 > .box.border.segmented > .tabs { border: 1px solid var(--ot-bg-2-border); }
+.e-1a8b6ac1 > .box.bg-1.border.segmented > .tabs { border-color: var(--ot-bg-1-border); }
+.e-1a8b6ac1 > .box.bg-2.border.segmented > .tabs { border-color: var(--ot-bg-2-border); }
+.e-1a8b6ac1 > .box.bg-3.border.segmented > .tabs { border-color: var(--ot-bg-3-border); }
+.e-1a8b6ac1 > .box.bg-4.border.segmented > .tabs { border-color: var(--ot-bg-4-border); }
+
+.e-1a8b6ac1 > .box.segmented > .tabs > .tab:hover:not(.disabled)
+{
+	color: var(--ot-text-1);
+}
+
+.e-1a8b6ac1 > .box.segmented > .tabs > .tab.active
+{
+	background: var(--ot-brand-opacity);
+	color: var(--ot-brand);
+}
+
+.e-1a8b6ac1 > .box.segmented > .tabs > .tab.active > .count
+{
+	background: var(--ot-brand);
+	color: white;
+}
+
+/* ===== BACKGROUND ===== */
+
+/* underline / pills — bg on box */
+
+.e-1a8b6ac1 > .box.bg-1.underline,
+.e-1a8b6ac1 > .box.bg-1.pills { background: var(--ot-bg-1); padding: 0 var(--ot-spacing-m); }
+
+.e-1a8b6ac1 > .box.bg-2.underline,
+.e-1a8b6ac1 > .box.bg-2.pills { background: var(--ot-bg-2); padding: 0 var(--ot-spacing-m); }
+
+.e-1a8b6ac1 > .box.bg-3.underline,
+.e-1a8b6ac1 > .box.bg-3.pills { background: var(--ot-bg-3); padding: 0 var(--ot-spacing-m); }
+
+.e-1a8b6ac1 > .box.bg-4.underline,
+.e-1a8b6ac1 > .box.bg-4.pills { background: var(--ot-bg-4); padding: 0 var(--ot-spacing-m); }
+
+/* contained — bg on track */
+
+.e-1a8b6ac1 > .box.bg-1.contained > .tabs { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
+.e-1a8b6ac1 > .box.bg-2.contained > .tabs { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
+.e-1a8b6ac1 > .box.bg-3.contained > .tabs { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
+.e-1a8b6ac1 > .box.bg-4.contained > .tabs { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
+
+/* segmented — bg on track */
+
+.e-1a8b6ac1 > .box.bg-1.segmented > .tabs { background: var(--ot-bg-1); }
+.e-1a8b6ac1 > .box.bg-2.segmented > .tabs { background: var(--ot-bg-2); }
+.e-1a8b6ac1 > .box.bg-3.segmented > .tabs { background: var(--ot-bg-3); }
+.e-1a8b6ac1 > .box.bg-4.segmented > .tabs { background: var(--ot-bg-4); }
+
+/* pills hover per bg */
+
+.e-1a8b6ac1 > .box.bg-1.pills > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-1-hover); }
+.e-1a8b6ac1 > .box.bg-2.pills > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-2-hover); }
+.e-1a8b6ac1 > .box.bg-3.pills > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-3-hover); }
+.e-1a8b6ac1 > .box.bg-4.pills > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-4-hover); }
+
+/* contained hover per bg */
+
+.e-1a8b6ac1 > .box.bg-1.contained > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-1-hover); }
+.e-1a8b6ac1 > .box.bg-2.contained > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-2-hover); }
+.e-1a8b6ac1 > .box.bg-3.contained > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-3-hover); }
+.e-1a8b6ac1 > .box.bg-4.contained > .tabs > .tab:hover:not(.disabled) { background: var(--ot-bg-4-hover); }
+
+/* count badge per bg */
+
+.e-1a8b6ac1 > .box.bg-1 .tab > .count { background: var(--ot-bg-2); }
+.e-1a8b6ac1 > .box.bg-2 .tab > .count { background: var(--ot-bg-3); }
+.e-1a8b6ac1 > .box.bg-3 .tab > .count { background: var(--ot-bg-4); }
+.e-1a8b6ac1 > .box.bg-4 .tab > .count { background: var(--ot-bg-3); }
+
+/* ===== BORDER ===== */
+
+.e-1a8b6ac1 > .box.border.underline,
+.e-1a8b6ac1 > .box.border.pills { border-bottom: 1px solid var(--ot-bg-2-border); }
+
+.e-1a8b6ac1 > .box.bg-1.border.underline,
+.e-1a8b6ac1 > .box.bg-1.border.pills { border-bottom-color: var(--ot-bg-1-border); }
+
+.e-1a8b6ac1 > .box.bg-2.border.underline,
+.e-1a8b6ac1 > .box.bg-2.border.pills { border-bottom-color: var(--ot-bg-2-border); }
+
+.e-1a8b6ac1 > .box.bg-3.border.underline,
+.e-1a8b6ac1 > .box.bg-3.border.pills { border-bottom-color: var(--ot-bg-3-border); }
+
+.e-1a8b6ac1 > .box.bg-4.border.underline,
+.e-1a8b6ac1 > .box.bg-4.border.pills { border-bottom-color: var(--ot-bg-4-border); }
+
+/* ===== STRETCH ===== */
+
+.e-1a8b6ac1 > .box.stretch > .tabs
+{
+	width: 100%;
+}
+
+.e-1a8b6ac1 > .box.stretch.segmented > .tabs
+{
+	align-self: stretch;
+}
+
+.e-1a8b6ac1 > .box.stretch > .tabs > .tab
+{
+	flex: 1;
+}
+
+/* ===== SIZE: S ===== */
+
+.e-1a8b6ac1 > .box.size-s .tab
+{
+	font-size: 12px;
+}
+
+.e-1a8b6ac1 > .box.size-s .tab > i
+{
+	font-size: 14px;
+}
+
+.e-1a8b6ac1 > .box.size-s .tab > .count
+{
+	min-width: 16px;
+	font-size: 10px;
+	line-height: 16px;
+	padding: 0 5px;
+}
+
+.e-1a8b6ac1 > .box.size-s.underline > .tabs > .tab { padding: 10px 0; }
+.e-1a8b6ac1 > .box.size-s.underline > .tabs { gap: var(--ot-spacing-m); }
+.e-1a8b6ac1 > .box.size-s.pills > .tabs > .tab { padding: 6px 12px; }
+.e-1a8b6ac1 > .box.size-s.contained > .tabs > .tab { padding: 6px 10px; }
+.e-1a8b6ac1 > .box.size-s.segmented > .tabs > .tab { padding: 6px 14px; }
+
+/* ===== SIZE: M ===== */
+
+.e-1a8b6ac1 > .box.size-m .tab
+{
+	font-size: 13px;
+}
+
+.e-1a8b6ac1 > .box.size-m .tab > i
+{
+	font-size: 16px;
+}
+
+/* ===== SIZE: L ===== */
+
+.e-1a8b6ac1 > .box.size-l .tab
+{
+	font-size: 14px;
+}
+
+.e-1a8b6ac1 > .box.size-l .tab > i
+{
+	font-size: 18px;
+}
+
+.e-1a8b6ac1 > .box.size-l .tab > .count
+{
+	min-width: 22px;
+	font-size: 11.5px;
+	line-height: 22px;
+	padding: 0 8px;
+}
+
+.e-1a8b6ac1 > .box.size-l.underline > .tabs > .tab { padding: 18px 0; }
+.e-1a8b6ac1 > .box.size-l.pills > .tabs > .tab { padding: 12px 22px; }
+.e-1a8b6ac1 > .box.size-l.contained > .tabs > .tab { padding: 12px 18px; }
+.e-1a8b6ac1 > .box.size-l.segmented > .tabs > .tab { padding: 12px 24px; }

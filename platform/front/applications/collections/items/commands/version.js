@@ -18,7 +18,7 @@ commands.Item({
 	},
 	callback: function(properties, resolve)
 	{
-		const active = settings.Fn('get', 'collections.active', '');
+		const active = $ot.settings.get('collections.active', '');
 		const version = collections.Fn('versions', active).find((entry) => entry.id === properties.id);
 
 		if(!version)
@@ -26,12 +26,12 @@ commands.Item({
 			return resolve(null, 'Version ' + properties.id + ' not found in collection ' + active + '.', 404);
 		}
 
-		if(settings.Fn('get', 'collections.version', '') === properties.id)
+		if($ot.settings.get('collections.version', '') === properties.id)
 		{
 			return resolve({ id: properties.id }, 'Version ' + properties.id + ' is already open.');
 		}
 
-		settings.Fn('set', 'collections.version', properties.id);
+		$ot.settings.set('collections.version', properties.id);
 
 		onetype.Emit('collections.version', { id: properties.id });
 

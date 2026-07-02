@@ -1,0 +1,32 @@
+ui.apps.Fn('open', function(id)
+{
+	const item = this.ItemGet(id);
+
+	if(!item)
+	{
+		return false;
+	}
+
+	const previous = $ot.ui.apps.active();
+
+	if(previous?.Get('id') === id)
+	{
+		return false;
+	}
+
+	if(previous && previous.Get('onDeactivate'))
+	{
+		previous.Get('onDeactivate')(previous);
+	}
+
+	$ot.settings.set('ui.apps.active', id);
+
+	if(item.Get('onActivate'))
+	{
+		item.Get('onActivate')(item);
+	}
+
+	onetype.Emit('ui.apps.open', { id });
+
+	return true;
+});

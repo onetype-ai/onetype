@@ -1,4 +1,4 @@
-const collections = onetype.Addon('collections', (addon) =>
+const collectionss = onetype.Addon('collections', (addon) =>
 {
 	addon.Field('id', {
 		type: 'string',

@@ -19,7 +19,7 @@ elements.ItemAdd({
 
 		const refresh = () =>
 		{
-			const item = collections.ItemGet(settings.Fn('get', 'collections.active', ''));
+			const item = collections.ItemGet($ot.settings.get('collections.active', ''));
 
 			this.collection = item ? { id: item.Get('id'), icon: item.Get('icon'), name: item.Get('name'), kind: item.Get('kind') } : null;
 		};

@@ -25,12 +25,12 @@ commands.Item({
 			return resolve(null, 'Collection ' + properties.id + ' not found.', 404);
 		}
 
-		if(settings.Fn('get', 'collections.active', '') === properties.id)
+		if($ot.settings.get('collections.active', '') === properties.id)
 		{
 			return resolve({ id: properties.id }, 'Collection ' + properties.id + ' is already selected.');
 		}
 
-		settings.Fn('set', 'collections.active', properties.id);
+		$ot.settings.set('collections.active', properties.id);
 
 		onetype.Emit('collections.select', { id: properties.id });
 

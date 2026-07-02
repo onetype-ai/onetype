@@ -10,8 +10,8 @@ elements.ItemAdd({
 	{
 		const refresh = () =>
 		{
-			const active = settings.Fn('get', 'collections.active', '');
-			const open = settings.Fn('get', 'collections.item', '');
+			const active = $ot.settings.get('collections.active', '');
+			const open = $ot.settings.get('collections.item', '');
 
 			this.row = collections.Fn('rows', active).find((entry) => entry.id === open) || null;
 			this.slug = this.row ? this.row.name.toLowerCase().replace(/\s+/g, '-') : '';

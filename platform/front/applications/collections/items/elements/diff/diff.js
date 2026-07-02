@@ -10,8 +10,8 @@ elements.ItemAdd({
 	{
 		const refresh = () =>
 		{
-			const active = settings.Fn('get', 'collections.active', '');
-			const open = settings.Fn('get', 'collections.version', '');
+			const active = $ot.settings.get('collections.active', '');
+			const open = $ot.settings.get('collections.version', '');
 
 			this.version = collections.Fn('versions', active).find((entry) => entry.id === open) || null;
 		};

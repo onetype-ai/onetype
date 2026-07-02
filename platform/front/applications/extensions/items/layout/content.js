@@ -3,7 +3,7 @@ onetype.AddonReady('layouts', (layouts) =>
 	layouts.Item({
 		id: 'extensions-content',
 		active: true,
-		app: ['extensions'],
+		condition: { app: ['extensions'] },
 		zone: 'root',
 		slot: 'center',
 		config: {

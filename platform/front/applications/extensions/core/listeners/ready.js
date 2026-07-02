@@ -1,6 +1,6 @@
 onetype.EmitOn('settings.ready', () =>
 {
-	const saved = settings.Fn('get', 'extensions.installed', null);
+	const saved = $ot.settings.get('extensions.installed', null);
 
 	if(saved === null)
 	{

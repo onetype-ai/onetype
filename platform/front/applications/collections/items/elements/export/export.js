@@ -10,7 +10,7 @@ elements.ItemAdd({
 	{
 		const refresh = () =>
 		{
-			const item = collections.ItemGet(settings.Fn('get', 'collections.active', ''));
+			const item = collections.ItemGet($ot.settings.get('collections.active', ''));
 
 			this.active = item ? { id: item.Get('id'), name: item.Get('name') } : null;
 			this.total = Object.keys(collections.Items()).length;
