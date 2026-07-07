@@ -5,7 +5,7 @@ ui.canvas.Fn('item.visible', function(item)
 		return false;
 	}
 
-	const app = $ot.settings.get('ui.apps.active', 'builder');
+	const app = $ot.modules.settings.get('ui.apps.active', 'builder');
 	const apps = item.Get('app');
 
 	if(apps.length && !apps.includes(app))

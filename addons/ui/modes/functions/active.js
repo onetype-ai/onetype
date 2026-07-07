@@ -1,6 +1,6 @@
 ui.modes.Fn('active', function()
 {
-	const active = $ot.settings.get('ui.modes.active', []);
+	const active = $ot.modules.settings.get('ui.modes.active', []);
 	const visible = Object.values(this.Items()).filter((item) => item.Fn('visible'));
 
 	const current = visible.find((item) => active.includes(item.Get('id')));

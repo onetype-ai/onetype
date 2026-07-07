@@ -11,15 +11,15 @@ commands.Item({
 	},
 	callback: function(properties, resolve)
 	{
-		const focused = $ot.settings.get('ui.canvas.focus', null);
+		const focused = $ot.modules.settings.get('ui.canvas.focus', null);
 
 		if(!focused)
 		{
 			return resolve(null, 'Canvas has no focused item.', 400);
 		}
 
-		$ot.settings.set('ui.canvas.focus', null);
-		$ot.settings.set('ui.canvas.camera', { ...focused.back });
+		$ot.modules.settings.set('ui.canvas.focus', null);
+		$ot.modules.settings.set('ui.canvas.camera', { ...focused.back });
 
 		onetype.Emit('ui.canvas.blur', { id: focused.id });
 

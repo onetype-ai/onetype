@@ -1,5 +1,5 @@
 $ot.projects = {
-	active: () => projects.ItemGet($ot.settings.get('projects.active', null)),
+	active: () => projects.ItemGet($ot.modules.settings.get('projects.active', null)),
 	open: (id) => $ot.command('projects:open', { id }),
 	close: () => $ot.command('projects:close'),
 	list: () => $ot.command('projects:list'),

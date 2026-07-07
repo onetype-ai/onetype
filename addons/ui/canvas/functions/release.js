@@ -1,13 +1,13 @@
 ui.canvas.Fn('release', function()
 {
-	const focused = $ot.settings.get('ui.canvas.focus', null);
+	const focused = $ot.modules.settings.get('ui.canvas.focus', null);
 
 	if(!focused)
 	{
 		return null;
 	}
 
-	$ot.settings.set('ui.canvas.focus', null);
+	$ot.modules.settings.set('ui.canvas.focus', null);
 
 	onetype.Emit('ui.canvas.blur', { id: focused.id });
 

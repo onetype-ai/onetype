@@ -12,7 +12,7 @@ ui.apps.Fn('close', function()
 		active.Get('onDeactivate')(active);
 	}
 
-	$ot.settings.set('ui.apps.active', null);
+	$ot.modules.settings.set('ui.apps.active', null);
 
 	onetype.Emit('ui.apps.close', { id: active.Get('id') });
 

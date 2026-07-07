@@ -34,6 +34,13 @@ ui.apps = onetype.Addon('ui.apps', (addon) =>
 		description: 'Sort position on the rail.'
 	});
 
+	addon.Field('position', {
+		type: 'string',
+		value: 'top',
+		options: ['top', 'bottom'],
+		description: 'Rail group the app icon goes into.'
+	});
+
 	addon.Field('condition', {
 		type: 'object',
 		value: {},
@@ -130,7 +137,7 @@ ui.apps = onetype.Addon('ui.apps', (addon) =>
 });
 
 $ot.ui.apps = {
-	active: () => ui.apps.ItemGet($ot.settings.get('ui.apps.active', null)),
+	active: () => ui.apps.ItemGet($ot.modules.settings.get('ui.apps.active', null)),
 	open: (id) => $ot.command('ui:apps:open', { id }),
 	close: () => $ot.command('ui:apps:close')
 };

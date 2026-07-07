@@ -15,6 +15,7 @@ import '#fonts/load.js';
 /* Applications */
 import '#application_marketplace/index.js';
 import '#application_documentation/index.js';
+import '#application_mesh/index.js';
 
 
 /* Services */

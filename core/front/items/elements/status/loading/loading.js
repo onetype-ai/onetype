@@ -4,7 +4,7 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'status-loading',
 		icon: 'progress_activity',
 		name: 'Loading',
-		description: 'Loading state with spinner and optional message.',
+		description: 'Loading state with spinner, optional message and optional surface background.',
 		category: 'Status',
 		config:
 		{
@@ -20,6 +20,11 @@ onetype.AddonReady('elements', (elements) =>
 				value: 'brand',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Spinner color.'
+			},
+			background:
+			{
+				type: 'number',
+				description: 'Background depth from 1 to 4, renders the loading state on its own bordered surface. Empty keeps it transparent.'
 			},
 			size:
 			{
@@ -42,6 +47,11 @@ onetype.AddonReady('elements', (elements) =>
 			this.classes = () =>
 			{
 				const list = ['box', this.color, 'size-' + this.size];
+
+				if(this.background)
+				{
+					list.push('bg-' + this.background);
+				}
 
 				if(this.auto)
 				{

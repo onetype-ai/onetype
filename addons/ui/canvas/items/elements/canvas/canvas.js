@@ -18,7 +18,7 @@ elements.ItemAdd({
 	{
 		/* ===== CAMERA — gestures write to the DOM directly, never re-render ===== */
 
-		const camera = { ...$ot.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 }) };
+		const camera = { ...$ot.modules.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 }) };
 		const limits = { min: 0.25, max: 2 };
 
 		this.worldStyle = () =>
@@ -72,7 +72,7 @@ elements.ItemAdd({
 
 		const persist = onetype.HelperDebounce(() =>
 		{
-			$ot.settings.set('ui.canvas.camera', { ...camera });
+			$ot.modules.settings.set('ui.canvas.camera', { ...camera });
 		}, 300);
 
 		/* Command driven camera moves ease in through the flying class,
@@ -179,7 +179,7 @@ elements.ItemAdd({
 				items = ui.canvas.Fn('stack', items);
 			}
 
-			const state = $ot.settings.get('ui.canvas.focus', null);
+			const state = $ot.modules.settings.get('ui.canvas.focus', null);
 
 			if(state && !items.find((item) => item.id === state.id))
 			{
@@ -230,11 +230,11 @@ elements.ItemAdd({
 			setTimeout(() => box.classList.remove('tidying'), 400);
 		});
 
-		this.On('settings.change', (change) =>
+		this.On('modules.settings.change', (change) =>
 		{
 			if(change.id === 'ui.canvas.camera')
 			{
-				Object.assign(camera, $ot.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 }));
+				Object.assign(camera, $ot.modules.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 }));
 
 				fly();
 			}

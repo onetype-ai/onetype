@@ -1,6 +1,6 @@
 projects.Fn('list', function()
 {
-	const active = $ot.settings.get('projects.active', null);
+	const active = $ot.modules.settings.get('projects.active', null);
 
 	return Object.values(this.Items()).sort((a, b) => a.Get('name').localeCompare(b.Get('name'))).map((item) =>
 	{

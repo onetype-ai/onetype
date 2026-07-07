@@ -30,7 +30,7 @@ commands.Item({
 			return resolve(null, 'Navbar item ' + properties.id + ' has no popup to open.', 400);
 		}
 
-		if($ot.settings.get('ui.navbar.open', null) === properties.id)
+		if($ot.modules.settings.get('ui.navbar.open', null) === properties.id)
 		{
 			return resolve({ id: properties.id }, 'Navbar item ' + properties.id + ' is already open.');
 		}

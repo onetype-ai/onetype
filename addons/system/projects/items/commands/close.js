@@ -14,7 +14,7 @@ commands.Item({
 			return resolve({}, 'No project is open, nothing to close.');
 		}
 
-		$ot.settings.set('projects.active', null);
+		$ot.modules.settings.set('projects.active', null);
 
 		onetype.Emit('projects.close');
 

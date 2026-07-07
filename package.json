@@ -19,7 +19,8 @@
         "#elements-service/*": "./core/back/services/elements/*",
         "#fonts/*": "./platform/back/addons/fonts/*",
         "#application_marketplace/*": "./applications/marketplace/*",
-        "#application_documentation/*": "./applications/documentation/*"
+        "#application_documentation/*": "./applications/documentation/*",
+        "#application_mesh/*": "./applications/mesh/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"

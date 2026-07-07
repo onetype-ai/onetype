@@ -1,4 +1,4 @@
-onetype.EmitOn('settings.ready', () =>
+onetype.EmitOn('modules.settings.ready', () =>
 {
 	for(const item of Object.values(modules.shortcuts.Items()))
 	{

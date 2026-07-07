@@ -1,0 +1,50 @@
+/* ===== GLOBAL BACKGROUND ===== */
+
+/* Self-contained tokens, tuned for a full-bleed app viewport. */
+.e-6c28fa42
+{
+	--background-dot: 12px;
+	--background-dot-color: rgba(255, 255, 255, 0.03);
+	--background-hairline: rgba(255, 255, 255, 0.05);
+	--background-grid-size: 64px;
+
+	display: block;
+}
+
+.e-6c28fa42 > .box
+{
+	position: fixed;
+	inset: 0;
+	z-index: -10;
+	overflow: hidden;
+	pointer-events: none;
+	background: var(--ot-bg-1);
+}
+
+/* Dotted texture across the whole viewport, fading toward the bottom. */
+.e-6c28fa42 .dots
+{
+	position: absolute;
+	inset: 0;
+	background-image: radial-gradient(var(--background-dot-color) 0.75px, transparent 0.75px);
+	background-size: var(--background-dot) var(--background-dot);
+	background-position: 0 0;
+	mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+	-webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+}
+
+/* Larger grid squares, centered spotlight from the top, fading out evenly. */
+.e-6c28fa42 .grid-lines
+{
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(90deg, var(--background-hairline) 1px, transparent 1px),
+		linear-gradient(var(--background-hairline) 1px, transparent 1px);
+	background-size: var(--background-grid-size) var(--background-grid-size);
+	background-position: center top;
+	mask-image: radial-gradient(90% 90% at 50% 0%, black, transparent 90%);
+	-webkit-mask-image: radial-gradient(90% 90% at 50% 0%, black, transparent 90%);
+	opacity: 0.5;
+}
+

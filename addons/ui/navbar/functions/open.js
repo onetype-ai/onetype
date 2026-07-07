@@ -7,7 +7,7 @@ ui.navbar.Fn('open', function(id)
 		return false;
 	}
 
-	const previous = $ot.settings.get('ui.navbar.open', null);
+	const previous = $ot.modules.settings.get('ui.navbar.open', null);
 
 	if(previous === id)
 	{
@@ -24,7 +24,7 @@ ui.navbar.Fn('open', function(id)
 		return false;
 	}
 
-	$ot.settings.set('ui.navbar.open', id);
+	$ot.modules.settings.set('ui.navbar.open', id);
 
 	onetype.Emit('ui.navbar.open', { id });
 

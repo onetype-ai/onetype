@@ -30,7 +30,7 @@ commands.Item({
 			return resolve({ id: properties.id }, 'Project "' + item.Get('name') + '" is already open.');
 		}
 
-		$ot.settings.set('projects.active', item.Get('id'));
+		$ot.modules.settings.set('projects.active', item.Get('id'));
 
 		onetype.Emit('projects.open', { id: item.Get('id') });
 

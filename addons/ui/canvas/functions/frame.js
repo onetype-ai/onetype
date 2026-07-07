@@ -10,7 +10,7 @@ ui.canvas.Fn('frame', function(items)
 
 	const level = Math.min(2, Math.max(0.25, Math.min(viewport.width / (right - left), viewport.height / (bottom - top), 1)));
 
-	$ot.settings.set('ui.canvas.camera', {
+	$ot.modules.settings.set('ui.canvas.camera', {
 		x: (viewport.width - (right - left) * level) / 2 - left * level,
 		y: (viewport.height - (bottom - top) * level) / 2 - top * level,
 		z: level

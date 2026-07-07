@@ -14,10 +14,10 @@ elements.ItemAdd({
 			const open = list.find((item) => item.isOpen) || null;
 
 			this.panel = {
-				width: $ot.settings.get('ui.dock.width', 380),
+				width: $ot.modules.settings.get('ui.dock.width', 380),
 				min: 280,
 				max: 640,
-				onResize: (width) => $ot.settings.set('ui.dock.width', width),
+				onResize: (width) => $ot.modules.settings.set('ui.dock.width', width),
 				onClose: () => $ot.ui.dock.close(),
 				...(open?.panel || {})
 			};

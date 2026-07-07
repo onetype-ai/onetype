@@ -24,8 +24,8 @@ onetype.AddonReady('ai.agents', (agents) =>
 		condition: () => false,
 		state: ({ input }) =>
 		{
-			const application = $ot.settings.get('ui.apps.active', 'builder');
-			const user = users.ItemGet(settings.Fn('scope.active', 'user'));
+			const application = $ot.modules.settings.get('ui.apps.active', 'builder');
+			const user = users.ItemGet(modules.settings.Fn('scope.active', 'user'));
 			const item = assistants.ItemGet(input.assistant || 'main');
 
 			const agents = Object.values(onetype.AddonGet('ai.agents').Items()).filter((agent) =>

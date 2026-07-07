@@ -8,7 +8,7 @@ $ot.modules = {};
 
 $ot.boot = new Promise((resolve) =>
 {
-	onetype.EmitOn('settings.ready', async () =>
+	onetype.EmitOn('modules.settings.ready', async () =>
 	{
 		await onetype.Middleware('boot');
 

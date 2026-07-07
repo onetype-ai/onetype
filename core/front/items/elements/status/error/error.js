@@ -4,7 +4,7 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'status-error',
 		icon: 'error',
 		name: 'Error',
-		description: 'Error state with icon, message and retry action.',
+		description: 'Error state with icon, message, retry action and optional surface background.',
 		category: 'Status',
 		config:
 		{
@@ -39,6 +39,11 @@ onetype.AddonReady('elements', (elements) =>
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Icon circle accent color.'
 			},
+			background:
+			{
+				type: 'number',
+				description: 'Background depth from 1 to 4, renders the error state on its own bordered surface. Empty keeps it transparent.'
+			},
 			size:
 			{
 				type: 'string',
@@ -58,7 +63,14 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				return 'box ' + this.color + ' size-' + this.size;
+				const list = ['box', this.color, 'size-' + this.size];
+
+				if(this.background)
+				{
+					list.push('bg-' + this.background);
+				}
+
+				return list.join(' ');
 			};
 
 			/* ===== HANDLERS ===== */

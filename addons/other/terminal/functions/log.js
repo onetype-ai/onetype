@@ -10,7 +10,7 @@ terminal.Fn('log', function(entry)
 		at: new Date().toLocaleTimeString()
 	});
 
-	const limit = $ot.settings.get('terminal.limit', 200);
+	const limit = $ot.modules.settings.get('terminal.limit', 200);
 	const ids = Object.keys(this.Items());
 
 	if(ids.length > limit)

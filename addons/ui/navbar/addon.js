@@ -180,7 +180,7 @@ ui.navbar = onetype.Addon('ui.navbar', (addon) =>
 		value: false,
 		description: 'Computed. True when this item is the one whose surface is open. Reads through the ui.navbar.open setting.'
 	},
-	(value, item) => $ot.settings.get('ui.navbar.open', null) === item.Get('id'));
+	(value, item) => $ot.modules.settings.get('ui.navbar.open', null) === item.Get('id'));
 
 	addon.Field('onClick', {
 		type: 'function',
@@ -194,7 +194,7 @@ ui.navbar = onetype.Addon('ui.navbar', (addon) =>
 });
 
 $ot.ui.navbar = {
-	opened: () => ui.navbar.ItemGet($ot.settings.get('ui.navbar.open', null)),
+	opened: () => ui.navbar.ItemGet($ot.modules.settings.get('ui.navbar.open', null)),
 	open: (id) => $ot.command('ui:navbar:open', { id }),
 	close: () => $ot.command('ui:navbar:close')
 };

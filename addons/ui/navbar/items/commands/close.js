@@ -7,7 +7,7 @@ commands.Item({
 	out: {},
 	callback: function(properties, resolve)
 	{
-		const open = $ot.settings.get('ui.navbar.open', null);
+		const open = $ot.modules.settings.get('ui.navbar.open', null);
 
 		if(!ui.navbar.Fn('close'))
 		{

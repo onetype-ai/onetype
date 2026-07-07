@@ -13,7 +13,7 @@ commands.Item({
 	{
 		const released = ui.canvas.Fn('release');
 
-		$ot.settings.set('ui.canvas.camera', { x: 0, y: 0, z: 1 });
+		$ot.modules.settings.set('ui.canvas.camera', { x: 0, y: 0, z: 1 });
 
 		resolve({ level: 1 }, 'Canvas camera reset.' + (released ? ' Item ' + released + ' lost focus.' : ''));
 	}

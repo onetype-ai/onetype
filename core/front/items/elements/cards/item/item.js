@@ -4,102 +4,41 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'cards-item',
 		icon: 'dashboard',
 		name: 'Item Card',
-		description: 'Generic card with cover, icon, badge, title, description, stats, meta, tags and action.',
+		description: 'Generic content card with icon, badge, eyebrow, title, description and a meta row pinned to the bottom.',
 		category: 'Cards',
 		config:
 		{
-			/* ===== COVER ===== */
-
-			cover:
-			{
-				type: 'string',
-				value: '',
-				description: 'Cover image URL.'
-			},
-			coverIcon:
-			{
-				type: 'string',
-				value: '',
-				description: 'Placeholder icon when no cover image.'
-			},
-
-			/* ===== HEADER ===== */
-
 			icon:
 			{
 				type: 'string',
-				value: '',
-				description: 'Icon in colored wrap box.'
+				description: 'Material Symbols icon shown in the wrap at the top of the card.'
 			},
-			iconColor:
+			color:
 			{
 				type: 'string',
-				value: '',
-				options: ['', 'brand', 'blue', 'red', 'orange', 'green'],
-				description: 'Icon wrap accent color.'
-			},
-			iconBackground:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4'],
-				description: 'Icon wrap background when no color.'
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
+				description: 'Accent color of the icon wrap and badge. Empty keeps them neutral.'
 			},
 			badge:
 			{
 				type: 'string',
-				value: '',
-				description: 'Badge label text.'
-			},
-			badgeColor:
-			{
-				type: 'string',
-				value: 'brand',
-				options: ['brand', 'blue', 'red', 'orange', 'green', 'neutral'],
-				description: 'Badge accent color.'
+				description: 'Small label chip in the top right corner.'
 			},
 			eyebrow:
 			{
 				type: 'string',
-				value: '',
-				description: 'Uppercase label above title.'
+				description: 'Uppercase label above the title.'
 			},
 			title:
 			{
 				type: 'string',
-				value: '',
 				description: 'Card title.'
 			},
 			description:
 			{
 				type: 'string',
-				value: '',
-				description: 'Card description text.'
+				description: 'Supporting text under the title.'
 			},
-
-			/* ===== STATS ===== */
-
-			value:
-			{
-				type: 'string|number',
-				description: 'Primary stat value.'
-			},
-			delta:
-			{
-				type: 'string',
-				value: '',
-				description: 'Change indicator text.'
-			},
-			deltaDirection:
-			{
-				type: 'string',
-				value: 'neutral',
-				options: ['up', 'down', 'neutral'],
-				description: 'Delta trend direction.'
-			},
-
-			/* ===== META / TAGS ===== */
-
 			meta:
 			{
 				type: 'array',
@@ -109,122 +48,54 @@ onetype.AddonReady('elements', (elements) =>
 					type: 'object',
 					config:
 					{
-						icon: { type: 'string' },
-						label: { type: 'string' }
+						icon:
+						{
+							type: 'string',
+							description: 'Material Symbols icon in front of the label.'
+						},
+						label:
+						{
+							type: 'string',
+							description: 'Meta text.'
+						}
 					}
 				},
-				description: 'Icon + label pairs below description.'
+				description: 'Icon and label pairs pinned to the bottom of the card.'
 			},
-			tags:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				description: 'Tag chips below meta.'
-			},
-
-			/* ===== ACTION ===== */
-
-			action:
-			{
-				type: 'string',
-				value: '',
-				description: 'Footer action button text.'
-			},
-			actionIcon:
-			{
-				type: 'string',
-				value: '',
-				description: 'Footer action button icon.'
-			},
-			actionColor:
-			{
-				type: 'string',
-				value: '',
-				options: ['', 'brand', 'blue', 'red', 'orange', 'green'],
-				description: 'Footer action button color.'
-			},
-			actionTone:
-			{
-				type: 'string',
-				value: 'ghost',
-				options: ['solid', 'soft', 'outline', 'ghost'],
-				description: 'Footer action button tone.'
-			},
-
-			/* ===== LINK ===== */
-
 			href:
 			{
 				type: 'string',
-				value: '',
-				description: 'Renders card as anchor.'
+				description: 'Renders the card as a link.'
 			},
 			target:
 			{
 				type: 'string',
-				value: '',
-				description: 'Anchor target.'
-			},
-
-			/* ===== LAYOUT ===== */
-
-			orientation:
-			{
-				type: 'string',
-				value: 'vertical',
-				options: ['vertical', 'horizontal'],
-				description: 'Card direction.'
-			},
-			align:
-			{
-				type: 'string',
-				value: 'left',
-				options: ['left', 'center'],
-				description: 'Content alignment.'
+				description: 'Link target, like _blank.'
 			},
 			background:
 			{
-				type: 'string',
-				value: 'bg-1',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4'],
-				description: 'Card background depth.'
+				type: 'number',
+				value: 2,
+				description: 'Background depth from 1 to 4. Nested surfaces inside the card go one step deeper.'
 			},
 			size:
 			{
 				type: 'string',
 				value: 'm',
 				options: ['s', 'm', 'l'],
-				description: 'Card size.'
+				description: 'Card size, controls padding and type scale.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['border', 'glass', 'gradient', 'hover'],
-				description: 'Visual modifiers.'
-			},
-
-			/* ===== STATE ===== */
-
-			loading:
+			isActive:
 			{
 				type: 'boolean',
 				value: false,
-				description: 'Skeleton shimmer state.'
+				description: 'Selected state, highlights the card border.'
 			},
-			disabled:
+			isDisabled:
 			{
 				type: 'boolean',
 				value: false,
-				description: 'Disabled state.'
-			},
-			active:
-			{
-				type: 'boolean',
-				value: false,
-				description: 'Selected ring state.'
+				description: 'Disabled state, dims the card and blocks clicks.'
 			},
 			_click:
 			{
@@ -234,145 +105,66 @@ onetype.AddonReady('elements', (elements) =>
 		},
 		render: function()
 		{
-			/* ===== STATE ===== */
-
-			this.Compute(() =>
-			{
-				this.hasCover = !!this.cover || !!this.coverIcon;
-				this.hasHeader = !!this.icon || !!this.eyebrow || !!this.title || !!this.description || !!this.badge;
-				this.hasStats = this.value !== undefined && this.value !== '' && this.value !== null;
-				this.hasMeta = this.meta && this.meta.length > 0;
-				this.hasTags = this.tags && this.tags.length > 0;
-				this.hasAction = !!this.action;
-				this.isClickable = !!this.href || !!this._click;
-				this.tag = this.href ? 'a' : 'div';
-
-				this.deltaIcon = this.deltaDirection === 'up'
-					? 'trending_up'
-					: this.deltaDirection === 'down'
-						? 'trending_down'
-						: 'trending_flat';
-			});
-
-			/* ===== CLASSES ===== */
-
 			this.classes = () =>
 			{
-				const list = ['box', this.orientation, 'align-' + this.align, this.background, 'size-' + this.size];
+				const list = ['box', 'bg-' + this.background, 'size-' + this.size];
 
-				this.variant.forEach(v => list.push(v));
+				if(this.color)
+				{
+					list.push(this.color);
+				}
 
-				if(this.isClickable)
+				if(this.href || this._click)
 				{
 					list.push('clickable');
 				}
 
-				if(this.loading)
-				{
-					list.push('loading');
-				}
-
-				if(this.disabled)
-				{
-					list.push('disabled');
-				}
-
-				if(this.active)
+				if(this.isActive)
 				{
 					list.push('active');
+				}
+
+				if(this.isDisabled)
+				{
+					list.push('disabled');
 				}
 
 				return list.join(' ');
 			};
 
-			this.iconClasses = () =>
+			this.wrap = () =>
 			{
-				return 'icon-wrap ' + (this.iconColor || this.iconBackground);
+				return 'wrap bg-' + Math.min(this.background + 1, 4);
 			};
-
-			this.badgeClasses = () =>
-			{
-				return 'badge ' + this.badgeColor;
-			};
-
-			/* ===== HANDLERS ===== */
 
 			this.click = ({ event }) =>
 			{
-				if(this.disabled)
+				if(this.isDisabled)
 				{
 					event.preventDefault();
+
 					return;
 				}
 
-				if(this._click)
-				{
-					this._click({ event });
-				}
+				this._click && this._click({ event });
 			};
 
-			/* ===== RENDER ===== */
-
-			return /* html */ `
-				<${this.tag}
-					:class="classes()"
-					:href="href || null"
-					:target="target || null"
-					ot-click="click"
-				>
-					<div ot-if="hasCover" class="cover">
-						<img ot-if="cover" :src="cover" :alt="title || ''" />
-						<div ot-if="!cover && coverIcon" class="cover-empty">
-							<i>{{ coverIcon }}</i>
-						</div>
-						<span ot-if="badge" :class="badgeClasses()">{{ badge }}</span>
+			return `
+				<${this.href ? 'a' : 'div'} :class="classes()" :href="href || null" :target="target || null" ot-click="click">
+					<header ot-if="icon || badge">
+						<div ot-if="icon" :class="wrap()"><i>{{ icon }}</i></div>
+						<span ot-if="badge" class="badge">{{ badge }}</span>
+					</header>
+					<span ot-if="eyebrow" class="eyebrow">{{ eyebrow }}</span>
+					<h3 ot-if="title" class="title">{{ title }}</h3>
+					<p ot-if="description" class="description">{{ description }}</p>
+					<div ot-if="meta.length" class="meta">
+						<span ot-for="entry in meta" class="entry">
+							<i ot-if="entry.icon">{{ entry.icon }}</i>
+							<span>{{ entry.label }}</span>
+						</span>
 					</div>
-
-					<div class="body">
-						<header ot-if="hasHeader" class="head">
-							<div ot-if="icon" :class="iconClasses()">
-								<i>{{ icon }}</i>
-							</div>
-							<div class="head-text">
-								<span ot-if="eyebrow" class="eyebrow">{{ eyebrow }}</span>
-								<h3 ot-if="title" class="title">{{ title }}</h3>
-								<p ot-if="description" class="description">{{ description }}</p>
-							</div>
-							<span ot-if="badge && !hasCover" :class="badgeClasses()">{{ badge }}</span>
-						</header>
-
-						<div ot-if="hasStats" class="stats">
-							<span class="value">{{ value }}</span>
-							<span ot-if="delta" :class="'delta delta-' + deltaDirection">
-								<i>{{ deltaIcon }}</i>
-								<span>{{ delta }}</span>
-							</span>
-						</div>
-
-						<div ot-if="hasMeta" class="meta">
-							<span ot-for="entry in meta" class="meta-item">
-								<i ot-if="entry.icon">{{ entry.icon }}</i>
-								<span>{{ entry.label }}</span>
-							</span>
-						</div>
-
-						<div ot-if="hasTags" class="tags">
-							<span ot-for="item in tags" class="tag">{{ item }}</span>
-						</div>
-
-						<div ot-if="hasAction" class="footer">
-							<e-form-button
-								:text="action"
-								:icon="actionIcon"
-								:color="actionColor"
-								:tone="actionTone"
-								size="s"
-							></e-form-button>
-						</div>
-					</div>
-
-					<i ot-if="isClickable && !hasAction && orientation === 'horizontal'" class="chevron">chevron_right</i>
-				</${this.tag}>
+				</${this.href ? 'a' : 'div'}>
 			`;
 		}
 	});

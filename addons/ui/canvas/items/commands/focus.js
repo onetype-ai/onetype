@@ -37,7 +37,7 @@ commands.Item({
 		/* Focusing an already focused item refits the camera to the current
 		   viewport, the original back camera stays for the eventual blur. */
 
-		const focused = $ot.settings.get('ui.canvas.focus', null);
+		const focused = $ot.modules.settings.get('ui.canvas.focus', null);
 
 		/* Stack layouts place items away from their stored coordinates,
 		   so the camera aims at the geometry the canvas last rendered. */
@@ -50,7 +50,7 @@ commands.Item({
 		};
 
 		const viewport = ui.canvas.StoreGet('viewport') || { width: 1200, height: 800 };
-		const camera = $ot.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 });
+		const camera = $ot.modules.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 });
 		const level = Math.min(viewport.width / placed.width, viewport.height / placed.height);
 
 		if(!level || !isFinite(level))
@@ -69,8 +69,8 @@ commands.Item({
 			return resolve({ id: properties.id, level }, 'Canvas item ' + properties.id + ' is already focused at ' + Math.round(level * 100) + ' percent.');
 		}
 
-		$ot.settings.set('ui.canvas.focus', { id: properties.id, back: focused ? focused.back : { ...camera } });
-		$ot.settings.set('ui.canvas.camera', target);
+		$ot.modules.settings.set('ui.canvas.focus', { id: properties.id, back: focused ? focused.back : { ...camera } });
+		$ot.modules.settings.set('ui.canvas.camera', target);
 
 		onetype.Emit('ui.canvas.focus', { id: properties.id });
 

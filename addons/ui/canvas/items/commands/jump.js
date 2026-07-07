@@ -38,10 +38,10 @@ commands.Item({
 		};
 
 		const viewport = ui.canvas.StoreGet('viewport') || { width: 1200, height: 800 };
-		const camera = $ot.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 });
+		const camera = $ot.modules.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 });
 		const level = Math.min(2, Math.max(1, camera.z));
 
-		$ot.settings.set('ui.canvas.camera', {
+		$ot.modules.settings.set('ui.canvas.camera', {
 			x: viewport.width / 2 - (placed.x + placed.width / 2) * level,
 			y: viewport.height / 2 - (placed.y + placed.height / 2) * level,
 			z: level

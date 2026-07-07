@@ -13,6 +13,7 @@ ui.apps.ItemOn('add', (item) =>
 			icon: item.Get('icon'),
 			color: item.Get('color'),
 			order: item.Get('order'),
+			position: item.Get('position'),
 			condition: item.Get('condition'),
 			isActive: () => item.Get('isActive'),
 			render: item.Get('render'),

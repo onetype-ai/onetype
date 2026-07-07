@@ -1,0 +1,94 @@
+.u-6ff1dfda
+{
+	display: block;
+	height: 100%;
+}
+
+.u-6ff1dfda > .box
+{
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	height: 100%;
+}
+
+.u-6ff1dfda > .box > .empty
+{
+	margin: auto;
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+}
+
+.u-6ff1dfda > .box > .row
+{
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	padding: var(--ot-spacing-s);
+	border-radius: var(--ot-radius-s);
+	overflow: hidden;
+	transition: background var(--ot-transition-fast);
+}
+
+.u-6ff1dfda > .box > .row:hover
+{
+	background: var(--ot-bg-3);
+}
+
+.u-6ff1dfda > .box > .row > .fill
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	border-radius: var(--ot-radius-s);
+	transition: width var(--ot-transition);
+}
+
+.u-6ff1dfda > .box > .row > .lead
+{
+	position: relative;
+	font-size: 18px;
+	color: var(--ot-text-2);
+	flex-shrink: 0;
+}
+
+.u-6ff1dfda > .box > .row > .text
+{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	flex: 1;
+}
+
+.u-6ff1dfda > .box > .row > .text > .label
+{
+	color: var(--ot-text-1);
+	font-size: var(--ot-size-m);
+	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.u-6ff1dfda > .box > .row > .text > .sub
+{
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.u-6ff1dfda > .box > .row > .value
+{
+	position: relative;
+	color: var(--ot-text-1);
+	font-size: var(--ot-size-m);
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: 'tnum';
+	flex-shrink: 0;
+}

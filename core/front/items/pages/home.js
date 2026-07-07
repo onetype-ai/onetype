@@ -19,6 +19,7 @@ pages.Item({
 			});
 
 			return `
+				<e-global-background></e-global-background>
 				<div ot-if="!ready" style="width: 100%; height: 100%;">
 					<e-status-loading></e-status-loading>
 				</div>

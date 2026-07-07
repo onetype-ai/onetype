@@ -1,4 +1,4 @@
-onetype.AddonReady('settings', (settings) =>
+onetype.AddonReady('modules.settings', (settings) =>
 {
 	/* AddonReady fires before the settings functions load — the microtask waits
 	   for the whole bundle, then registers the scope. */

@@ -10,10 +10,11 @@ elements.ItemAdd({
 	{
 		this.recording = null;
 		this.listener = null;
+		this.query = '';
 
 		const refresh = () =>
 		{
-			this.groups = modules.shortcuts.Fn('list');
+			this.groups = modules.shortcuts.Fn('list', this.query);
 		};
 
 		refresh();
@@ -94,8 +95,18 @@ elements.ItemAdd({
 
 		this.OnUnmounted(() => this.cancel());
 
+		this.input = ({ value }) =>
+		{
+			this.query = value;
+			refresh();
+		};
+
 		return `
 			<div class="box">
+				<div class="finder">
+					<e-form-input icon="search" placeholder="Search shortcuts..." size="s" :value="query" :clearable="true" background="bg-3" :_input="input" :_change="input"></e-form-input>
+				</div>
+				<div ot-if="!groups.length && query" class="blank">No shortcuts match "{{ query }}"</div>
 				<div ot-for="group in groups" :ot-key="group.name" class="group">
 					<div class="head">
 						<span class="title">{{ group.name }}</span>

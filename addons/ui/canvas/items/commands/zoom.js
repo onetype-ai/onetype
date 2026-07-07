@@ -19,13 +19,13 @@ commands.Item({
 	callback: function(properties, resolve)
 	{
 		const level = Math.min(2, Math.max(0.25, properties.level));
-		const camera = $ot.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 });
+		const camera = $ot.modules.settings.get('ui.canvas.camera', { x: 0, y: 0, z: 1 });
 		const viewport = ui.canvas.StoreGet('viewport') || { width: 1200, height: 800 };
 
 		const center = { x: viewport.width / 2, y: viewport.height / 2 };
 		const ratio = level / camera.z;
 
-		$ot.settings.set('ui.canvas.camera', {
+		$ot.modules.settings.set('ui.canvas.camera', {
 			x: center.x - (center.x - camera.x) * ratio,
 			y: center.y - (center.y - camera.y) * ratio,
 			z: level

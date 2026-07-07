@@ -88,7 +88,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
-	padding: var(--ot-spacing-s);
+	padding: var(--ot-spacing-s) 0 var(--ot-spacing-s) var(--ot-spacing-s);
 	overflow-y: auto;
 	scrollbar-gutter: stable;
 }

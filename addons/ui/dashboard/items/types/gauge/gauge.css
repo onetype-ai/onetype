@@ -1,0 +1,76 @@
+.u-716bd271
+{
+	display: block;
+	height: 100%;
+}
+
+.u-716bd271 > .box
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	min-height: 120px;
+}
+
+.u-716bd271 > .box > .gauge
+{
+	position: relative;
+	width: 100%;
+	max-width: 200px;
+}
+
+.u-716bd271 > .box > .gauge > svg
+{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.u-716bd271 > .box > .gauge > svg > .track
+{
+	fill: none;
+	stroke: var(--ot-bg-3);
+	stroke-width: 10;
+	stroke-linecap: round;
+}
+
+.u-716bd271 > .box > .gauge > svg > .fill
+{
+	fill: none;
+	stroke-width: 10;
+	stroke-linecap: round;
+	transition: stroke-dasharray var(--ot-transition);
+}
+
+.u-716bd271 > .box > .gauge > .center
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 4px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.u-716bd271 > .box > .gauge > .center > .value
+{
+	color: var(--ot-text-1);
+	font-family: var(--ot-font-secondary);
+	font-size: 30px;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.03em;
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: 'tnum';
+}
+
+.u-716bd271 > .box > .gauge > .center > .caption
+{
+	margin-top: 4px;
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}

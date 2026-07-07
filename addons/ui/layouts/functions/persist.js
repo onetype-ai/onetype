@@ -7,7 +7,7 @@ ui.layouts.Fn('persist', function()
 		active[item.Get('id')] = item.Get('isActive');
 	});
 
-	$ot.settings.set('ui.layouts.active', active);
+	$ot.modules.settings.set('ui.layouts.active', active);
 
 	return active;
 });

@@ -149,10 +149,10 @@ ui.dock = onetype.Addon('ui.dock', (addon) =>
 		value: false,
 		description: 'Computed. True when this item is the one open on the rail. Reads and writes through the persisted ui.dock.open setting.'
 	},
-	(value, item) => $ot.settings.get('ui.dock.open', null) === item.Get('id'),
+	(value, item) => $ot.modules.settings.get('ui.dock.open', null) === item.Get('id'),
 	(value, previous, item) =>
 	{
-		$ot.settings.set('ui.dock.open', value ? item.Get('id') : null);
+		$ot.modules.settings.set('ui.dock.open', value ? item.Get('id') : null);
 
 		return value;
 	});

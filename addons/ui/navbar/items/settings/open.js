@@ -1,4 +1,4 @@
-onetype.AddonReady('settings', (settings) =>
+onetype.AddonReady('modules.settings', (settings) =>
 {
 	settings.Item({
 		id: 'ui.navbar.open',

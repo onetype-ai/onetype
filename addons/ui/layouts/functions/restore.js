@@ -1,6 +1,6 @@
 ui.layouts.Fn('restore', function()
 {
-	const active = $ot.settings.get('ui.layouts.active', {});
+	const active = $ot.modules.settings.get('ui.layouts.active', {});
 	const opened = [];
 
 	Object.entries(active).forEach(([id, open]) =>

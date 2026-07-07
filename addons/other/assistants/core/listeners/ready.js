@@ -1,6 +1,6 @@
-onetype.EmitOn('settings.ready', () =>
+onetype.EmitOn('modules.settings.ready', () =>
 {
-	const map = $ot.settings.get('assistants.preferences', {});
+	const map = $ot.modules.settings.get('assistants.preferences', {});
 
 	Object.entries(map).forEach(([id, preferences]) =>
 	{

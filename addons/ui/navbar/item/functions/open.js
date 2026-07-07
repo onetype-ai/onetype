@@ -19,7 +19,7 @@ ui.navbar.Fn('item.open', function(item)
 
 		options.onClose = () =>
 		{
-			$ot.settings.set('ui.navbar.open', null);
+			$ot.modules.settings.set('ui.navbar.open', null);
 
 			onetype.Emit('ui.navbar.close', {});
 

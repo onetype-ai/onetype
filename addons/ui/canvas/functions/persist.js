@@ -7,7 +7,7 @@ ui.canvas.Fn('persist', function()
 		state[item.Get('id')] = { x: item.Get('x'), y: item.Get('y'), links: item.Get('links') };
 	});
 
-	$ot.settings.set('ui.canvas.state', state);
+	$ot.modules.settings.set('ui.canvas.state', state);
 
 	return state;
 });

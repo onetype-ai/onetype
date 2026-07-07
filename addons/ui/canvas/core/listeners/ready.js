@@ -1,4 +1,4 @@
-onetype.EmitOn('settings.ready', () =>
+onetype.EmitOn('modules.settings.ready', () =>
 {
 	ui.canvas.Fn('restore');
 });

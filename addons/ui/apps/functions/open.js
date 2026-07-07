@@ -19,7 +19,7 @@ ui.apps.Fn('open', function(id)
 		previous.Get('onDeactivate')(previous);
 	}
 
-	$ot.settings.set('ui.apps.active', id);
+	$ot.modules.settings.set('ui.apps.active', id);
 
 	if(item.Get('onActivate'))
 	{

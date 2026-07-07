@@ -22,7 +22,7 @@ elements.ItemAdd({
 				{ label: 'New Project', value: '__new', icon: 'add' },
 				...projects.Fn('list').map((project) => ({ label: project.name, value: project.id, icon: 'folder' }))
 			];
-			this.value = $ot.settings.get('projects.active', null);
+			this.value = $ot.modules.settings.get('projects.active', null);
 		};
 
 		refresh();

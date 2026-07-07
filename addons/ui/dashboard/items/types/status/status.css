@@ -1,0 +1,104 @@
+.u-2e748286
+{
+	display: block;
+	height: 100%;
+}
+
+.u-2e748286 > .box
+{
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	height: 100%;
+}
+
+.u-2e748286 > .box > .empty
+{
+	margin: auto;
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+}
+
+.u-2e748286 > .box > .item
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	padding: var(--ot-spacing-s);
+	border-radius: var(--ot-radius-s);
+	transition: background var(--ot-transition-fast);
+}
+
+.u-2e748286 > .box > .item:hover
+{
+	background: var(--ot-bg-3);
+}
+
+.u-2e748286 > .box > .item > .dot
+{
+	position: relative;
+	width: 9px;
+	height: 9px;
+	border-radius: 99px;
+	flex-shrink: 0;
+}
+
+.u-2e748286 > .box > .item > .dot.up { background: var(--ot-green); }
+.u-2e748286 > .box > .item > .dot.warn { background: var(--ot-orange); }
+.u-2e748286 > .box > .item > .dot.down { background: var(--ot-red); }
+.u-2e748286 > .box > .item > .dot.idle { background: var(--ot-text-3); }
+
+.u-2e748286 > .box > .item > .dot.up::after,
+.u-2e748286 > .box > .item > .dot.warn::after,
+.u-2e748286 > .box > .item > .dot.down::after
+{
+	content: '';
+	position: absolute;
+	inset: -4px;
+	border-radius: 99px;
+	background: inherit;
+	opacity: 0.35;
+	animation: u-2e748286-pulse 2s ease-out infinite;
+}
+
+@keyframes u-2e748286-pulse
+{
+	0% { transform: scale(0.6); opacity: 0.45; }
+	100% { transform: scale(1.6); opacity: 0; }
+}
+
+.u-2e748286 > .box > .item > .text
+{
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	flex: 1;
+}
+
+.u-2e748286 > .box > .item > .text > .label
+{
+	color: var(--ot-text-1);
+	font-size: var(--ot-size-m);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.u-2e748286 > .box > .item > .text > .sub
+{
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.u-2e748286 > .box > .item > .value
+{
+	color: var(--ot-text-2);
+	font-size: var(--ot-size-m);
+	font-weight: 550;
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: 'tnum';
+	flex-shrink: 0;
+}

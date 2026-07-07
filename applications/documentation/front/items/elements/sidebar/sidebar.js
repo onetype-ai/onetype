@@ -64,6 +64,6 @@ elements.ItemAdd({
 			this.active = value.value;
 		};
 
-		return `<e-navigation-sidebar title="Documentation" :items="items" :active="active" :_click="open"></e-navigation-sidebar>`;
+		return `<e-navigation-sidebar :items="items" :active="active" :_click="open"></e-navigation-sidebar>`;
 	}
 });

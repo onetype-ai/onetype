@@ -10,6 +10,14 @@
 	gap: var(--ot-spacing-m);
 }
 
+.e-4bfa67b2 .blank
+{
+	padding: var(--ot-spacing-m);
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	text-align: center;
+}
+
 /* Group card — header strip + hairline rows, table feel */
 
 .e-4bfa67b2 .group

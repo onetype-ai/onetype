@@ -1,6 +1,6 @@
 ui.canvas.Fn('restore', function()
 {
-	const state = $ot.settings.get('ui.canvas.state', {});
+	const state = $ot.modules.settings.get('ui.canvas.state', {});
 
 	Object.entries(state).forEach(([id, saved]) =>
 	{

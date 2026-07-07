@@ -57,7 +57,7 @@ commands.Item({
 
 		if(options.open)
 		{
-			$ot.settings.set('projects.active', data.id);
+			$ot.modules.settings.set('projects.active', data.id);
 			onetype.Emit('projects.open', { id: data.id });
 		}
 

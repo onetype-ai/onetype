@@ -12,7 +12,7 @@ ui.modes.Fn('switch', function(id)
 		return false;
 	}
 
-	const active = [...$ot.settings.get('ui.modes.active', [])];
+	const active = [...$ot.modules.settings.get('ui.modes.active', [])];
 
 	Object.values(this.Items()).filter((previous) => previous.Fn('visible') && active.includes(previous.Get('id'))).forEach((previous) =>
 	{
@@ -26,7 +26,7 @@ ui.modes.Fn('switch', function(id)
 
 	active.push(id);
 
-	$ot.settings.set('ui.modes.active', active);
+	$ot.modules.settings.set('ui.modes.active', active);
 
 	if(item.Get('onActivate'))
 	{

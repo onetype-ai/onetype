@@ -4,7 +4,7 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'status-code',
 		icon: 'explore_off',
 		name: 'Code',
-		description: 'Full-page status code with large number, message and action button.',
+		description: 'Full-page status code with large number, message, action button and optional surface background.',
 		category: 'Status',
 		config:
 		{
@@ -45,6 +45,11 @@ onetype.AddonReady('elements', (elements) =>
 				options: ['', 'brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Code number gradient accent.'
 			},
+			background:
+			{
+				type: 'number',
+				description: 'Background depth from 1 to 4, renders the status code on its own bordered surface. Empty keeps it transparent.'
+			},
 			size:
 			{
 				type: 'string',
@@ -66,6 +71,11 @@ onetype.AddonReady('elements', (elements) =>
 					list.push(this.color);
 				}
 
+				if(this.background)
+				{
+					list.push('bg-' + this.background);
+				}
+
 				return list.join(' ');
 			};
 
@@ -73,16 +83,18 @@ onetype.AddonReady('elements', (elements) =>
 
 			return /* html */ `
 				<div :class="classes()">
-					<span class="code">{{ code }}</span>
-					<h2 ot-if="title" class="title">{{ title }}</h2>
-					<p ot-if="description" class="description">{{ description }}</p>
-					<e-form-button
-						ot-if="action"
-						:text="action"
-						icon="home"
-						color="brand"
-						:href="href"
-					></e-form-button>
+					<div class="inner">
+						<span class="code">{{ code }}</span>
+						<h2 ot-if="title" class="title">{{ title }}</h2>
+						<p ot-if="description" class="description">{{ description }}</p>
+						<e-form-button
+							ot-if="action"
+							:text="action"
+							icon="home"
+							color="brand"
+							:href="href"
+						></e-form-button>
+					</div>
 				</div>
 			`;
 		}
