@@ -46,7 +46,7 @@ commands.Item({
 
 		try
 		{
-			const agent = onetype.AddonGet('ai.agents').ItemGet('assistant');
+			const agent = ai.agents.ItemGet('assistant');
 			const { content } = await agent.Fn('run', { message: properties.prompt, assistant: properties.id }, history);
 
 			item.Fn('message', 'assistant', content.message);

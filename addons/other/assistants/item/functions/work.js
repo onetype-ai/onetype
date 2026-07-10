@@ -1,7 +1,6 @@
 assistants.Fn('item.work', async function(item, goal)
 {
-	const workflows = onetype.AddonGet('ai.workflows');
-	const workflow = workflows.Item({ prompt: goal, steps: 100 });
+	const workflow = ai.workflows.Item({ prompt: goal, steps: 100 });
 
 	let outcome;
 
@@ -22,7 +21,7 @@ assistants.Fn('item.work', async function(item, goal)
 
 	/* The assistant reports the outcome in its own voice and language. */
 
-	const agent = onetype.AddonGet('ai.agents').ItemGet('assistant');
+	const agent = ai.agents.ItemGet('assistant');
 	const history = item.Get('messages').filter((message) => message.role !== 'error');
 
 	const { content } = await agent.Fn('run', {

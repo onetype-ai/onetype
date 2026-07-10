@@ -3,7 +3,7 @@
 
 ui.canvas.Fn('arrange', async function(items)
 {
-	const agent = onetype.AddonGet('ai.agents').ItemGet('tidier');
+	const agent = ai.agents.ItemGet('tidier');
 	const snap = (value) => Math.ceil(value / 24) * 24;
 	const margin = 96;
 	const gap = 48;

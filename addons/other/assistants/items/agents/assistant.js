@@ -28,7 +28,7 @@ onetype.AddonReady('ai.agents', (agents) =>
 			const user = users.ItemGet(modules.settings.Fn('scope.active', 'user'));
 			const item = assistants.ItemGet(input.assistant || 'main');
 
-			const agents = Object.values(onetype.AddonGet('ai.agents').Items()).filter((agent) =>
+			const agents = Object.values(ai.agents.Items()).filter((agent) =>
 			{
 				return agent.Get('id') !== 'assistant' && (!agent.Get('condition') || agent.Get('condition')());
 			}).map((agent) =>

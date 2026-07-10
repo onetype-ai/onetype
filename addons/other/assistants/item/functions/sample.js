@@ -1,6 +1,6 @@
 assistants.Fn('item.sample', function(item, verdict, reason)
 {
-	const agent = onetype.AddonGet('ai.agents').ItemGet('assistant');
+	const agent = ai.agents.ItemGet('assistant');
 	const state = typeof agent.Get('state') === 'function' ? agent.Get('state')({ input: { assistant: item.Get('id') } }) : agent.Get('state');
 
 	return {
