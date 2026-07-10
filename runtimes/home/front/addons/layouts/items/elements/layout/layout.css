@@ -5,17 +5,42 @@
 	height: 100%;
 }
 
+/* Light scheme — the workspace well overrides the framework variables */
+
 .e-49430f40 > .box
 {
+	--ot-bg-1: rgba(255, 255, 255, 1);
+	--ot-bg-1-border: rgba(245, 245, 245, 1);
+	--ot-bg-1-opacity: rgba(255, 255, 255, 0.85);
+	--ot-bg-1-hover: rgba(250, 250, 250, 1);
+
+	--ot-bg-2: rgba(250, 250, 250, 1);
+	--ot-bg-2-border: rgba(240, 240, 240, 1);
+	--ot-bg-2-opacity: rgba(250, 250, 250, 0.85);
+	--ot-bg-2-hover: rgba(245, 245, 245, 1);
+
+	--ot-bg-3: rgba(245, 245, 245, 1);
+	--ot-bg-3-border: rgba(235, 235, 235, 1);
+	--ot-bg-3-opacity: rgba(245, 245, 245, 0.85);
+	--ot-bg-3-hover: rgba(240, 240, 240, 1);
+
+	--ot-text-1: rgb(30, 30, 30);
+	--ot-text-2: rgb(60, 60, 60);
+	--ot-text-3: rgb(90, 90, 90);
+}
+
+.e-49430f40 > .box
+{
+	--mesh-line: color-mix(in srgb, var(--ot-text-3) 13.5%, transparent);
+
 	display: flex;
 	width: 100%;
 	height: 100%;
-	--mesh-line: color-mix(in srgb, var(--ot-text-3) 13.5%, transparent);
-
 	position: relative;
 	border: 1px solid var(--ot-bg-1-border);
 	border-radius: var(--ot-radius-l) 0 0 var(--ot-radius-l);
-	background: var(--ot-bg-1);
+	background: var(--ot-bg-2);
+	color: var(--ot-text-1);
 	overflow: hidden;
 }
 
