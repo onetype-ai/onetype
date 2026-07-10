@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Dashboard',
 	description: 'Responsive board that lays out dashboard widgets on a twelve column grid, grouped into sections, and resolves each widget data.',
 	category: 'Dashboard',
-	author: 'OneType',
 	metadata: { addon: 'ui.dashboard' },
 	render: function()
 	{
@@ -139,8 +138,8 @@ elements.ItemAdd({
 								</div>
 							</header>
 							<div class="body" :style="widget.height ? 'height: ' + widget.height + 'px' : ''">
-								<e-status-loading ot-if="widget.state === 'loading'" size="s" auto="true"></e-status-loading>
-								<e-status-error ot-if="widget.state === 'error'" icon="error" title="Failed to load" :description="widget.error" size="s" :_click="() => retry(widget)"></e-status-error>
+								<e-status-loading ot-if="widget.state === 'loading'"></e-status-loading>
+								<e-status-error ot-if="widget.state === 'error'" icon="error" title="Failed to load" :description="widget.error" :_click="() => retry(widget)"></e-status-error>
 								<div ot-if="widget.state === 'ready'" class="mount" ot-node="body(widget)"></div>
 							</div>
 						</div>
