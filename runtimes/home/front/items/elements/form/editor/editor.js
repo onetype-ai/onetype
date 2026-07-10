@@ -4,64 +4,42 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-editor',
 		icon: 'edit_note',
 		name: 'Editor',
-		description: 'WYSIWYG editor with toolbar and clean HTML output.',
+		description: 'WYSIWYG editor with a formatting toolbar and clean HTML output.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string',
-				value: '',
+				value: '<h2>Release notes</h2><p>Everything shipping in the <b>next update</b>, straight from the team.</p><ul><li>Faster boot</li><li>New element library</li></ul>',
 				description: 'HTML content.'
 			},
-			placeholder:
-			{
+			placeholder: {
 				type: 'string',
 				value: 'Start writing…',
 				description: 'Placeholder text.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
 				description: 'Hidden input name for forms.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4'],
-				description: 'Background depth.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the editor surface from 1 to 4.'
 			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Editor size.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			compact:
-			{
+			compact: {
 				type: 'boolean',
 				value: false,
 				description: 'Tighter padding and shorter height.'
 			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			_change:
-			{
+			_change: {
 				type: 'function',
 				description: 'Change handler. Receives { value }.'
 			}
@@ -96,12 +74,17 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'size-' + this.size];
+				const list = ['box', 'bg-' + this.background];
 
-				this.variant.forEach(v => list.push(v));
+				if(this.compact)
+				{
+					list.push('compact');
+				}
 
-				if(this.compact) list.push('compact');
-				if(this.disabled) list.push('disabled');
+				if(this.disabled)
+				{
+					list.push('disabled');
+				}
 
 				return list.join(' ');
 			};
