@@ -161,6 +161,14 @@
 	font-feature-settings: 'tnum';
 }
 
+.e-305e9281 > .box > .grid > .row > div > .td.wrap > .value
+{
+	white-space: normal;
+	overflow: visible;
+	text-overflow: clip;
+	line-height: 1.5;
+}
+
 .e-305e9281 > .box > .grid > .row > div:first-child > .td > .value
 {
 	color: var(--ot-text-1);
@@ -405,8 +413,8 @@
 	left: -17px;
 	width: 14px;
 	height: 22px;
-	border-left: 2px solid var(--ot-bg-4-border);
-	border-bottom: 2px solid var(--ot-bg-4-border);
+	border-left: 1px solid var(--ot-bg-4-border);
+	border-bottom: 1px solid var(--ot-bg-4-border);
 	border-bottom-left-radius: 10px;
 }
 

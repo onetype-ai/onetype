@@ -43,6 +43,15 @@ onetype.AddonReady('elements', (elements) =>
 							type: 'boolean',
 							value: true,
 							description: 'Click on the header sorts by this column.'
+						},
+						width: {
+							type: 'string',
+							description: 'Grid track for the column, like 2fr, auto or 200px. The first column defaults to minmax(0, 1fr), the rest to auto.'
+						},
+						wrap: {
+							type: 'boolean',
+							value: false,
+							description: 'Wraps long cell text into multiple lines instead of truncating it.'
 						}
 					}
 				},
@@ -100,7 +109,7 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			selectable: {
 				type: 'boolean',
-				value: true,
+				value: false,
 				description: 'Checkbox column with select all in the header.'
 			},
 			actions: {
@@ -141,9 +150,8 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				value: 2,
-				options: [0, 1, 2, 3, 4],
-				description: 'Background depth of the surface from 1 to 4. Zero renders the table bare, without a surface.'
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the surface from 1 to 4. Empty renders the table bare, without a surface.'
 			},
 			blur: {
 				type: 'boolean',
@@ -204,7 +212,7 @@ onetype.AddonReady('elements', (elements) =>
 
 				const lead = (this.selectable ? 'auto ' : '') + (this.nests ? 'auto ' : '');
 
-				this.template = lead + this.columns.map((column, index) => index === 0 ? 'minmax(0, 1fr)' : 'auto').join(' ');
+				this.template = lead + this.columns.map((column, index) => column.width ? column.width : (index === 0 ? 'minmax(0, 1fr)' : 'auto')).join(' ');
 
 				const rows = [...this.rows];
 
@@ -364,13 +372,13 @@ onetype.AddonReady('elements', (elements) =>
 								</button>
 							</div>
 							<div ot-for="column in columns" :ot-key="column.key">
-								<div :class="'td ' + column.align">
+								<div :class="'td ' + column.align + (column.wrap ? ' wrap' : '')">
 									<span ot-if="!column.badge" class="value">{{ row[column.key] }}</span>
 									<span ot-if="column.badge" :class="'pill ' + (row[column.key + 'Color'] ? row[column.key + 'Color'] : 'brand')">{{ row[column.key] }}</span>
 								</div>
 							</div>
 							<div ot-if="row.table && opened(row)" class="fold">
-								<e-data-table :columns="row.table.columns" :rows="row.table.rows" :background="0" :selectable="false"></e-data-table>
+								<e-data-table :columns="row.table.columns" :rows="row.table.rows" :selectable="false"></e-data-table>
 							</div>
 						</div>
 					</div>
