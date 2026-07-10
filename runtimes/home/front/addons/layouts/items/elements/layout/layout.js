@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Layout',
 	description: 'Workspace shell with top, left, right, bottom and center slots.',
 	category: 'Layout',
-	author: 'OneType',
 	metadata: { addon: 'ui.layouts' },
 	config: {
 		zone: {
