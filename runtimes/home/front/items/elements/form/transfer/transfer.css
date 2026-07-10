@@ -261,76 +261,12 @@
 	font-size: 18px;
 }
 
-/* ===== BACKGROUND ===== */
+/* ===== SURFACE ===== */
 
-.e-1e66ff82 > .box.bg-1 > .panel { background: var(--ot-bg-1); }
-.e-1e66ff82 > .box.bg-2 > .panel { background: var(--ot-bg-2); }
-.e-1e66ff82 > .box.bg-3 > .panel { background: var(--ot-bg-3); }
-.e-1e66ff82 > .box.bg-4 > .panel { background: var(--ot-bg-4); }
-
-/* Border */
-
-.e-1e66ff82 > .box.border.bg-1 > .panel { border-color: var(--ot-bg-1-border); }
-.e-1e66ff82 > .box.border.bg-2 > .panel { border-color: var(--ot-bg-2-border); }
-.e-1e66ff82 > .box.border.bg-3 > .panel { border-color: var(--ot-bg-3-border); }
-.e-1e66ff82 > .box.border.bg-4 > .panel { border-color: var(--ot-bg-4-border); }
-
-/* ===== SIZE ===== */
-
-.e-1e66ff82 > .box.size-s > .panel > .head
-{
-	padding: var(--ot-spacing-x) var(--ot-spacing-s);
-}
-
-.e-1e66ff82 > .box.size-s > .panel > .list > .item
-{
-	padding: var(--ot-spacing-x) var(--ot-spacing-s);
-	gap: var(--ot-spacing-x);
-}
-
-.e-1e66ff82 > .box.size-s > .panel > .list > .item > .item-icon
-{
-	font-size: 16px;
-}
-
-.e-1e66ff82 > .box.size-s > .controls > .control
-{
-	width: var(--ot-height-s);
-	height: var(--ot-height-s);
-}
-
-.e-1e66ff82 > .box.size-s > .controls > .control > i
-{
-	font-size: 15px;
-}
-
-.e-1e66ff82 > .box.size-l > .panel > .head
-{
-	padding: var(--ot-spacing-m) var(--ot-spacing-l);
-}
-
-.e-1e66ff82 > .box.size-l > .panel > .list > .item
-{
-	padding: var(--ot-spacing-m) var(--ot-spacing-l);
-	gap: var(--ot-spacing-m);
-}
-
-.e-1e66ff82 > .box.size-l > .panel > .list > .item > .item-icon
-{
-	font-size: 22px;
-}
-
-.e-1e66ff82 > .box.size-l > .controls > .control
-{
-	width: var(--ot-height-l);
-	height: var(--ot-height-l);
-}
-
-.e-1e66ff82 > .box.size-l > .controls > .control > i
-{
-	font-size: 20px;
-}
-
+.e-1e66ff82 > .box.bg-1 > .panel { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
+.e-1e66ff82 > .box.bg-2 > .panel { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
+.e-1e66ff82 > .box.bg-3 > .panel { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
+.e-1e66ff82 > .box.bg-4 > .panel { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
 /* ===== DISABLED ===== */
 
 .e-1e66ff82 > .box.disabled
