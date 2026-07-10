@@ -1,75 +1,52 @@
 onetype.AddonReady('elements', (elements) =>
 {
 	elements.ItemAdd({
-		id: 'form-section',
+		id: 'core-section',
 		icon: 'view_agenda',
 		name: 'Section',
-		description: 'Form section with eyebrow, icon, title, description, collapsible state and actions slot.',
-		category: 'Form',
-		config:
-		{
-			eyebrow:
-			{
+		description: 'Content section with eyebrow, icon, title, description, collapsible state and an actions slot.',
+		category: 'Core',
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			eyebrow: {
 				type: 'string',
-				value: '',
-				description: 'Uppercase label above title.'
+				description: 'Uppercase label above the title.'
 			},
-			icon:
-			{
+			icon: {
 				type: 'string',
-				value: '',
-				description: 'Leading icon in brand-tinted box.'
+				value: 'tune',
+				description: 'Leading icon in a brand tinted box.'
 			},
-			title:
-			{
+			title: {
 				type: 'string',
-				value: '',
+				value: 'General settings',
 				description: 'Section title.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
-				value: '',
-				description: 'Helper text below title.'
+				value: 'Name, region and defaults for this workspace.',
+				description: 'Helper text below the title.'
 			},
-			collapsible:
-			{
+			collapsible: {
 				type: 'boolean',
-				value: false,
-				description: 'Enable expand/collapse toggle.'
+				value: true,
+				description: 'Enable the expand and collapse toggle on the header.'
 			},
-			collapsed:
-			{
+			collapsed: {
 				type: 'boolean',
 				value: false,
 				description: 'Start collapsed.'
 			},
-			background:
-			{
-				type: 'string',
-				value: '',
-				options: ['', 'bg-1', 'bg-2', 'bg-3', 'bg-4'],
-				description: 'Background depth.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Section size.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['border', 'clean', 'padded'],
-				description: 'Visual modifiers.'
+			background: {
+				type: 'number',
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the section surface from 1 to 4. Empty renders it bare, without a surface or padding.'
 			}
 		},
 		render: function()
 		{
-			/* ===== STATE ===== */
+			/* ===== DATA ===== */
 
 			this.Compute(() =>
 			{
@@ -82,27 +59,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', 'size-' + this.size];
-
-				if(this.background)
-				{
-					list.push(this.background);
-				}
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('clean'))
-				{
-					list.push('clean');
-				}
-
-				if(this.variant.includes('padded'))
-				{
-					list.push('padded');
-				}
+				const list = ['box', this.background ? 'bg-' + this.background : 'bare'];
 
 				if(this.isCollapsible)
 				{

@@ -1,69 +1,47 @@
 onetype.AddonReady('elements', (elements) =>
 {
 	elements.ItemAdd({
-		id: 'form-field',
+		id: 'core-field',
 		icon: 'space_dashboard',
 		name: 'Field',
-		description: 'Form field with label, description, hint, required mark and error state.',
-		category: 'Form',
-		config:
-		{
-			label:
-			{
+		description: 'Form field wrapper with label, description, hint, required mark and an error state around any control.',
+		category: 'Core',
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			label: {
 				type: 'string',
-				value: '',
+				value: 'Work email',
 				description: 'Field label.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
-				value: '',
-				description: 'Helper text below label.'
+				value: 'Used for sign in and notifications.',
+				description: 'Helper text below the label.'
 			},
-			hint:
-			{
+			hint: {
 				type: 'string',
-				value: '',
-				description: 'Tooltip text on info icon.'
+				description: 'Tooltip text on the info icon next to the label.'
 			},
-			error:
-			{
+			error: {
 				type: 'string',
-				value: '',
-				description: 'Error message. Tints input red.'
+				description: 'Error message below the control. Tints the control red while set.'
 			},
-			required:
-			{
+			required: {
 				type: 'boolean',
-				value: false,
-				description: 'Red asterisk on label.'
+				value: true,
+				description: 'Red asterisk on the label.'
 			},
-			orientation:
-			{
+			orientation: {
 				type: 'string',
 				value: 'horizontal',
 				options: ['horizontal', 'vertical'],
-				description: 'Layout direction.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Field size.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom', 'clean'],
-				description: 'Visual modifiers.'
+				description: 'Label and control side by side, or stacked.'
 			}
 		},
 		render: function()
 		{
-			/* ===== STATE ===== */
+			/* ===== DATA ===== */
 
 			this.Compute(() =>
 			{
@@ -75,22 +53,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.orientation, 'size-' + this.size];
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
-				}
-
-				if(this.variant.includes('clean'))
-				{
-					list.push('clean');
-				}
+				const list = ['box', this.orientation];
 
 				if(this.hasError)
 				{

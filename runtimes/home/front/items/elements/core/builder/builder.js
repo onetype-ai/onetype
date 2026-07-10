@@ -353,7 +353,7 @@ onetype.AddonReady('elements', (elements) =>
 					: '';
 
 				return `
-					<e-form-field
+					<e-core-field
 						${condition}
 						#class="field"
 						#style="grid-column: span ${span};"
@@ -366,7 +366,7 @@ onetype.AddonReady('elements', (elements) =>
 						<div slot="input">
 							${input}
 						</div>
-					</e-form-field>
+					</e-core-field>
 				`;
 			};
 
@@ -382,7 +382,7 @@ onetype.AddonReady('elements', (elements) =>
 				const background = section.background || this.section.background || '';
 
 				return `
-					<e-form-section
+					<e-core-section
 						${condition}
 						eyebrow="${escape(section.eyebrow || '')}"
 						icon="${escape(section.icon || '')}"
@@ -390,15 +390,14 @@ onetype.AddonReady('elements', (elements) =>
 						description="${escape(section.description || '')}"
 						:collapsible="${section.collapsible ? 'true' : 'false'}"
 						:collapsed="${section.collapsed ? 'true' : 'false'}"
-						background="${background}"
-						:variant="sectionVariant"
+						:background="${Number(String(background).replace('bg-', '')) ? Number(String(background).replace('bg-', '')) : 0}"
 					>
 						<div slot="content">
 							<div class="grid" style="grid-template-columns: repeat(${columns}, minmax(0, 1fr));">
 								${fields}
 							</div>
 						</div>
-					</e-form-section>
+					</e-core-section>
 				`;
 			};
 
