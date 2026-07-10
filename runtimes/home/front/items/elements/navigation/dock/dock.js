@@ -215,7 +215,7 @@ onetype.AddonReady('elements', (elements) =>
 				<aside :class="'box bg-' + background">
 					${stack('top')}
 					${stack('bottom')}
-					<div ot-if="opened" class="panel" :ot-resize="{ edge: ['right'], width: panel.width, min: panel.min, max: panel.max, onResize: (event) => panel.onResize && panel.onResize(event.width) }">
+					<div ot-if="opened" class="panel ot-bg-2-blur" :ot-resize="{ edge: ['right'], width: panel.width, min: panel.min, max: panel.max, onResize: (event) => panel.onResize && panel.onResize(event.width) }">
 						<div ot-if="chrome()" class="head">
 							<div class="text">
 								<div ot-if="panel.title" class="title">{{ panel.title }}</div>
