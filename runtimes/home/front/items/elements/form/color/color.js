@@ -4,78 +4,52 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-color',
 		icon: 'palette',
 		name: 'Color',
-		description: 'Color picker with native input, hex validation, presets and copy action.',
+		description: 'Color picker with native input, hex validation, presets and a copy action.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string',
-				value: '',
+				value: '#6366F1',
 				description: 'Hex color value.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
 				description: 'Input name attribute.'
 			},
-			placeholder:
-			{
+			placeholder: {
 				type: 'string',
 				value: '#000000',
-				description: 'Placeholder text.'
+				description: 'Placeholder text while the value is empty.'
 			},
-			presets:
-			{
+			presets: {
 				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				description: 'Preset color swatches.'
+				value: ['#6366F1', '#38BDF8', '#34D399', '#FB923C', '#F43F5E'],
+				each: {
+					type: 'string',
+					description: 'A single preset hex color.'
+				},
+				description: 'Preset color swatches below the field.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Background depth.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Picker size.'
-			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			_input:
-			{
-				type: 'function',
-				description: 'Live input handler. Receives { event, value }.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the control surface from 1 to 4.'
 			},
-			_change:
-			{
+			_input: {
 				type: 'function',
-				description: 'Commit handler. Receives { event, value }.'
+				description: 'Called with { event, value } while picking.'
 			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to set the value via the variable builder modal.'
+			_change: {
+				type: 'function',
+				description: 'Called with { event, value } when the value is committed.'
 			}
 		},
 		render: function()
@@ -86,24 +60,14 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.Compute(() =>
 			{
-				this.hasPresets = this.presets && this.presets.length > 0;
+				this.hasPresets = this.presets.length > 0;
 			});
 
 			/* ===== CLASSES ===== */
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'size-' + this.size];
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
-				}
+				const list = ['box', 'bg-' + this.background];
 
 				if(this.disabled)
 				{
@@ -113,7 +77,7 @@ onetype.AddonReady('elements', (elements) =>
 				return list.join(' ');
 			};
 
-			/* ===== HANDLERS ===== */
+			/* ===== HELPERS ===== */
 
 			this.normalize = (value) =>
 			{
@@ -139,12 +103,12 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.sync = () =>
 			{
-				const input = this.Element?.querySelector('input.input');
-				const native = this.Element?.querySelector('input.native');
+				const input = this.Element ? this.Element.querySelector('input.input') : null;
+				const native = this.Element ? this.Element.querySelector('input.native') : null;
 
 				if(input)
 				{
-					input.value = this.value || '';
+					input.value = this.value;
 				}
 
 				if(native && this.isValid(this.value))
@@ -152,6 +116,8 @@ onetype.AddonReady('elements', (elements) =>
 					native.value = this.value;
 				}
 			};
+
+			/* ===== HANDLERS ===== */
 
 			this.pick = ({ event, value }) =>
 			{
@@ -195,7 +161,8 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				const native = event.target.closest('.box')?.querySelector('.native');
+				const box = event.target.closest('.box');
+				const native = box ? box.querySelector('.native') : null;
 
 				if(native)
 				{
@@ -246,89 +213,13 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
-			/* ===== VARIABLES ===== */
-
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return /^\{\{\s*[\s\S]+\s*\}\}$/.test(String(this.value || '').trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = this.value || '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
-					{
-						this._change({ event: null, value: wrapped });
-					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = '';
-
-				if(this._change)
-				{
-					this._change({ event: null, value: '' });
-				}
-
-				this.Update();
-			};
-
 			/* ===== RENDER ===== */
 
 			return /* html */ `
 				<div :class="classes()">
-					<e-variable-chip
-						ot-if="isExpression()"
-						:value="value"
-						:size="size"
-						:disabled="disabled"
-						:_edit="openVariableBuilder"
-						:_clear="clearExpression"
-					></e-variable-chip>
-
-					<div ot-if="!isExpression()" class="field">
+					<div class="field">
 						<div class="swatch" :style="value ? 'background: ' + value : ''" ot-click="open">
-							<input class="native" type="color" :value="value || '#000000'" ot-input="pick" ot-change="commit" tabindex="-1" :disabled="disabled" />
+							<input class="native" type="color" :value="isValid(value) ? value : '#000000'" ot-input="pick" ot-change="commit" tabindex="-1" :disabled="disabled" />
 						</div>
 						<input
 							class="input"
@@ -342,15 +233,6 @@ onetype.AddonReady('elements', (elements) =>
 							spellcheck="false"
 							ot-change="input"
 						/>
-						<button
-							ot-if="hasVariables() && !disabled"
-							type="button"
-							class="action"
-							ot-click.stop="openVariableBuilder"
-							:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-						>
-							<i>data_object</i>
-						</button>
 						<button
 							ot-if="value && !disabled"
 							type="button"
@@ -371,14 +253,15 @@ onetype.AddonReady('elements', (elements) =>
 							<i>close</i>
 						</button>
 					</div>
-					<div ot-if="!isExpression() && hasPresets" class="presets">
+					<div ot-if="hasPresets" class="presets">
 						<button
 							ot-for="preset in presets"
+							:ot-key="preset"
 							type="button"
 							:class="'preset' + (value === preset ? ' active' : '')"
 							:style="'background: ' + preset"
 							:ot-tooltip="{ text: preset, position: { x: 'center', y: 'top' } }"
-							ot-click="(event) => pickPreset(event, preset)"
+							ot-click="({ event }) => pickPreset(event, preset)"
 						></button>
 					</div>
 				</div>

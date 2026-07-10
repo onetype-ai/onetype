@@ -2,7 +2,8 @@
 
 .e-21311850
 {
-	display: contents;
+	display: block;
+	width: 100%;
 }
 
 /* Box */
@@ -24,16 +25,29 @@
 	align-items: center;
 	gap: var(--ot-spacing-s);
 	width: 100%;
+	height: var(--ot-height-m);
 	padding: 0 var(--ot-spacing-s);
 	border: 1px solid transparent;
 	border-radius: var(--ot-radius-m);
-	background: transparent;
 	transition: background var(--ot-transition), border-color var(--ot-transition), box-shadow var(--ot-transition);
 }
 
+/* Surface */
+
+.e-21311850 > .box.bg-1 > .field { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
+.e-21311850 > .box.bg-2 > .field { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
+.e-21311850 > .box.bg-3 > .field { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
+.e-21311850 > .box.bg-4 > .field { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
+
+.e-21311850 > .box.bg-1 > .field:hover:not(:focus-within) { background: var(--ot-bg-1-hover); }
+.e-21311850 > .box.bg-2 > .field:hover:not(:focus-within) { background: var(--ot-bg-2-hover); }
+.e-21311850 > .box.bg-3 > .field:hover:not(:focus-within) { background: var(--ot-bg-3-hover); }
+.e-21311850 > .box.bg-4 > .field:hover:not(:focus-within) { background: var(--ot-bg-4-hover); }
+
 .e-21311850 > .box > .field:focus-within
 {
-	box-shadow: 0 0 0 1px var(--ot-brand-opacity);
+	border-color: var(--ot-brand);
+	box-shadow: 0 0 0 3px var(--ot-brand-opacity);
 }
 
 /* Swatch */
@@ -42,8 +56,10 @@
 {
 	position: relative;
 	flex-shrink: 0;
+	width: 22px;
+	height: 22px;
 	border-radius: var(--ot-radius-s);
-	border: 1px solid var(--ot-bg-2-border);
+	border: 1px solid var(--ot-bg-3-border);
 	cursor: pointer;
 	overflow: hidden;
 	padding: 0;
@@ -120,7 +136,7 @@
 
 .e-21311850 > .box > .field > .action:hover
 {
-	background: var(--ot-bg-2-hover);
+	background: var(--ot-bg-3);
 	color: var(--ot-text-1);
 }
 
@@ -171,7 +187,7 @@
 .e-21311850 > .box.disabled > .field
 {
 	cursor: not-allowed;
-	opacity: 0.55;
+	opacity: 0.5;
 }
 
 .e-21311850 > .box.disabled > .field > .swatch
@@ -184,76 +200,3 @@
 {
 	cursor: not-allowed;
 }
-
-/* ===== BACKGROUND ===== */
-
-.e-21311850 > .box.bg-1 > .field { background: var(--ot-bg-1); }
-.e-21311850 > .box.bg-2 > .field { background: var(--ot-bg-2); }
-.e-21311850 > .box.bg-3 > .field { background: var(--ot-bg-3); }
-.e-21311850 > .box.bg-4 > .field { background: var(--ot-bg-4); }
-
-.e-21311850 > .box.bg-1 > .field:hover:not(:focus-within) { background: var(--ot-bg-1-hover); }
-.e-21311850 > .box.bg-2 > .field:hover:not(:focus-within) { background: var(--ot-bg-2-hover); }
-.e-21311850 > .box.bg-3 > .field:hover:not(:focus-within) { background: var(--ot-bg-3-hover); }
-.e-21311850 > .box.bg-4 > .field:hover:not(:focus-within) { background: var(--ot-bg-4-hover); }
-
-.e-21311850 > .box.bg-1 > .field > .swatch { border-color: var(--ot-bg-1-border); }
-.e-21311850 > .box.bg-2 > .field > .swatch { border-color: var(--ot-bg-2-border); }
-.e-21311850 > .box.bg-3 > .field > .swatch { border-color: var(--ot-bg-3-border); }
-.e-21311850 > .box.bg-4 > .field > .swatch { border-color: var(--ot-bg-4-border); }
-
-.e-21311850 > .box.bg-1 > .field > .action:hover { background: var(--ot-bg-1-hover); }
-.e-21311850 > .box.bg-2 > .field > .action:hover { background: var(--ot-bg-2-hover); }
-.e-21311850 > .box.bg-3 > .field > .action:hover { background: var(--ot-bg-3-hover); }
-.e-21311850 > .box.bg-4 > .field > .action:hover { background: var(--ot-bg-4-hover); }
-
-/* Transparent */
-
-.e-21311850 > .box.transparent > .field
-{
-	background: transparent;
-	padding: 0;
-}
-
-/* Border */
-
-.e-21311850 > .box.border > .field { border-color: var(--ot-bg-2-border); }
-.e-21311850 > .box.bg-1.border > .field { border-color: var(--ot-bg-1-border); }
-.e-21311850 > .box.bg-2.border > .field { border-color: var(--ot-bg-2-border); }
-.e-21311850 > .box.bg-3.border > .field { border-color: var(--ot-bg-3-border); }
-.e-21311850 > .box.bg-4.border > .field { border-color: var(--ot-bg-4-border); }
-
-/* ===== SIZE ===== */
-
-.e-21311850 > .box.size-s > .field
-{
-	height: var(--ot-height-s);
-	padding: 0 var(--ot-spacing-x);
-}
-
-.e-21311850 > .box.size-s > .field > .swatch { width: 18px; height: 18px; }
-.e-21311850 > .box.size-s > .field > .input { font-size: var(--ot-size-s); }
-.e-21311850 > .box.size-s > .field > .action { width: 18px; height: 18px; }
-.e-21311850 > .box.size-s > .field > .action > i { font-size: 13px; }
-.e-21311850 > .box.size-s > .presets > .preset { width: 18px; height: 18px; }
-
-.e-21311850 > .box.size-m > .field
-{
-	height: var(--ot-height-m);
-	padding: 0 var(--ot-spacing-s);
-}
-
-.e-21311850 > .box.size-m > .field > .swatch { width: 22px; height: 22px; }
-.e-21311850 > .box.size-m > .field > .input { font-size: var(--ot-size-m); }
-
-.e-21311850 > .box.size-l > .field
-{
-	height: var(--ot-height-l);
-	padding: 0 var(--ot-spacing-m);
-}
-
-.e-21311850 > .box.size-l > .field > .swatch { width: 28px; height: 28px; }
-.e-21311850 > .box.size-l > .field > .input { font-size: var(--ot-size-m); }
-.e-21311850 > .box.size-l > .field > .action { width: 26px; height: 26px; }
-.e-21311850 > .box.size-l > .field > .action > i { font-size: 16px; }
-.e-21311850 > .box.size-l > .presets > .preset { width: 28px; height: 28px; }
