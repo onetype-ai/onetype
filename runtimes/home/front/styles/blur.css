@@ -1,0 +1,18 @@
+/* ===== BLUR BACKGROUNDS ===== */
+
+.ot-bg-1-blur,
+.ot-bg-2-blur,
+.ot-bg-3-blur,
+.ot-bg-4-blur
+{
+	background:
+		radial-gradient(120% 40% at 50% 0%, rgba(255, 255, 255, 0.04), transparent 70%),
+		var(--blur-fill);
+	backdrop-filter: var(--ot-blur);
+	-webkit-backdrop-filter: var(--ot-blur);
+}
+
+.ot-bg-1-blur { --blur-fill: var(--ot-bg-1-opacity); }
+.ot-bg-2-blur { --blur-fill: var(--ot-bg-2-opacity); }
+.ot-bg-3-blur { --blur-fill: var(--ot-bg-3-opacity); }
+.ot-bg-4-blur { --blur-fill: var(--ot-bg-4-opacity); }
