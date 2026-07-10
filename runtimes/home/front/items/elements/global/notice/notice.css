@@ -6,6 +6,12 @@
 	width: 100%;
 }
 
+/* Surface — depth set through the background prop */
+
+.e-2e3de5ec > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); }
+.e-2e3de5ec > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); }
+.e-2e3de5ec > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); }
+
 /* Box */
 
 .e-2e3de5ec > .box
@@ -16,11 +22,11 @@
 	gap: var(--ot-spacing-s);
 	width: 100%;
 	padding: var(--ot-spacing-s) var(--ot-spacing-s) var(--ot-spacing-s) var(--ot-spacing-m);
-	border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--ot-bg-3-border));
+	border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
 	border-radius: var(--ot-radius-l);
 	background:
 		radial-gradient(140% 180% at 0% 50%, var(--tint) 0%, transparent 55%),
-		color-mix(in srgb, var(--ot-bg-2) 88%, transparent);
+		var(--fill);
 	overflow: hidden;
 }
 
@@ -136,7 +142,7 @@
 
 .e-2e3de5ec > .box > .close:hover
 {
-	background: var(--ot-bg-3);
+	background: var(--above);
 	color: var(--ot-text-1);
 }
 

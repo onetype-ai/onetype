@@ -66,11 +66,6 @@ onetype.AddonReady('elements', (elements) =>
 				value: false,
 				description: 'Stretch to the container width with evenly sized options.'
 			},
-			blur: {
-				type: 'boolean',
-				value: false,
-				description: 'Translucent blurred track instead of a solid one.'
-			},
 			color: {
 				type: 'string',
 				value: 'brand',
@@ -104,11 +99,6 @@ onetype.AddonReady('elements', (elements) =>
 				if(this.stretch)
 				{
 					list.push('stretch');
-				}
-
-				if(this.blur)
-				{
-					list.push('blur');
 				}
 
 				if(this.disabled)

@@ -17,6 +17,12 @@
 	width: 100%;
 }
 
+/* Surface — depth set through the background prop */
+
+.e-4a1d382d > .box.bg-1 { --fill: var(--ot-bg-1); --above: var(--ot-bg-2); --edge: var(--ot-bg-1-border); }
+.e-4a1d382d > .box.bg-2 { --fill: var(--ot-bg-2); --above: var(--ot-bg-3); --edge: var(--ot-bg-2-border); }
+.e-4a1d382d > .box.bg-3 { --fill: var(--ot-bg-3); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
+
 /* Tag */
 
 .e-4a1d382d > .box > div > .tag
@@ -26,9 +32,9 @@
 	gap: 6px;
 	height: var(--ot-height-s);
 	padding: 0 var(--ot-spacing-m);
-	border: 1px solid var(--ot-bg-3-border);
+	border: 1px solid var(--edge);
 	border-radius: 99px;
-	background: color-mix(in srgb, var(--ot-bg-3) 55%, transparent);
+	background: var(--fill);
 	color: var(--ot-text-2);
 	font-family: var(--ot-font-primary);
 	font-size: var(--ot-size-m);
@@ -45,7 +51,7 @@
 
 .e-4a1d382d > .box > div > .tag:hover
 {
-	border-color: var(--ot-bg-3-border);
+	border-color: var(--edge);
 	color: var(--ot-text-1);
 }
 
@@ -91,7 +97,7 @@
 {
 	padding: 1px 7px;
 	border-radius: 99px;
-	background: var(--ot-bg-3);
+	background: var(--above);
 	color: var(--ot-text-3);
 	font-size: 10px;
 	font-weight: 650;

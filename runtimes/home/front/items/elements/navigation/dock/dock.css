@@ -15,11 +15,12 @@
 	width: 58px;
 	height: 100%;
 	padding: var(--ot-spacing-s) 0;
+	background: var(--fill);
 }
 
-.e-1a845976 > .box.bg-1 { --fill: var(--ot-bg-1-opacity); --active: var(--ot-bg-1-border); }
-.e-1a845976 > .box.bg-2 { --fill: var(--ot-bg-2-opacity); --active: var(--ot-bg-2-border); }
-.e-1a845976 > .box.bg-3 { --fill: var(--ot-bg-3-opacity); --active: var(--ot-bg-3-border); }
+.e-1a845976 > .box.bg-1 { --fill: var(--ot-bg-1); --active: var(--ot-bg-1-border); }
+.e-1a845976 > .box.bg-2 { --fill: var(--ot-bg-2); --active: var(--ot-bg-2-border); }
+.e-1a845976 > .box.bg-3 { --fill: var(--ot-bg-3); --active: var(--ot-bg-3-border); }
 
 /* Stack */
 
@@ -220,8 +221,9 @@
 	display: flex;
 	flex-direction: column;
 	width: 380px;
-	border: 1px solid var(--ot-bg-2-border);
+	border: 1px solid var(--ot-bg-1-border);
 	border-radius: var(--ot-radius-l);
+	background: var(--ot-bg-1);
 	animation: e-dock-panel-in var(--ot-transition-slow);
 }
 

@@ -88,16 +88,6 @@ onetype.AddonReady('elements', (elements) =>
 				options: [1, 2, 3],
 				description: 'Background depth of the card surface from 1 to 3.'
 			},
-			blur: {
-				type: 'boolean',
-				value: false,
-				description: 'Translucent blurred surface instead of a solid one.'
-			},
-			glow: {
-				type: 'string',
-				options: ['brand', 'blue', 'red', 'orange', 'green'],
-				description: 'Colored glow on top of the surface. Empty renders no glow.'
-			},
 			_click: {
 				type: 'function',
 				description: 'Called with { event } on CTA click. Overrides the href navigation.'
@@ -110,16 +100,6 @@ onetype.AddonReady('elements', (elements) =>
 			this.classes = () =>
 			{
 				const list = ['box', this.color, 'bg-' + this.background];
-
-				if(this.blur)
-				{
-					list.push('blur');
-				}
-
-				if(this.glow || this.featured)
-				{
-					list.push('glow-' + (this.glow ? this.glow : this.color));
-				}
 
 				if(this.featured)
 				{

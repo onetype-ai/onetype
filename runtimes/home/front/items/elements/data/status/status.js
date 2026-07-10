@@ -63,11 +63,6 @@ onetype.AddonReady('elements', (elements) =>
 				options: [1, 2, 3],
 				description: 'Background depth of the surface from 1 to 3.'
 			},
-			blur: {
-				type: 'boolean',
-				value: false,
-				description: 'Translucent blurred surface instead of a solid one. Applies while background is set.'
-			},
 			glow: {
 				type: 'string',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
@@ -85,16 +80,6 @@ onetype.AddonReady('elements', (elements) =>
 				if(this.background)
 				{
 					list.push('bg-' + this.background);
-
-					if(this.blur)
-					{
-						list.push('blur');
-					}
-
-					if(this.glow)
-					{
-						list.push('glow-' + this.glow);
-					}
 				}
 
 				return list.join(' ');

@@ -100,10 +100,6 @@
 	outline: none;
 }
 
-.e-13e502f0 .star:focus-visible > .base
-{
-	filter: drop-shadow(0 0 6px var(--ot-brand-opacity));
-}
 
 /* Base icon */
 
@@ -211,8 +207,9 @@
 .e-13e502f0 > .box.orange .star > .fill { color: var(--ot-orange); }
 .e-13e502f0 > .box.green .star > .fill { color: var(--ot-green); }
 
-.e-13e502f0 > .box.brand .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-brand-opacity)); }
-.e-13e502f0 > .box.blue .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-blue-opacity)); }
-.e-13e502f0 > .box.red .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-red-opacity)); }
-.e-13e502f0 > .box.orange .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-orange-opacity)); }
-.e-13e502f0 > .box.green .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-green-opacity)); }
+.e-13e502f0 > .box.brand .star:focus-visible > .base { color: var(--ot-brand); }
+.e-13e502f0 > .box.blue .star:focus-visible > .base { color: var(--ot-blue); }
+.e-13e502f0 > .box.red .star:focus-visible > .base { color: var(--ot-red); }
+.e-13e502f0 > .box.orange .star:focus-visible > .base { color: var(--ot-orange); }
+.e-13e502f0 > .box.green .star:focus-visible > .base { color: var(--ot-green); }
+

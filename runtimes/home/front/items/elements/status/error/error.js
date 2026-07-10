@@ -41,16 +41,6 @@ onetype.AddonReady('elements', (elements) =>
 				options: [1, 2, 3],
 				description: 'Background depth from 1 to 3, renders the error state on its own bordered surface.'
 			},
-			glow: {
-				type: 'string',
-				options: ['brand', 'blue', 'red', 'orange', 'green'],
-				description: 'Colored glow on top of the surface. Empty renders no glow.'
-			},
-			blur: {
-				type: 'boolean',
-				value: false,
-				description: 'Translucent blurred surface instead of a solid one. Applies while background is set.'
-			},
 			_click: {
 				type: 'function',
 				description: 'Retry handler. Receives { event }. Reloads page if not set.'
@@ -67,16 +57,6 @@ onetype.AddonReady('elements', (elements) =>
 				if(this.background)
 				{
 					list.push('bg-' + this.background);
-
-					if(this.blur)
-					{
-						list.push('blur');
-					}
-
-					if(this.glow)
-					{
-						list.push('glow-' + this.glow);
-					}
 				}
 
 				return list.join(' ');

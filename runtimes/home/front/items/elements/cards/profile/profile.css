@@ -28,38 +28,6 @@
 .e-7dbb0917 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
 .e-7dbb0917 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
 
-.e-7dbb0917 > .box.bg-1.blur { --fill: var(--ot-bg-1-opacity); }
-.e-7dbb0917 > .box.bg-2.blur { --fill: var(--ot-bg-2-opacity); }
-.e-7dbb0917 > .box.bg-3.blur { --fill: var(--ot-bg-3-opacity); }
-
-.e-7dbb0917 > .box.blur
-{
-	backdrop-filter: var(--ot-blur);
-	-webkit-backdrop-filter: var(--ot-blur);
-}
-
-/* Surface wash — colored glow on top of the surface, set through the glow prop */
-
-.e-7dbb0917 > .box.glow-brand { --wash: var(--ot-brand-opacity); }
-.e-7dbb0917 > .box.glow-blue { --wash: var(--ot-blue-opacity); }
-.e-7dbb0917 > .box.glow-red { --wash: var(--ot-red-opacity); }
-.e-7dbb0917 > .box.glow-orange { --wash: var(--ot-orange-opacity); }
-.e-7dbb0917 > .box.glow-green { --wash: var(--ot-green-opacity); }
-
-.e-7dbb0917 > .box::before
-{
-	content: '';
-	position: absolute;
-	top: -30%;
-	left: 50%;
-	width: 65%;
-	height: 55%;
-	transform: translateX(-50%);
-	background: radial-gradient(ellipse, var(--wash, transparent) 0%, transparent 70%);
-	opacity: 0.5;
-	pointer-events: none;
-}
-
 /* Accent */
 
 .e-7dbb0917 > .box.brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }

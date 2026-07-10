@@ -64,6 +64,12 @@ onetype.AddonReady('elements', (elements) =>
 				value: false,
 				description: 'Allow selecting more than one tag.'
 			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the tag pills from 1 to 3.'
+			},
 			_change: {
 				type: 'function',
 				description: 'Called with { event, value } after every selection change.'
@@ -165,7 +171,7 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div class="box">
+				<div :class="'box bg-' + background">
 					<div ot-for="tag in normalized" :ot-key="tag.id">
 						<button type="button" :class="state(tag)" ot-click="({ event }) => select(tag, event)">
 							<span ot-if="tag.color && !tag.icon" class="dot"></span>

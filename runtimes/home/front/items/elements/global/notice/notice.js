@@ -46,6 +46,12 @@ onetype.AddonReady('elements', (elements) =>
 				value: false,
 				description: 'Shows the dismiss button and hides the notice on click.'
 			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the banner from 1 to 3.'
+			},
 			_click: {
 				type: 'function',
 				description: 'Called with { event } when the action button is clicked.'
@@ -89,7 +95,7 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div ot-if="visible" :class="'box ' + color">
+				<div ot-if="visible" :class="'box bg-' + background + ' ' + color">
 					<div class="rail"></div>
 					<div class="tile"><i>{{ symbol }}</i></div>
 					<div class="body">
