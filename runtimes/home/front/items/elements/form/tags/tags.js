@@ -4,112 +4,79 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-tags',
 		icon: 'label',
 		name: 'Tags',
-		description: 'Tag input with autocomplete, multi-select, async options and keyboard navigation.',
+		description: 'Tag input with autocomplete, multi select, async options and keyboard navigation.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'array',
-				value: [],
-				each: { type: 'string|number' },
+				value: ['design', 'frontend'],
+				each: {
+					type: 'string|number',
+					description: 'A single selected tag value.'
+				},
 				description: 'Selected tag values.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
-				description: 'Form field name.'
+				description: 'Hidden input name for forms.'
 			},
-			placeholder:
-			{
+			placeholder: {
 				type: 'string',
-				value: 'Add tag…',
-				description: 'Input placeholder.'
+				value: 'Add a tag…',
+				description: 'Input placeholder while no tags are selected.'
 			},
-			options:
-			{
+			options: {
 				type: 'array|function',
-				value: [],
-				each: { type: 'object|string|number' },
-				description: 'Array of {label, value} objects (or strings/numbers, auto-wrapped) or async function returning the same.'
+				value: ['design', 'frontend', 'backend', 'platform', 'marketing'],
+				each: {
+					type: 'object|string|number',
+					description: 'A single option. Strings and numbers auto-wrap to { label, value }, objects take label, value, icon, description and disabled.'
+				},
+				description: 'Suggestions list, or an async callback(value, type). Called with (query, "search") while typing and with ([values], "selected") to resolve labels for already selected values. Objects resolve their label from label, title or name.'
 			},
-			mode:
-			{
+			mode: {
 				type: 'string',
 				value: 'input',
 				options: ['input', 'select'],
-				description: 'Input mode: type to add, or click chips to toggle.'
+				description: 'Input mode types to add, select mode toggles chips.'
 			},
-			max:
-			{
+			max: {
 				type: 'number',
 				value: 0,
-				description: 'Maximum number of tags. 0 = unlimited.'
+				description: 'Maximum number of tags. Zero is unlimited.'
 			},
-			minLength:
-			{
+			minLength: {
 				type: 'number',
 				value: 0,
 				description: 'Minimum character length per tag.'
 			},
-			restrict:
-			{
+			restrict: {
 				type: 'boolean',
 				value: false,
 				description: 'Only allow values from options.'
 			},
-			searchable:
-			{
-				type: 'boolean',
-				value: true,
-				description: 'Show search dropdown in select mode.'
-			},
-			color:
-			{
+			color: {
 				type: 'string',
-				value: '',
-				options: ['', 'brand', 'blue', 'red', 'orange', 'green'],
-				description: 'Tag chip color.'
+				value: 'brand',
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
+				description: 'Accent color of the tag chips.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Container background.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Field size.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			_change:
-			{
-				type: 'function',
-				description: 'Change handler. Receives { value }.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the control surface from 1 to 4.'
 			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to set the value via the variable builder modal.'
+			_change: {
+				type: 'function',
+				description: 'Called with { value } when the tags change.'
 			}
 		},
 		render: function()
@@ -119,93 +86,45 @@ onetype.AddonReady('elements', (elements) =>
 			this.query = '';
 			this.open = false;
 			this.above = false;
-			this.activeIndex = 0;
-			this.shakeIndex = -1;
-			this.loading = false;
+			this.active = null;
+			this.shake = null;
+
+			/* ===== SOURCE ===== */
+
+			elements.Fn('source', this, () => this.options);
 
 			this.Compute(() =>
 			{
 				this.isSelect = this.mode === 'select';
+
+				if(this.sourced && this.value.length)
+				{
+					this.resolve(this.value);
+				}
 			});
 
-			this.normalize = (list) =>
+			this.list = () =>
 			{
-				return list.map(option =>
+				if(this.sourced)
 				{
-					if(typeof option === 'object' && option !== null)
-					{
-						return option;
-					}
+					return this.results;
+				}
 
-					return { label: String(option), value: option };
-				});
+				return this.normalize(Array.isArray(this.options) ? this.options : []);
 			};
-
-			/* ===== ASYNC OPTIONS ===== */
-
-			this.optionsCallback = null;
-
-			if(typeof this.options === 'function')
-			{
-				this.optionsCallback = this.options;
-				this.options = [];
-				this.loading = true;
-
-				this.fetchOptions = async (search) =>
-				{
-					this.loading = true;
-					this.Update();
-
-					try
-					{
-						const result = await this.optionsCallback.call(this, { search: search || '', selected: this.value || [] });
-						this.options = Array.isArray(result) ? this.normalize(result) : [];
-					}
-					catch(error)
-					{
-						this.options = [];
-					}
-
-					this.loading = false;
-					this.Update();
-				};
-
-				this.fetchOptionsDebounced = onetype.HelperDebounce((search) => this.fetchOptions(search), 300);
-
-				this.OnInit(() => this.fetchOptions(''));
-			}
-			else
-			{
-				this.options = this.normalize(this.options);
-			}
 
 			/* ===== HELPERS ===== */
 
 			this.labelOf = (value) =>
 			{
-				const found = this.options.find(o => o.value === value);
+				const found = this.sourced ? this.find(value) : this.list().find((option) => option.value === value);
 
 				return found ? found.label : String(value);
 			};
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'size-' + this.size];
-
-				if(this.color)
-				{
-					list.push(this.color);
-				}
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
-				}
+				const list = ['box', 'bg-' + this.background, this.color];
 
 				if(this.above)
 				{
@@ -222,7 +141,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.chipClass = (option) =>
 			{
-				const selected = this.value.some(v => v == option.value);
+				const selected = this.value.some((value) => value == option.value);
 
 				return 'chip' + (selected ? ' selected' : '');
 			};
@@ -234,26 +153,28 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.filtered = () =>
 			{
-				if(!this.options || !this.options.length)
+				const list = this.list();
+
+				if(!list.length)
 				{
 					return [];
 				}
 
 				const query = this.query.toLowerCase();
 
-				return this.options.filter(option =>
+				return list.filter((option) =>
 				{
-					if(this.value.some(v => v == option.value))
+					if(this.value.some((value) => value == option.value))
 					{
 						return false;
 					}
 
-					if(this.optionsCallback || !query)
+					if(this.sourced || !query)
 					{
 						return true;
 					}
 
-					return String(option.label || '').toLowerCase().includes(query);
+					return String(option.label ? option.label : '').toLowerCase().includes(query);
 				});
 			};
 
@@ -261,31 +182,21 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.add = (option) =>
 			{
-				if(this.disabled)
+				if(this.disabled || !option || option.disabled || this.reachedMax())
 				{
 					return;
 				}
 
-				if(!option || option.disabled)
-				{
-					return;
-				}
+				const existing = this.value.find((value) => value == option.value);
 
-				if(this.reachedMax())
+				if(existing !== undefined)
 				{
-					return;
-				}
-
-				const existing = this.value.findIndex(v => v == option.value);
-
-				if(existing !== -1)
-				{
-					this.shakeIndex = existing;
+					this.shake = existing;
 					this.Update();
 
 					setTimeout(() =>
 					{
-						this.shakeIndex = -1;
+						this.shake = null;
 						this.Update();
 					}, 400);
 
@@ -294,7 +205,7 @@ onetype.AddonReady('elements', (elements) =>
 
 				this.value.push(option.value);
 				this.query = '';
-				this.activeIndex = 0;
+				this.active = null;
 				this.open = false;
 				this.Update();
 
@@ -311,31 +222,21 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				text = String(text || '').trim();
+				text = String(text ? text : '').trim();
 
-				if(!text)
+				if(!text || (this.minLength && text.length < this.minLength) || this.reachedMax())
 				{
 					return;
 				}
 
-				if(this.minLength && text.length < this.minLength)
-				{
-					return;
-				}
-
-				if(this.reachedMax())
-				{
-					return;
-				}
-
-				if(this.value.some(v => v == text))
+				if(this.value.some((value) => value == text))
 				{
 					return;
 				}
 
 				this.value.push(text);
 				this.query = '';
-				this.activeIndex = 0;
+				this.active = null;
 				this.open = false;
 				this.Update();
 
@@ -345,9 +246,16 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
-			this.remove = (index) =>
+			this.remove = (tag) =>
 			{
 				if(this.disabled)
+				{
+					return;
+				}
+
+				const index = this.value.findIndex((value) => value == tag);
+
+				if(index === -1)
 				{
 					return;
 				}
@@ -368,7 +276,7 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				const index = this.value.findIndex(v => v == option.value);
+				const index = this.value.findIndex((value) => value == option.value);
 
 				if(index !== -1)
 				{
@@ -395,11 +303,11 @@ onetype.AddonReady('elements', (elements) =>
 			this.input = ({ value }) =>
 			{
 				this.query = value;
-				this.activeIndex = 0;
+				this.active = null;
 
-				if(this.optionsCallback)
+				if(this.sourced)
 				{
-					this.fetchOptionsDebounced(value);
+					this.search(value);
 
 					if(!this.open)
 					{
@@ -426,12 +334,24 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.focus = () =>
 			{
-				const filtered = this.filtered();
-
-				if(filtered.length > 0)
+				if(this.filtered().length > 0)
 				{
 					this.openDropdown();
 				}
+			};
+
+			this.move = (step) =>
+			{
+				const filtered = this.filtered();
+
+				if(!filtered.length)
+				{
+					return;
+				}
+
+				const index = filtered.findIndex((option) => option.value === this.active);
+
+				this.active = filtered[Math.min(Math.max(index + step, 0), filtered.length - 1)].value;
 			};
 
 			this.handleKey = ({ event }) =>
@@ -444,7 +364,9 @@ onetype.AddonReady('elements', (elements) =>
 
 					if(this.open && filtered.length > 0)
 					{
-						this.add(filtered[this.activeIndex] || filtered[0]);
+						const option = filtered.find((entry) => entry.value === this.active);
+
+						this.add(option ? option : filtered[0]);
 					}
 					else if(this.query.trim() && !this.restrict)
 					{
@@ -456,7 +378,7 @@ onetype.AddonReady('elements', (elements) =>
 
 				if(event.key === 'Backspace' && !this.query && this.value.length)
 				{
-					this.remove(this.value.length - 1);
+					this.remove(this.value[this.value.length - 1]);
 					return;
 				}
 
@@ -471,7 +393,7 @@ onetype.AddonReady('elements', (elements) =>
 							this.openDropdown();
 						}
 
-						this.activeIndex = Math.min(this.activeIndex + 1, filtered.length - 1);
+						this.move(1);
 						this.Update();
 					}
 
@@ -481,7 +403,7 @@ onetype.AddonReady('elements', (elements) =>
 				if(event.key === 'ArrowUp')
 				{
 					event.preventDefault();
-					this.activeIndex = Math.max(this.activeIndex - 1, 0);
+					this.move(-1);
 					this.Update();
 					return;
 				}
@@ -490,7 +412,6 @@ onetype.AddonReady('elements', (elements) =>
 				{
 					event.preventDefault();
 					this.closeDropdown();
-					return;
 				}
 			};
 
@@ -503,9 +424,8 @@ onetype.AddonReady('elements', (elements) =>
 
 				const box = this.Element.querySelector('.box');
 				const rect = box.getBoundingClientRect();
-				const space = window.innerHeight - rect.bottom;
 
-				this.above = space < 320;
+				this.above = window.innerHeight - rect.bottom < 320;
 				this.open = true;
 				this.Update();
 
@@ -523,7 +443,7 @@ onetype.AddonReady('elements', (elements) =>
 				this.open = false;
 				this.above = false;
 				this.query = '';
-				this.activeIndex = 0;
+				this.active = null;
 				this.Update();
 
 				window.removeEventListener('scroll', this.handleScroll, true);
@@ -545,100 +465,19 @@ onetype.AddonReady('elements', (elements) =>
 				this.closeDropdown();
 			};
 
-			/* ===== VARIABLES ===== */
-
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return typeof this.value === 'string' && /^\{\{\s*[\s\S]+\s*\}\}$/.test(this.value.trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = typeof this.value === 'string' ? this.value : '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
-					{
-						this._change({ value: wrapped });
-					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = [];
-
-				if(this._change)
-				{
-					this._change({ value: [] });
-				}
-
-				this.Update();
-			};
-
 			/* ===== RENDER ===== */
-
-			if(this.isExpression())
-			{
-				return /* html */ `
-					<div :class="classes()">
-						<e-variable-chip
-							:value="value"
-							:size="size"
-							:disabled="disabled"
-							:_edit="openVariableBuilder"
-							:_clear="clearExpression"
-						></e-variable-chip>
-					</div>
-				`;
-			}
 
 			if(this.isSelect)
 			{
 				return /* html */ `
 					<div :class="classes()">
 						<input type="hidden" :name="name" :value="value.join(',')" />
-						<div ot-if="loading && !options.length" class="empty">Loading…</div>
-						<div ot-if="!loading || options.length" class="chips">
-							<span ot-if="!options.length && !loading" class="placeholder">{{ placeholder }}</span>
+						<div ot-if="loading && !list().length" class="empty">Loading…</div>
+						<div ot-if="!loading || list().length" class="chips">
+							<span ot-if="!list().length && !loading" class="placeholder">{{ placeholder }}</span>
 							<button
-								ot-for="option in options"
+								ot-for="option in list()"
+								:ot-key="option.value"
 								type="button"
 								:class="chipClass(option)"
 								ot-click="() => toggle(option)"
@@ -646,15 +485,6 @@ onetype.AddonReady('elements', (elements) =>
 							>
 								<i ot-if="option.icon">{{ option.icon }}</i>
 								<span>{{ option.label }}</span>
-							</button>
-							<button
-								ot-if="hasVariables() && !disabled"
-								type="button"
-								class="variable-btn"
-								ot-click.stop="openVariableBuilder"
-								:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-							>
-								<i>data_object</i>
 							</button>
 						</div>
 					</div>
@@ -665,9 +495,9 @@ onetype.AddonReady('elements', (elements) =>
 				<div :class="classes()" ot-click-outside="dismiss">
 					<input type="hidden" :name="name" :value="value.join(',')" />
 					<div class="field">
-						<span ot-for="tag, index in value" :class="'tag' + (shakeIndex === index ? ' shake' : '')">
+						<span ot-for="tag in value" :ot-key="tag" :class="'tag' + (shake === tag ? ' shake' : '')">
 							<span class="text">{{ labelOf(tag) }}</span>
-							<button ot-if="!disabled" type="button" class="remove" ot-click="() => remove(index)">
+							<button ot-if="!disabled" type="button" class="remove" ot-click="() => remove(tag)">
 								<i>close</i>
 							</button>
 						</span>
@@ -684,30 +514,23 @@ onetype.AddonReady('elements', (elements) =>
 							ot-keydown="handleKey"
 							ot-focus="focus"
 						/>
-						<button
-							ot-if="hasVariables() && !disabled"
-							type="button"
-							class="variable-btn"
-							ot-click.stop="openVariableBuilder"
-							:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-						>
-							<i>data_object</i>
-						</button>
 					</div>
 					<div ot-if="open" class="dropdown">
 						<div ot-if="loading" class="empty">Loading…</div>
 						<div ot-if="!loading && filtered().length === 0" class="empty">No results</div>
-						<button
-							ot-if="!loading"
-							ot-for="option, index in filtered()"
-							type="button"
-							:class="'option' + (activeIndex === index ? ' active' : '')"
-							ot-click="() => add(option)"
-						>
-							<i ot-if="option.icon">{{ option.icon }}</i>
-							<span class="label">{{ option.label }}</span>
-							<span ot-if="option.description" class="description">{{ option.description }}</span>
-						</button>
+						<div ot-if="!loading" class="list">
+							<div ot-for="option in filtered()" :ot-key="option.value">
+								<button
+									type="button"
+									:class="'option' + (option.value === active ? ' active' : '')"
+									ot-click="() => add(option)"
+								>
+									<i ot-if="option.icon">{{ option.icon }}</i>
+									<span class="label">{{ option.label }}</span>
+									<span ot-if="option.description" class="description">{{ option.description }}</span>
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			`;
