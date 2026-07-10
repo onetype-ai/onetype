@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Canvas',
 	description: 'Grid surface with a camera, floating item cards, group regions, connection lines and a minimap.',
 	category: 'Canvas',
-	author: 'OneType',
 	metadata: { addon: 'ui.canvas' },
 	config: {
 		layout: {
