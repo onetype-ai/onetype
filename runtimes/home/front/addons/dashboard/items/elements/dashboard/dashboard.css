@@ -36,7 +36,6 @@
 .e-7f52fac2 > .box > .section.panel.bg-1 { background: var(--ot-bg-1); --line: var(--ot-bg-1-border); }
 .e-7f52fac2 > .box > .section.panel.bg-2 { background: var(--ot-bg-2); --line: var(--ot-bg-2-border); }
 .e-7f52fac2 > .box > .section.panel.bg-3 { background: var(--ot-bg-3); --line: var(--ot-bg-3-border); }
-.e-7f52fac2 > .box > .section.panel.bg-4 { background: var(--ot-bg-4); --line: var(--ot-bg-4-border); }
 
 .e-7f52fac2 > .box > .section > .head
 {
@@ -44,7 +43,7 @@
 	align-items: center;
 	gap: var(--ot-spacing-s);
 	padding-left: var(--ot-spacing-s);
-	border-left: 3px solid var(--ot-bg-4-border);
+	border-left: 3px solid var(--ot-bg-3-border);
 }
 
 .e-7f52fac2 > .box > .section > .head.brand { border-left-color: var(--ot-brand); }
@@ -144,7 +143,7 @@
 
 .e-7f52fac2 .card:hover
 {
-	border-color: var(--ot-bg-4-border);
+	border-color: var(--ot-bg-3-border);
 }
 
 .e-7f52fac2 .card > header

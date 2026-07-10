@@ -8,8 +8,8 @@ elements.ItemAdd({
 	config: {
 		background: {
 			type: 'number',
-			value: 2,
-			options: [1, 2, 3, 4],
+			value: 1,
+			options: [1, 2, 3],
 			description: 'Background depth of the pill.'
 		}
 	},

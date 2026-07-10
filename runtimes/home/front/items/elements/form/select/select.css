@@ -24,12 +24,10 @@
 .e-15ce864f > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-15ce864f > .box.bg-2 { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-15ce864f > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
-.e-15ce864f > .box.bg-4 { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
 
 .e-15ce864f > .box.bg-1:hover:not(.open):not(.disabled) { background: var(--ot-bg-1-hover); }
 .e-15ce864f > .box.bg-2:hover:not(.open):not(.disabled) { background: var(--ot-bg-2-hover); }
 .e-15ce864f > .box.bg-3:hover:not(.open):not(.disabled) { background: var(--ot-bg-3-hover); }
-.e-15ce864f > .box.bg-4:hover:not(.open):not(.disabled) { background: var(--ot-bg-4-hover); }
 
 .e-15ce864f > .box.open
 {

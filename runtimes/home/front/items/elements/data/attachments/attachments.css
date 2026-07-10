@@ -42,7 +42,7 @@
 
 .e-40251023 > .box > div > .chip:hover
 {
-	border-color: color-mix(in srgb, var(--accent) 35%, var(--ot-bg-4-border));
+	border-color: color-mix(in srgb, var(--accent) 35%, var(--ot-bg-3-border));
 }
 
 /* Thumb — image preview block */
@@ -140,7 +140,7 @@
 
 .e-40251023 > .box > div > .chip > .tools > .tool:hover
 {
-	background: var(--ot-bg-4);
+	background: var(--ot-bg-3);
 	color: var(--ot-text-1);
 }
 

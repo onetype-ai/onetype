@@ -150,8 +150,9 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				options: [1, 2, 3, 4],
-				description: 'Background depth of the surface from 1 to 4. Empty renders the table bare, without a surface.'
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the surface from 1 to 3.'
 			},
 			blur: {
 				type: 'boolean',

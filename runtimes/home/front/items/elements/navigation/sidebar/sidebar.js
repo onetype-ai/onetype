@@ -123,8 +123,8 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				value: 2,
-				options: [1, 2, 3, 4],
+				value: 1,
+				options: [1, 2, 3],
 				description: 'Background of the sidebar, a depth on the bg scale. Lines and hover states follow it, the search input sits one depth above.'
 			},
 			_click: {
@@ -207,7 +207,7 @@ onetype.AddonReady('elements', (elements) =>
 				this.bottom = prepare(this.items.filter((item) => item.placement === 'bottom'));
 
 				this.shell = ['box', 'bg-' + this.background, 'ot-bg-' + this.background + '-blur'].join(' ');
-				this.finder = Math.min(this.background + 1, 4);
+				this.finder = Math.min(this.background + 1, 3);
 				this.hasHead = !!this.title || !!this.subtitle || !!this.version || !!this.Slots.top;
 				this.hasFoot = !!this.Slots.bottom;
 				this.empty = this.searching && !this.top.length && !this.bottom.length;

@@ -31,8 +31,9 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				options: [1, 2, 3, 4],
-				description: 'Background depth, renders the article on its own bordered surface. Empty keeps it transparent.'
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth, renders the article on its own bordered surface.'
 			},
 			blur: {
 				type: 'boolean',

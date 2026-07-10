@@ -173,7 +173,7 @@
 
 .e-d6fa383 .field > input:focus
 {
-	border-color: var(--ot-bg-4-border);
+	border-color: var(--ot-bg-3-border);
 	outline: none;
 }
 

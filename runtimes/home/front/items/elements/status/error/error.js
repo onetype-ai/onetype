@@ -37,8 +37,9 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				options: [1, 2, 3, 4],
-				description: 'Background depth from 1 to 4, renders the error state on its own bordered surface. Empty keeps it transparent.'
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth from 1 to 3, renders the error state on its own bordered surface.'
 			},
 			glow: {
 				type: 'string',

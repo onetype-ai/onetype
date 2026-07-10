@@ -16,8 +16,8 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				value: 2,
-				options: [1, 2, 3, 4],
+				value: 1,
+				options: [1, 2, 3],
 				description: 'Background of the whole bar, a depth on the bg scale. Lines and hover states follow it, nested controls sit one depth above.'
 			},
 			items: {
@@ -203,7 +203,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.node = (item) =>
 			{
-				return typeof item.render === 'function' ? item.render({ background: Math.min(this.background + 1, 4) }) : item.render;
+				return typeof item.render === 'function' ? item.render({ background: Math.min(this.background + 1, 3) }) : item.render;
 			};
 
 			this.content = (item) =>

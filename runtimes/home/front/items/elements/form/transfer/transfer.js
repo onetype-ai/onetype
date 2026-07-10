@@ -85,9 +85,9 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				value: 2,
-				options: [1, 2, 3, 4],
-				description: 'Background depth of the panel surfaces from 1 to 4.'
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the panel surfaces from 1 to 3.'
 			},
 			disabled: {
 				type: 'boolean',

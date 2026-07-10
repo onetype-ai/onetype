@@ -120,7 +120,7 @@
 .e-64e877b > .box.soft.red:hover    { background: var(--ot-red);    color: #fff; }
 .e-64e877b > .box.soft.orange:hover { background: var(--ot-orange); color: #fff; }
 .e-64e877b > .box.soft.green:hover  { background: var(--ot-green);  color: #fff; }
-.e-64e877b > .box.soft.dark:hover   { background: var(--ot-bg-4); }
+.e-64e877b > .box.soft.dark:hover   { background: var(--ot-bg-3); }
 
 /* ===== TONE: OUTLINE ===== */
 
@@ -129,7 +129,7 @@
 .e-64e877b > .box.outline.red    { border-color: var(--ot-red);    color: var(--ot-red); }
 .e-64e877b > .box.outline.orange { border-color: var(--ot-orange); color: var(--ot-orange); }
 .e-64e877b > .box.outline.green  { border-color: var(--ot-green);  color: var(--ot-green); }
-.e-64e877b > .box.outline.dark   { border-color: var(--ot-bg-4-border); color: var(--ot-text-1); }
+.e-64e877b > .box.outline.dark   { border-color: var(--ot-bg-3-border); color: var(--ot-text-1); }
 
 .e-64e877b > .box.outline.brand:hover  { background: var(--ot-brand-opacity); }
 .e-64e877b > .box.outline.blue:hover   { background: var(--ot-blue-opacity); }

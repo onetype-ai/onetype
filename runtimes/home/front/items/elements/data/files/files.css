@@ -44,7 +44,7 @@
 .e-2f9d112a > .box > .bar > .return:hover
 {
 	background: var(--ot-bg-3);
-	border-color: var(--ot-bg-4-border);
+	border-color: var(--ot-bg-3-border);
 	color: var(--ot-text-1);
 }
 
@@ -95,7 +95,7 @@
 
 .e-2f9d112a > .box > div > .tile:hover
 {
-	border-color: var(--ot-bg-4-border);
+	border-color: var(--ot-bg-3-border);
 	transform: translateY(-2px);
 	box-shadow: var(--ot-shadow-m);
 }
@@ -206,7 +206,7 @@
 
 .e-2f9d112a > .box > div > .tile > .visual > .stack > .mini.more
 {
-	background: var(--ot-bg-4);
+	background: var(--ot-bg-3);
 	color: var(--ot-text-2);
 	font-size: 10px;
 	font-weight: 650;

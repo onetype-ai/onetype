@@ -192,7 +192,7 @@
 
 .e-58a39512 .item:hover
 {
-	border-color: var(--ot-bg-4-border);
+	border-color: var(--ot-bg-3-border);
 }
 
 .e-58a39512 .item.dragging
@@ -292,7 +292,7 @@
 	height: 10px;
 	margin-top: -5px;
 	background: var(--ot-bg-3);
-	border: 1px solid var(--ot-bg-4-border);
+	border: 1px solid var(--ot-bg-3-border);
 	border-radius: 50%;
 	opacity: 0;
 	cursor: crosshair;
@@ -417,7 +417,7 @@
 .e-58a39512 .minimap > .dot
 {
 	position: absolute;
-	background: var(--ot-bg-4-border);
+	background: var(--ot-bg-3-border);
 	border-radius: 2px;
 }
 

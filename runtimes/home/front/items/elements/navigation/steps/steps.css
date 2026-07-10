@@ -211,10 +211,6 @@
 .e-36dc8444 > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); padding: var(--ot-spacing-s); }
 .e-36dc8444 > .box.bg-3 .step.upcoming > .marker { background: var(--ot-bg-2); border-color: var(--ot-bg-3-border); }
 .e-36dc8444 > .box.bg-3 .step:hover:not(.disabled) { background: var(--ot-bg-3-hover); }
-
-.e-36dc8444 > .box.bg-4 { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); padding: var(--ot-spacing-s); }
-.e-36dc8444 > .box.bg-4 .step.upcoming > .marker { background: var(--ot-bg-3); border-color: var(--ot-bg-4-border); }
-.e-36dc8444 > .box.bg-4 .step:hover:not(.disabled) { background: var(--ot-bg-4-hover); }
 /* ===== HORIZONTAL ===== */
 
 .e-36dc8444 > .box.horizontal > .step { padding: var(--ot-spacing-m); gap: var(--ot-spacing-s); }

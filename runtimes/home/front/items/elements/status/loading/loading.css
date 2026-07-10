@@ -25,12 +25,10 @@
 .e-691b81f7 > .box.bg-1 { background: var(--ot-bg-1); border: 1px solid var(--ot-bg-1-border); border-radius: var(--ot-radius-l); }
 .e-691b81f7 > .box.bg-2 { background: var(--ot-bg-2); border: 1px solid var(--ot-bg-2-border); border-radius: var(--ot-radius-l); }
 .e-691b81f7 > .box.bg-3 { background: var(--ot-bg-3); border: 1px solid var(--ot-bg-3-border); border-radius: var(--ot-radius-l); }
-.e-691b81f7 > .box.bg-4 { background: var(--ot-bg-4); border: 1px solid var(--ot-bg-4-border); border-radius: var(--ot-radius-l); }
 
 .e-691b81f7 > .box.bg-1.blur { background: var(--ot-bg-1-opacity); }
 .e-691b81f7 > .box.bg-2.blur { background: var(--ot-bg-2-opacity); }
 .e-691b81f7 > .box.bg-3.blur { background: var(--ot-bg-3-opacity); }
-.e-691b81f7 > .box.bg-4.blur { background: var(--ot-bg-4-opacity); }
 
 .e-691b81f7 > .box.blur
 {
@@ -48,9 +46,7 @@
 
 .e-691b81f7 > .box.bg-1::before,
 .e-691b81f7 > .box.bg-2::before,
-.e-691b81f7 > .box.bg-3::before,
-.e-691b81f7 > .box.bg-4::before
-{
+.e-691b81f7 > .box.bg-3::before{
 	content: '';
 	position: absolute;
 	top: -30%;
@@ -62,7 +58,6 @@
 	opacity: 0.5;
 	pointer-events: none;
 }
-
 
 /* Circle */
 
@@ -130,9 +125,7 @@
 .e-691b81f7 > .box.orange > .circle > .spin { color: var(--ot-orange); }
 .e-691b81f7 > .box.green > .circle > .spin { color: var(--ot-green); }
 
-
 /* ===== AUTO ===== */
-
 
 /* ===== ANIMATIONS ===== */
 

@@ -23,12 +23,10 @@
 .e-1c5ea055 > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-1c5ea055 > .box.bg-2 { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-1c5ea055 > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
-.e-1c5ea055 > .box.bg-4 { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
 
 .e-1c5ea055 > .box.blur.bg-1 { background: var(--ot-bg-1-opacity); }
 .e-1c5ea055 > .box.blur.bg-2 { background: var(--ot-bg-2-opacity); }
 .e-1c5ea055 > .box.blur.bg-3 { background: var(--ot-bg-3-opacity); }
-.e-1c5ea055 > .box.blur.bg-4 { background: var(--ot-bg-4-opacity); }
 
 .e-1c5ea055 > .box.blur
 {

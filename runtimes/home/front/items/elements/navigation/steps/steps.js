@@ -62,8 +62,9 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				options: [1, 2, 3, 4],
-				description: 'Background depth of the surface from 1 to 4. Empty renders it bare.'
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the surface from 1 to 3.'
 			},
 			_change: {
 				type: 'function',

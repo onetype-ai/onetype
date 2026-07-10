@@ -40,8 +40,9 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				options: [1, 2, 3, 4],
-				description: 'Background depth of the section surface from 1 to 4. Empty renders it bare, without a surface or padding.'
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the section surface from 1 to 3.'
 			}
 		},
 		render: function()

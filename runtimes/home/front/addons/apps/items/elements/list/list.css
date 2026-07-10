@@ -154,8 +154,8 @@
 	height: 24px;
 	padding: 0 var(--ot-spacing-s);
 	border-radius: 100px;
-	background: var(--ot-bg-4);
-	border: 1px solid var(--ot-bg-4-border);
+	background: var(--ot-bg-3);
+	border: 1px solid var(--ot-bg-3-border);
 	font-size: var(--ot-size-s);
 	color: var(--ot-text-2);
 	cursor: pointer;
@@ -164,8 +164,8 @@
 
 .e-4b37d9c3 > .box > .list > .app > .links > .link:hover
 {
-	background: var(--ot-bg-4-hover);
-	border-color: color-mix(in srgb, var(--color) 30%, var(--ot-bg-4-border));
+	background: var(--ot-bg-3-hover);
+	border-color: color-mix(in srgb, var(--color) 30%, var(--ot-bg-3-border));
 	color: var(--ot-text-1);
 }
 

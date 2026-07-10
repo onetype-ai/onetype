@@ -31,7 +31,7 @@ ui.dashboard = onetype.Addon('ui.dashboard', (addon) =>
 
 		addon.Field('background', {
 			type: 'number',
-			description: 'Background depth from 1 to 4. When set, the whole section renders as its own bordered panel with the heading and widgets inside. Empty keeps the section flat, just a heading above the grid.'
+			description: 'Background depth from 1 to 3. When set, the whole section renders as its own bordered panel with the heading and widgets inside. Empty keeps the section flat, just a heading above the grid.'
 		});
 
 		addon.Field('order', {

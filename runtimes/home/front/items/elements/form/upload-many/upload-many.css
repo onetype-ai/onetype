@@ -40,7 +40,6 @@
 .e-3f8bc2c8 > .box.bg-1 > .zone { background: var(--ot-bg-1); }
 .e-3f8bc2c8 > .box.bg-2 > .zone { background: var(--ot-bg-2); }
 .e-3f8bc2c8 > .box.bg-3 > .zone { background: var(--ot-bg-3); }
-.e-3f8bc2c8 > .box.bg-4 > .zone { background: var(--ot-bg-4); }
 
 .e-3f8bc2c8 > .box > .zone:hover,
 .e-3f8bc2c8 > .box.hovering > .zone
@@ -106,13 +105,12 @@
 .e-3f8bc2c8 > .box.bg-1 > .grid > div > .tile { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-3f8bc2c8 > .box.bg-2 > .grid > div > .tile { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-3f8bc2c8 > .box.bg-3 > .grid > div > .tile { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
-.e-3f8bc2c8 > .box.bg-4 > .grid > div > .tile { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
 
 .e-3f8bc2c8 > .box > .grid > div > .tile:hover
 {
 	transform: translateY(-2px);
 	box-shadow: var(--ot-shadow-m);
-	border-color: var(--ot-bg-4-border);
+	border-color: var(--ot-bg-3-border);
 }
 
 .e-3f8bc2c8 > .box > .grid > div > .tile.dragging

@@ -321,13 +321,8 @@
 
 .e-2248d40 > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
 .e-2248d40 > .box.bg-3 > .bar { background: var(--ot-bg-3); border-bottom-color: var(--ot-bg-3-border); }
-.e-2248d40 > .box.bg-3 > .bar .btn:hover { background: var(--ot-bg-4); }
+.e-2248d40 > .box.bg-3 > .bar .btn:hover { background: var(--ot-bg-3); }
 .e-2248d40 > .box.bg-3 > .bar .sep { background: var(--ot-bg-3-border); }
-
-.e-2248d40 > .box.bg-4 { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
-.e-2248d40 > .box.bg-4 > .bar { background: var(--ot-bg-4); border-bottom-color: var(--ot-bg-4-border); }
-.e-2248d40 > .box.bg-4 > .bar .btn:hover { background: var(--ot-bg-3); }
-.e-2248d40 > .box.bg-4 > .bar .sep { background: var(--ot-bg-4-border); }
 
 /* ===== COMPACT ===== */
 

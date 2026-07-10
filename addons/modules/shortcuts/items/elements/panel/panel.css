@@ -132,7 +132,7 @@
 
 .e-4bfa67b2 .row > .keys > kbd:hover
 {
-	border-color: var(--ot-bg-4-border);
+	border-color: var(--ot-bg-3-border);
 	color: var(--ot-text-1);
 }
 
