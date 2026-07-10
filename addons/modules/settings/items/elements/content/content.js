@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Settings Content',
 	description: 'Settings surface. Shows one group, one scope instance, or search results across everything.',
 	category: 'Settings',
-	author: 'OneType',
 	metadata: { addon: 'modules.settings' },
 	config: {
 		group: {
@@ -120,8 +119,8 @@ elements.ItemAdd({
 				</div>
 				<div class="control" ot-if="item.type !== 'transfer' && item.type !== 'table'">
 					<e-form-toggle ot-if="item.type === 'toggle'" :value="item.value" :_change="toggle(item)"></e-form-toggle>
-					<e-form-input ot-if="item.type === 'input'" size="s" :value="item.value" :_change="change(item)"></e-form-input>
-					<e-form-select ot-if="item.type === 'select'" size="s" :options="item.options" :value="item.value" :_change="change(item)"></e-form-select>
+					<e-form-input ot-if="item.type === 'input'" :value="item.value" :_change="change(item)"></e-form-input>
+					<e-form-select ot-if="item.type === 'select'" :options="item.options" :value="item.value" :_change="change(item)"></e-form-select>
 				</div>
 				<div ot-if="item.type === 'transfer'" class="picker">
 					<e-form-transfer :items="item.options" :value="item.value" :_change="change(item)"></e-form-transfer>
@@ -141,7 +140,7 @@ elements.ItemAdd({
 					</div>
 
 					<div ot-if="mode === 'search'">
-						<e-status-empty ot-if="!results.length" icon="search_off" title="No matches" description="No settings match the search." size="s"></e-status-empty>
+						<e-status-empty ot-if="!results.length" icon="search_off" title="No matches" description="No settings match the search."></e-status-empty>
 						${rows('results')}
 					</div>
 
@@ -151,11 +150,11 @@ elements.ItemAdd({
 							<span class="title">{{ section.label }}</span>
 							<span class="tally" ot-if="mode === 'group'">{{ section.items.length }}</span>
 							<div class="who" ot-if="mode === 'scope' && !instance">
-								<e-form-select size="s" :options="section.instances" :value="chosen" :_change="pick"></e-form-select>
+								<e-form-select :options="section.instances" :value="chosen" :_change="pick"></e-form-select>
 							</div>
 						</div>
-						<e-status-empty ot-if="mode === 'scope' && !section.selected" icon="person_search" :title="'No ' + section.label.toLowerCase() + ' selected'" :description="'Choose a ' + section.label.toLowerCase() + ' to see and edit their settings.'" size="s"></e-status-empty>
-						<e-status-empty ot-if="mode === 'group' && !section.items.length" icon="tune" title="Nothing here" description="This group has no visible settings." size="s"></e-status-empty>
+						<e-status-empty ot-if="mode === 'scope' && !section.selected" icon="person_search" :title="'No ' + section.label.toLowerCase() + ' selected'" :description="'Choose a ' + section.label.toLowerCase() + ' to see and edit their settings.'"></e-status-empty>
+						<e-status-empty ot-if="mode === 'group' && !section.items.length" icon="tune" title="Nothing here" description="This group has no visible settings."></e-status-empty>
 						${rows('section.items')}
 					</div>
 				</div>
