@@ -43,7 +43,12 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 			};
 
 			return `
-				<div class="ot-flex-vertical ot-gap-l ot-container-s ot-py-l">
+				<div class="ot-flex-vertical ot-gap-m ot-container-m ot-py-l">
+					<e-global-heading
+						title="Elements"
+						description="Every element in the library with a live preview, its parameters and ready to paste usage code."
+						element="h2"
+					></e-global-heading>
 					<div ot-if="developer_elements_selected">
 						<e-navigation-tabs tone="contained" :items="tabs" :active="developer_elements_tab" :_change="pick"></e-navigation-tabs>
 					</div>

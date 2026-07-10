@@ -39,7 +39,7 @@ developer.Fn('styles.list', function()
 	};
 
 	const rows = [];
-;
+	const seen = {};
 
 	const push = (kind, token, value, group, groupColor) =>
 	{

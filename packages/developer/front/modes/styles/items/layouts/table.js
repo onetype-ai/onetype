@@ -64,7 +64,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 			};
 
 			return `
-				<div class="ot-flex-vertical ot-gap-l ot-container-m ot-py-l">
+				<div class="ot-flex-vertical ot-gap-m ot-container-m ot-py-l">
 					<e-global-heading
 						eyebrow="Developer"
 						title="Styles"

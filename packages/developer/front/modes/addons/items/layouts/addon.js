@@ -50,13 +50,13 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 			};
 
 			return `
-				<div class="ot-flex-vertical ot-gap-l ot-container-m ot-py-l">
+				<div class="ot-flex-vertical ot-gap-m ot-container-m ot-py-l">
 					<e-global-heading :title="entry().name" :description="entry().description" element="h2"></e-global-heading>
 
 					<div ot-if="developer_addons_selected">
 						<e-navigation-tabs tone="contained" :items="tabs" :active="developer_addons_tab" :_change="pick"></e-navigation-tabs>
 					</div>
-					<div ot-if="developer_addons_selected && developer_addons_tab === 'overview'" class="ot-flex-vertical ot-gap-l">
+					<div ot-if="developer_addons_selected && developer_addons_tab === 'overview'" class="ot-flex-vertical ot-gap-m">
 						<e-global-markdown ot-if="entry().content" :content="entry().content"></e-global-markdown>
 					</div>
 					<div ot-if="developer_addons_selected && developer_addons_tab === 'fields'" class="ot-flex-1 ot-scrollbar">
