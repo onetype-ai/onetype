@@ -6,101 +6,130 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Sidebar',
 		description: 'Recursive navigation tree with sections, collapsible items, live search, item actions and badges.',
 		category: 'Navigation',
-		config:
-		{
-			title:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			title: {
 				type: 'string',
-				value: '',
+				value: 'Documentation',
 				description: 'Header title.'
 			},
-			subtitle:
-			{
+			subtitle: {
 				type: 'string',
-				value: '',
 				description: 'Header subtitle.'
 			},
-			version:
-			{
+			version: {
 				type: 'string',
-				value: '',
+				value: 'v2',
 				description: 'Version pill in the header.'
 			},
-			search:
-			{
+			search: {
 				type: 'boolean',
 				value: true,
 				description: 'Shows the search input that filters the tree live.'
 			},
-			items:
-			{
+			items: {
 				type: 'array',
-				value: [],
-				description: 'Tree items. Every item nests its own items through the items key, any depth. Root items with children render as sections.',
-				each:
-				{
+				value: [
+					{ label: 'Getting started', icon: 'rocket_launch', items: [
+						{ label: 'Introduction', value: 'introduction' },
+						{ label: 'Installation', value: 'installation' },
+						{ label: 'First package', value: 'first-package', badge: 'New' }
+					] },
+					{ label: 'Platform', icon: 'hub', items: [
+						{ label: 'Commands', value: 'commands' },
+						{ label: 'Database', value: 'database' },
+						{ label: 'Runtimes', value: 'runtimes', soon: true }
+					] },
+					{ label: 'Changelog', value: 'changelog', icon: 'history', placement: 'bottom' }
+				],
+				each: {
 					type: 'object',
-					config:
-					{
-						icon: { type: 'string' },
-						label: { type: 'string' },
-						value: { type: 'string' },
-						badge: { type: 'string|number' },
-						count: { type: 'string|number' },
-						placement: { type: 'string', value: 'top', options: ['top', 'bottom'], description: 'Sidebar end the root item sticks to. Read only on root items.' },
-						soon: { type: 'boolean' },
-						disabled: { type: 'boolean' },
-						actions:
-						{
-							type: 'array',
-							value: [],
-							description: 'Icon buttons shown on the right while the item is hovered.',
-							each:
-							{
-								type: 'object',
-								config:
-								{
-									icon: { type: 'string', required: true, description: 'Material Symbols icon name.' },
-									tooltip: { type: 'string', value: '', description: 'Tooltip text. Empty renders no tooltip.' },
-									onClick: { type: 'function', description: 'Called with { event, action, item } on click.' }
-								}
-							}
+					config: {
+						icon: {
+							type: 'string',
+							description: 'Material icon name.'
 						},
-						items:
-						{
+						label: {
+							type: 'string',
+							description: 'Item text.'
+						},
+						value: {
+							type: 'string',
+							description: 'Value sent on click. Items without a value only toggle their children.'
+						},
+						badge: {
+							type: 'string|number',
+							description: 'Badge after the label.'
+						},
+						count: {
+							type: 'string|number',
+							description: 'Count on the right. Sections without one count their children.'
+						},
+						placement: {
+							type: 'string',
+							value: 'top',
+							options: ['top', 'bottom'],
+							description: 'Sidebar end the root item sticks to. Read only on root items.'
+						},
+						soon: {
+							type: 'boolean',
+							description: 'Marks the item as coming soon and ignores clicks.'
+						},
+						disabled: {
+							type: 'boolean',
+							description: 'Dims the item and ignores clicks.'
+						},
+						actions: {
 							type: 'array',
 							value: [],
-							description: 'Nested children, each the same shape as this item.',
-							each: { type: 'object', description: 'Nested item, the same shape as its parent item.' }
+							each: {
+								type: 'object',
+								config: {
+									icon: {
+										type: 'string',
+										required: true,
+										description: 'Material Symbols icon name.'
+									},
+									tooltip: {
+										type: 'string',
+										description: 'Tooltip text. Empty renders no tooltip.'
+									},
+									onClick: {
+										type: 'function',
+										description: 'Called with { event, action, item } on click.'
+									}
+								}
+							},
+							description: 'Icon buttons shown on the right while the item is hovered.'
+						},
+						items: {
+							type: 'array',
+							value: [],
+							each: {
+								type: 'object',
+								description: 'Nested item, the same shape as its parent item.'
+							},
+							description: 'Nested children, each the same shape as this item, any depth.'
 						}
 					}
-				}
+				},
+				description: 'Tree items. Every item nests its own items through the items key, any depth. Root items with children render as sections.'
 			},
-			active:
-			{
+			active: {
 				type: 'string',
-				value: '',
+				value: 'installation',
 				description: 'Active item value.'
 			},
-			background:
-			{
+			background: {
 				type: 'number',
 				value: 2,
 				options: [1, 2, 3, 4],
 				description: 'Background of the sidebar, a depth on the bg scale. Lines and hover states follow it, the search input sits one depth above.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: ['border-right'],
-				each: { type: 'string' },
-				options: ['border', 'border-top', 'border-right', 'border-bottom', 'border-left'],
-				description: 'Border modifiers.'
-			},
-			_click:
-			{
+			_click: {
 				type: 'function',
-				description: 'Item click handler. Receives { event, value }.'
+				description: 'Called with { event, value } when an item is clicked.'
 			}
 		},
 		render: function()
@@ -114,12 +143,12 @@ onetype.AddonReady('elements', (elements) =>
 
 				const matches = (item) =>
 				{
-					return !query || String(item.label || '').toLowerCase().includes(query);
+					return !query || String(item.label ? item.label : '').toLowerCase().includes(query);
 				};
 
 				const prune = (items) =>
 				{
-					return (items || []).map((item) =>
+					return (items ? items : []).map((item) =>
 					{
 						if(matches(item))
 						{
@@ -134,15 +163,15 @@ onetype.AddonReady('elements', (elements) =>
 
 				const count = (items) =>
 				{
-					return (items || []).reduce((sum, item) => sum + (item.items?.length ? count(item.items) : 1), 0);
+					return (items ? items : []).reduce((sum, item) => sum + (item.items && item.items.length ? count(item.items) : 1), 0);
 				};
 
 				const flatten = (items, depth, path, out, offset) =>
 				{
-					(items || []).forEach((item, index) =>
+					(items ? items : []).forEach((item, index) =>
 					{
-						const key = path + '/' + (item.value || item.label || index);
-						const children = item.items || [];
+						const key = path + '/' + (item.value ? item.value : (item.label ? item.label : index));
+						const children = item.items ? item.items : [];
 						const open = this.searching || !this.collapsed[key];
 						const section = !depth && !!children.length;
 
@@ -156,7 +185,7 @@ onetype.AddonReady('elements', (elements) =>
 							parent: !!children.length,
 							count: section && item.count == null ? count(children) : item.count,
 							active: !item.soon && !item.disabled && !!item.value && item.value === this.active,
-							hasActions: !!(item.actions || []).length
+							hasActions: !!(item.actions ? item.actions : []).length
 						});
 
 						if(children.length && open)
@@ -174,11 +203,11 @@ onetype.AddonReady('elements', (elements) =>
 				};
 
 				this.searching = !!query;
-				this.top = prepare(this.items.filter(item => (item.placement || 'top') === 'top'));
-				this.bottom = prepare(this.items.filter(item => item.placement === 'bottom'));
+				this.top = prepare(this.items.filter((item) => (item.placement ? item.placement : 'top') === 'top'));
+				this.bottom = prepare(this.items.filter((item) => item.placement === 'bottom'));
 
-				this.shell = ['box', 'bg-' + this.background, 'ot-bg-' + this.background + '-blur', ...this.variant].join(' ');
-				this.finder = 'bg-' + Math.min(this.background + 1, 4);
+				this.shell = ['box', 'bg-' + this.background, 'ot-bg-' + this.background + '-blur'].join(' ');
+				this.finder = Math.min(this.background + 1, 4);
 				this.hasHead = !!this.title || !!this.subtitle || !!this.version || !!this.Slots.top;
 				this.hasFoot = !!this.Slots.bottom;
 				this.empty = this.searching && !this.top.length && !this.bottom.length;
@@ -236,11 +265,12 @@ onetype.AddonReady('elements', (elements) =>
 			const tree = (source) => /* html */ `
 				<div
 					ot-for="row in ${source}"
+					:ot-key="row.key"
 					:class="state(row)"
 					:style="row.indent ? '--depth: ' + row.indent : null"
-					ot-click="(event) => handle(row, event)"
+					ot-click="({ event }) => handle(row, event)"
 				>
-					<i ot-if="!row.section && row.parent" :class="'chev' + (row.open ? ' open' : '') + (row.icon ? ' swap' : '')" ot-click="() => toggle(row)">expand_more</i>
+					<i ot-if="!row.section && row.parent" :class="'chev' + (row.open ? ' open' : '') + (row.icon ? ' swap' : '')" ot-click.stop="() => toggle(row)">expand_more</i>
 					<i ot-if="row.icon" class="icon">{{ row.icon }}</i>
 					<span class="text">{{ row.label }}</span>
 					<span class="meta">
@@ -249,9 +279,9 @@ onetype.AddonReady('elements', (elements) =>
 						<span ot-if="row.soon" class="soon">Soon</span>
 					</span>
 					<span ot-if="row.hasActions" class="actions">
-						<span ot-for="action in row.actions" class="action" :ot-tooltip="action.tooltip ? { text: action.tooltip, position: { x: 'center', y: 'top' } } : null" ot-click="(event) => act(action, row, event)"><i>{{ action.icon }}</i></span>
+						<span ot-for="action in row.actions" :ot-key="action.icon" class="action" :ot-tooltip="action.tooltip ? { text: action.tooltip, position: { x: 'center', y: 'top' } } : null" ot-click.stop="({ event }) => act(action, row, event)"><i>{{ action.icon }}</i></span>
 					</span>
-					<span ot-if="row.section" class="action" ot-click="() => toggle(row)"><i :class="'chevron' + (row.open ? ' open' : '')">expand_more</i></span>
+					<span ot-if="row.section" class="action" ot-click.stop="() => toggle(row)"><i :class="'chevron' + (row.open ? ' open' : '')">expand_more</i></span>
 				</div>
 			`;
 
@@ -267,7 +297,7 @@ onetype.AddonReady('elements', (elements) =>
 					</header>
 
 					<div ot-if="search" class="finder">
-						<e-form-input icon="search" placeholder="Search..." size="s" :value="query" :clearable="true" :background="finder" :_input="input" :_change="input"></e-form-input>
+						<e-form-input icon="search" placeholder="Search..." :value="query" :clearable="true" :background="finder" :_input="input" :_change="input"></e-form-input>
 					</div>
 
 					<nav class="tree ot-scrollbar">
