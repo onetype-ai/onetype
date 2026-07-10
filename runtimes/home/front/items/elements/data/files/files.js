@@ -126,6 +126,12 @@ onetype.AddonReady('elements', (elements) =>
 				options: [2, 3, 4, 5, 6],
 				description: 'Grid columns.'
 			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the file tiles from 1 to 3.'
+			},
 			_open: {
 				type: 'function',
 				description: 'Called with { file } on every file tile click.'
@@ -232,7 +238,7 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div class="box" :style="'grid-template-columns: repeat(' + columns + ', minmax(0, 1fr))'">
+				<div :class="'box bg-' + background" :style="'grid-template-columns: repeat(' + columns + ', minmax(0, 1fr))'">
 					<div ot-if="group" class="bar">
 						<button type="button" class="return" ot-click="() => back()"><i>arrow_back</i></button>
 						<span class="label">{{ group.name }}</span>

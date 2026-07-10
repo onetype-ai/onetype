@@ -71,6 +71,12 @@ onetype.AddonReady('elements', (elements) =>
 				},
 				description: 'Attachments top to bottom.'
 			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the chips from 1 to 3.'
+			},
 			_download: {
 				type: 'function',
 				description: 'Called with { item } on the download action. Overrides the src navigation.'
@@ -121,7 +127,7 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div class="box">
+				<div :class="'box bg-' + background">
 					<div ot-for="item in list" :ot-key="item.name">
 						<div :class="'chip ' + item.color">
 							<img ot-if="item.preview" class="thumb" :src="item.src" alt="" loading="lazy" />

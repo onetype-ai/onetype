@@ -15,6 +15,12 @@
 	width: 100%;
 }
 
+/* Surface — depth set through the background prop */
+
+.e-2f9d112a > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); }
+.e-2f9d112a > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
+.e-2f9d112a > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
+
 /* Bar */
 
 .e-2f9d112a > .box > .bar
@@ -33,9 +39,9 @@
 	justify-content: center;
 	width: 28px;
 	height: 28px;
-	border: 1px solid var(--ot-bg-3-border);
+	border: 1px solid var(--line);
 	border-radius: 8px;
-	background: var(--ot-bg-2);
+	background: var(--fill);
 	color: var(--ot-text-2);
 	cursor: pointer;
 	transition: background var(--ot-transition-fast), color var(--ot-transition-fast), border-color var(--ot-transition-fast);
@@ -43,8 +49,8 @@
 
 .e-2f9d112a > .box > .bar > .return:hover
 {
-	background: var(--ot-bg-3);
-	border-color: var(--ot-bg-3-border);
+	background: var(--above);
+	border-color: var(--edge);
 	color: var(--ot-text-1);
 }
 
@@ -79,12 +85,12 @@
 	gap: 3px;
 	width: 100%;
 	padding: var(--ot-spacing-m) var(--ot-spacing-m) var(--ot-spacing-m);
-	border: 1px solid var(--ot-bg-2-border);
+	border: 1px solid var(--line);
 	border-radius: var(--ot-radius-l);
-	background: var(--ot-bg-2);
+	background: var(--fill);
 	cursor: pointer;
 	overflow: hidden;
-	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast), box-shadow var(--ot-transition-fast);
+	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast);
 }
 
 .e-2f9d112a > .box > div > .tile.brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
@@ -95,9 +101,8 @@
 
 .e-2f9d112a > .box > div > .tile:hover
 {
-	border-color: var(--ot-bg-3-border);
+	border-color: var(--edge);
 	transform: translateY(-2px);
-	box-shadow: var(--ot-shadow-m);
 }
 
 /* Visual */
@@ -206,7 +211,7 @@
 
 .e-2f9d112a > .box > div > .tile > .visual > .stack > .mini.more
 {
-	background: var(--ot-bg-3);
+	background: var(--above);
 	color: var(--ot-text-2);
 	font-size: 10px;
 	font-weight: 650;
