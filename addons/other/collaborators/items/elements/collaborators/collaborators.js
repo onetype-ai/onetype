@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Collaborators',
 	description: 'Avatar stack of everyone in the editor plus a live named cursor for every collaborator except the local session.',
 	category: 'Collaborators',
-	author: 'OneType',
 	metadata: { addon: 'collaborators' },
 	render: function()
 	{
