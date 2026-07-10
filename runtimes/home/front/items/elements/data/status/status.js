@@ -59,9 +59,8 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				value: 2,
-				options: [0, 1, 2, 3, 4],
-				description: 'Background depth of the surface from 1 to 4. Zero renders the board bare, without a surface.'
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the surface from 1 to 4. Empty renders the board bare, without a surface.'
 			},
 			blur: {
 				type: 'boolean',
