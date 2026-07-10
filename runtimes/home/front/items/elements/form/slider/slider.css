@@ -130,6 +130,7 @@
 {
 	position: relative;
 	width: 100%;
+	height: 28px;
 	margin: 0;
 	padding: 0;
 	background: transparent;
@@ -150,6 +151,8 @@
 {
 	-webkit-appearance: none;
 	appearance: none;
+	width: 16px;
+	height: 16px;
 	background: white;
 	border: none;
 	border-radius: 50%;
@@ -178,6 +181,8 @@
 
 .e-162fca34 > .box > .control > input::-moz-range-thumb
 {
+	width: 16px;
+	height: 16px;
 	background: white;
 	border: none;
 	border-radius: 50%;
@@ -242,96 +247,3 @@
 .e-162fca34 > .box.green > .control > input:active::-webkit-slider-thumb { box-shadow: var(--ot-shadow-s), 0 0 0 8px var(--ot-green-opacity); }
 .e-162fca34 > .box.green > .control > input:active::-moz-range-thumb { box-shadow: var(--ot-shadow-s), 0 0 0 8px var(--ot-green-opacity); }
 .e-162fca34 > .box.green > .control > input:focus-visible::-webkit-slider-thumb { box-shadow: var(--ot-shadow-s), 0 0 0 4px var(--ot-green-opacity); }
-
-/* ===== SIZE ===== */
-
-.e-162fca34 > .box.size-s > .control > .track
-{
-	height: 4px;
-}
-
-.e-162fca34 > .box.size-s > .control > input
-{
-	height: 14px;
-}
-
-.e-162fca34 > .box.size-s > .control > input::-webkit-slider-thumb
-{
-	width: 14px;
-	height: 14px;
-}
-
-.e-162fca34 > .box.size-s > .control > input::-moz-range-thumb
-{
-	width: 14px;
-	height: 14px;
-}
-
-.e-162fca34 > .box.size-s > .head > .info > .label
-{
-	font-size: var(--ot-size-s);
-}
-
-.e-162fca34 > .box.size-s > .head > .value
-{
-	font-size: var(--ot-size-s);
-}
-
-.e-162fca34 > .box.size-s > .range
-{
-	font-size: 10.5px;
-}
-
-.e-162fca34 > .box.size-m > .control > .track
-{
-	height: 6px;
-}
-
-.e-162fca34 > .box.size-m > .control > input
-{
-	height: 18px;
-}
-
-.e-162fca34 > .box.size-m > .control > input::-webkit-slider-thumb
-{
-	width: 18px;
-	height: 18px;
-}
-
-.e-162fca34 > .box.size-m > .control > input::-moz-range-thumb
-{
-	width: 18px;
-	height: 18px;
-}
-
-.e-162fca34 > .box.size-l > .control > .track
-{
-	height: 8px;
-}
-
-.e-162fca34 > .box.size-l > .control > input
-{
-	height: 22px;
-}
-
-.e-162fca34 > .box.size-l > .control > input::-webkit-slider-thumb
-{
-	width: 22px;
-	height: 22px;
-}
-
-.e-162fca34 > .box.size-l > .control > input::-moz-range-thumb
-{
-	width: 22px;
-	height: 22px;
-}
-
-.e-162fca34 > .box.size-l > .head > .info > .label
-{
-	font-size: var(--ot-size-m);
-}
-
-.e-162fca34 > .box.size-l > .head > .value
-{
-	font-size: 15px;
-}

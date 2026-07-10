@@ -4,109 +4,84 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-slider',
 		icon: 'linear_scale',
 		name: 'Slider',
-		description: 'Range slider with label, value display, marks and color variants.',
+		description: 'Range slider with label, value display, marks and accent colors.',
 		category: 'Form',
-		config:
-		{
-			label:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			label: {
 				type: 'string',
-				value: '',
+				value: 'Memory limit',
 				description: 'Label above the track.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
-				value: '',
 				description: 'Description below the label.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
 				description: 'Form field name.'
 			},
-			value:
-			{
+			value: {
 				type: 'number',
-				value: 0,
+				value: 64,
 				description: 'Current value.'
 			},
-			min:
-			{
+			min: {
 				type: 'number',
 				value: 0,
 				description: 'Minimum value.'
 			},
-			max:
-			{
+			max: {
 				type: 'number',
 				value: 100,
 				description: 'Maximum value.'
 			},
-			step:
-			{
+			step: {
 				type: 'number',
 				value: 1,
 				description: 'Step increment.'
 			},
-			showValue:
-			{
+			showValue: {
 				type: 'boolean',
-				value: false,
-				description: 'Show current value badge in header.'
+				value: true,
+				description: 'Show the current value badge in the header.'
 			},
-			showRange:
-			{
+			showRange: {
 				type: 'boolean',
-				value: false,
-				description: 'Show min/max labels below track.'
+				value: true,
+				description: 'Show min and max labels below the track.'
 			},
-			marks:
-			{
+			marks: {
 				type: 'boolean',
 				value: false,
 				description: 'Show tick marks at each step.'
 			},
-			prefix:
-			{
+			prefix: {
 				type: 'string',
-				value: '',
 				description: 'Text before value display.'
 			},
-			suffix:
-			{
+			suffix: {
 				type: 'string',
-				value: '',
-				description: 'Text after value display.'
+				value: ' GB',
+				description: 'Text after the value display.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
 				value: 'brand',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Fill color.'
 			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Track and thumb size.'
-			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			_input:
-			{
+			_input: {
 				type: 'function',
 				description: 'Fires on drag. Receives { event, value }.'
 			},
-			_change:
-			{
+			_change: {
 				type: 'function',
 				description: 'Fires on release. Receives { event, value }.'
 			}
@@ -114,43 +89,6 @@ onetype.AddonReady('elements', (elements) =>
 		render: function()
 		{
 			/* ===== STATE ===== */
-
-			this.Compute(() =>
-			{
-				this.hasInfo = !!this.label || !!this.description;
-				this.hasMeta = this.showValue || this.showRange;
-			});
-
-			/* ===== CLASSES ===== */
-
-			this.classes = () =>
-			{
-				const list = ['box', this.color, 'size-' + this.size];
-
-				if(this.disabled)
-				{
-					list.push('disabled');
-				}
-
-				return list.join(' ');
-			};
-
-			/* ===== HELPERS ===== */
-
-			this.format = (value) =>
-			{
-				return (this.prefix || '') + value + (this.suffix || '');
-			};
-
-			this.percentage = () =>
-			{
-				if(this.max === this.min)
-				{
-					return 0;
-				}
-
-				return ((this.value - this.min) / (this.max - this.min)) * 100;
-			};
 
 			this.computeMarks = () =>
 			{
@@ -180,8 +118,44 @@ onetype.AddonReady('elements', (elements) =>
 				return result;
 			};
 
-			this.marksList = this.computeMarks();
-			this.hasMarks = this.marksList.length > 0;
+			this.Compute(() =>
+			{
+				this.hasInfo = !!this.label || !!this.description;
+				this.marksList = this.computeMarks();
+				this.hasMarks = this.marksList.length > 0;
+			});
+
+			/* ===== CLASSES ===== */
+
+			this.classes = () =>
+			{
+				const list = ['box', this.color];
+
+				if(this.disabled)
+				{
+					list.push('disabled');
+				}
+
+				return list.join(' ');
+			};
+
+			/* ===== HELPERS ===== */
+
+			this.format = (value) =>
+			{
+				return (this.prefix ? this.prefix : '') + value + (this.suffix ? this.suffix : '');
+			};
+
+			this.percentage = () =>
+			{
+				if(this.max === this.min)
+				{
+					return 0;
+				}
+
+				return ((this.value - this.min) / (this.max - this.min)) * 100;
+			};
+
 
 			/* ===== HANDLERS ===== */
 
