@@ -27,8 +27,6 @@ elements.ItemAdd({
 		this.On('projects.open', refresh);
 		this.On('projects.close', refresh);
 
-		this.variant = ['glass', 'border'];
-
 		this.change = ({ value }) =>
 		{
 			$ot.ui.modes.switch(value);
@@ -36,7 +34,7 @@ elements.ItemAdd({
 
 		return `
 			<div ot-if="options.length" class="holder">
-				<e-form-options :value="value" :options="options" size="l" background="bg-2" :variant="variant" :_change="change"></e-form-options>
+				<e-form-options :value="value" :options="options" :background="2" :blur="true" :_change="change"></e-form-options>
 			</div>
 		`;
 	}
