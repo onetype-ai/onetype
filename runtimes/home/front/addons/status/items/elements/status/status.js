@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Status',
 	description: 'Bottom status bar. Plain segments show state, tabs open their panel through ui.layouts.',
 	category: 'Status',
-	author: 'OneType',
 	metadata: { addon: 'ui.status' },
 	render: function()
 	{

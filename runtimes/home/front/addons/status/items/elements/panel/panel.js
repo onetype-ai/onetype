@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Status Panel',
 	description: 'Chrome around the open status tab, title and close button.',
 	category: 'Status',
-	author: 'OneType',
 	metadata: { addon: 'ui.status' },
 	config: {
 		tab: {
