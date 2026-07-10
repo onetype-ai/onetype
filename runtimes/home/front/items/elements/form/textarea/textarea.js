@@ -6,132 +6,94 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Textarea',
 		description: 'Multi-line text input with auto-resize, character counter and focus ring.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string',
-				value: '',
-				description: 'Current value.'
+				description: 'Textarea value.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
-				description: 'Form field name.'
+				description: 'Textarea name attribute.'
 			},
-			placeholder:
-			{
+			placeholder: {
 				type: 'string',
-				value: '',
-				description: 'Placeholder text.'
+				value: 'Tell us about your project...',
+				description: 'Placeholder text while the value is empty.'
 			},
-			rows:
-			{
+			rows: {
 				type: 'number',
 				value: 4,
 				description: 'Initial visible rows.'
 			},
-			minRows:
-			{
+			minRows: {
 				type: 'number',
 				description: 'Minimum rows for auto-resize.'
 			},
-			maxRows:
-			{
+			maxRows: {
 				type: 'number',
 				description: 'Maximum rows for auto-resize.'
 			},
-			maxlength:
-			{
+			maxlength: {
 				type: 'number',
+				value: 280,
 				description: 'Maximum character count.'
 			},
-			autoResize:
-			{
+			autoResize: {
 				type: 'boolean',
 				value: false,
-				description: 'Grow height with content.'
+				description: 'Grow the height with the content.'
 			},
-			counter:
-			{
+			counter: {
 				type: 'boolean',
-				value: false,
-				description: 'Show character counter.'
+				value: true,
+				description: 'Show a character counter while maxlength is set.'
 			},
-			resize:
-			{
+			resize: {
 				type: 'string',
 				value: 'vertical',
 				options: ['none', 'vertical', 'horizontal', 'both'],
 				description: 'CSS resize handle.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Background depth.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Textarea size.'
-			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			readonly:
-			{
+			readonly: {
 				type: 'boolean',
 				value: false,
 				description: 'Readonly state.'
 			},
-			_input:
-			{
-				type: 'function',
-				description: 'Input handler. Receives { event, value }.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the control surface from 1 to 4.'
 			},
-			_change:
-			{
+			_input: {
 				type: 'function',
-				description: 'Change handler. Receives { event, value }.'
+				description: 'Called with { event, value } on every keystroke.'
 			},
-			_focus:
-			{
+			_change: {
 				type: 'function',
-				description: 'Focus handler. Receives { event, value }.'
+				description: 'Called with { event, value } when the value is committed.'
 			},
-			_blur:
-			{
+			_focus: {
 				type: 'function',
-				description: 'Blur handler. Receives { event, value }.'
+				description: 'Called with { event, value } on focus.'
 			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to insert into the value via the variable builder modal.'
+			_blur: {
+				type: 'function',
+				description: 'Called with { event, value } on blur.'
 			}
 		},
 		render: function()
 		{
 			/* ===== STATE ===== */
 
-			this.length = (this.value || '').length;
+			this.length = this.value ? this.value.length : 0;
 
 			this.Compute(() =>
 			{
@@ -142,22 +104,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', 'size-' + this.size];
-
-				if(this.background)
-				{
-					list.push(this.background);
-				}
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
-				}
+				const list = ['box', 'bg-' + this.background];
 
 				if(this.disabled)
 				{
@@ -176,7 +123,7 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				const textarea = this.Element?.querySelector('textarea');
+				const textarea = this.Element ? this.Element.querySelector('textarea') : null;
 
 				if(!textarea)
 				{
@@ -185,18 +132,16 @@ onetype.AddonReady('elements', (elements) =>
 
 				textarea.style.height = 'auto';
 
-				const minRows = this.minRows || this.rows || 2;
-				const maxRows = this.maxRows || 0;
-				const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight) || 22;
+				const minimum = this.minRows ? this.minRows : this.rows;
+				const style = getComputedStyle(textarea);
+				const line = parseFloat(style.lineHeight) ? parseFloat(style.lineHeight) : 22;
 
-				const minHeight = minRows * lineHeight;
-				const maxHeight = maxRows ? maxRows * lineHeight : Infinity;
-				const scrollHeight = textarea.scrollHeight;
+				const floor = minimum * line;
+				const ceiling = this.maxRows ? this.maxRows * line : Infinity;
+				const scroll = textarea.scrollHeight;
 
-				const next = Math.max(minHeight, Math.min(scrollHeight, maxHeight));
-
-				textarea.style.height = next + 'px';
-				textarea.style.overflowY = scrollHeight > maxHeight ? 'auto' : 'hidden';
+				textarea.style.height = Math.max(floor, Math.min(scroll, ceiling)) + 'px';
+				textarea.style.overflowY = scroll > ceiling ? 'auto' : 'hidden';
 			};
 
 			this.OnReady(() =>
@@ -243,88 +188,11 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
-			/* ===== VARIABLES ===== */
-
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return /^\{\{\s*[\s\S]+\s*\}\}$/.test(String(this.value || '').trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = this.value || '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
-					{
-						this._change({ event: null, value: wrapped });
-					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = '';
-
-				if(this._change)
-				{
-					this._change({ event: null, value: '' });
-				}
-
-				this.Update();
-			};
-
 			/* ===== RENDER ===== */
 
 			return /* html */ `
 				<div :class="classes()">
-					<e-variable-chip
-						ot-if="isExpression()"
-						:value="value"
-						:size="'m'"
-						:disabled="disabled"
-						:_edit="openVariableBuilder"
-						:_clear="clearExpression"
-					></e-variable-chip>
-
 					<textarea
-						ot-if="!isExpression()"
 						:placeholder="placeholder"
 						:name="name"
 						:rows="rows"
@@ -338,16 +206,7 @@ onetype.AddonReady('elements', (elements) =>
 						ot-focus="focus"
 						ot-blur="blur"
 					>{{ value }}</textarea>
-					<button
-						ot-if="!isExpression() && hasVariables() && !disabled && !readonly"
-						type="button"
-						class="variable-btn"
-						ot-click.stop="openVariableBuilder"
-						:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-					>
-						<i>data_object</i>
-					</button>
-					<div ot-if="!isExpression() && showCounter" class="counter">
+					<div ot-if="showCounter" class="counter">
 						<span :class="length >= maxlength ? 'full' : ''">{{ length }}</span>
 						<span class="slash">/</span>
 						<span>{{ maxlength }}</span>
