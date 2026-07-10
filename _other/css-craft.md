@@ -1,6 +1,6 @@
 # CSS Craft — Premium Builder Design
 
-Ovaj fajl je trajni standard za dizajn u OneTypeu. Cilj: **najjači builder ikad, premium nivo, fokus na detalje.** Linear/Figma/Vercel klasa. Svaki piksel namerno.
+Ovaj fajl je trajni standard za dizajn u OneType-u. Cilj: **najjači builder ikad, premium nivo, fokus na detalje.** Linear/Figma/Vercel klasa. Svaki piksel namerno.
 
 Pre svakog CSS-a pročitaj ovo. Pravi se kao da Linear tim radi review.
 
