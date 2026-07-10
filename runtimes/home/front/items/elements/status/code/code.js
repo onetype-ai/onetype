@@ -6,56 +6,57 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Code',
 		description: 'Full-page status code with large number, message, action button and optional surface background.',
 		category: 'Status',
-		config:
-		{
-			code:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			code: {
 				type: 'string',
 				value: '404',
 				description: 'Status code number.'
 			},
-			title:
-			{
+			title: {
 				type: 'string',
 				value: 'Page not found',
 				description: 'Heading below the code.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
 				value: "The page you're looking for doesn't exist or has been moved.",
 				description: 'Paragraph below the title.'
 			},
-			action:
-			{
+			action: {
 				type: 'string',
 				value: 'Go Home',
 				description: 'Button label. Empty hides button.'
 			},
-			href:
-			{
+			href: {
 				type: 'string',
 				value: '/',
 				description: 'Button link target.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
-				value: '',
-				options: ['', 'brand', 'blue', 'red', 'orange', 'green'],
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Code number gradient accent.'
 			},
-			background:
-			{
+			background: {
 				type: 'number',
+				options: [1, 2, 3, 4],
 				description: 'Background depth from 1 to 4, renders the status code on its own bordered surface. Empty keeps it transparent.'
 			},
-			size:
-			{
+			glow: {
 				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Overall scale.'
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
+				description: 'Colored glow on top of the surface. Empty renders no glow.'
+			},
+			blur: {
+				type: 'boolean',
+				value: false,
+				description: 'Translucent blurred surface instead of a solid one. Applies while background is set.'
+			},
+			_click: {
+				type: 'function',
+				description: 'Action button click handler. Overrides the href navigation.'
 			}
 		},
 		render: function()
@@ -64,7 +65,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', 'size-' + this.size];
+				const list = ['box'];
 
 				if(this.color)
 				{
@@ -74,6 +75,16 @@ onetype.AddonReady('elements', (elements) =>
 				if(this.background)
 				{
 					list.push('bg-' + this.background);
+
+					if(this.blur)
+					{
+						list.push('blur');
+					}
+
+					if(this.glow)
+					{
+						list.push('glow-' + this.glow);
+					}
 				}
 
 				return list.join(' ');
@@ -92,7 +103,8 @@ onetype.AddonReady('elements', (elements) =>
 							:text="action"
 							icon="home"
 							color="brand"
-							:href="href"
+							:href="_click ? null : href"
+							:_click="_click"
 						></e-form-button>
 					</div>
 				</div>
