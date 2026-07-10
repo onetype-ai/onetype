@@ -4,70 +4,82 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'navigation-tabs',
 		icon: 'tab',
 		name: 'Tabs',
-		description: 'Tabbed navigation with multiple tones, icons, counts and content panels.',
+		description: 'Tabbed navigation with tones, icons, counts and optional content panels.',
 		category: 'Navigation',
-		config:
-		{
-			items:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			items: {
 				type: 'array',
-				value: [],
-				description: 'Tab items.',
-				each:
-				{
+				value: [
+					{ id: 'overview', label: 'Overview', icon: 'dashboard' },
+					{ id: 'activity', label: 'Activity', icon: 'history', count: 12 },
+					{ id: 'members', label: 'Members', icon: 'group', count: 4 },
+					{ id: 'settings', label: 'Settings', icon: 'tune' }
+				],
+				each: {
 					type: 'object',
-					config:
-					{
-						id: { type: 'string', description: 'Unique tab ID.' },
-						label: { type: 'string', description: 'Tab label.' },
-						icon: { type: 'string', description: 'Tab icon.' },
-						count: { type: 'string|number', description: 'Count badge.' },
-						href: { type: 'string', description: 'Link URL.' },
-						target: { type: 'string', description: 'Link target.' },
-						disabled: { type: 'boolean', description: 'Disabled state.' },
-						content: { type: 'string', description: 'Panel HTML content.' }
+					config: {
+						id: {
+							type: 'string',
+							description: 'Unique tab id.'
+						},
+						label: {
+							type: 'string',
+							description: 'Tab label.'
+						},
+						icon: {
+							type: 'string',
+							description: 'Tab icon.'
+						},
+						count: {
+							type: 'string|number',
+							description: 'Count badge after the label.'
+						},
+						href: {
+							type: 'string',
+							description: 'Link URL. When set the tab navigates instead of switching.'
+						},
+						target: {
+							type: 'string',
+							description: 'Link target while href is set.'
+						},
+						disabled: {
+							type: 'boolean',
+							description: 'Disabled state of the tab.'
+						},
+						content: {
+							type: 'string',
+							description: 'Panel HTML content shown below while the tab is active.'
+						}
 					}
-				}
+				},
+				description: 'Tabs left to right.'
 			},
-			active:
-			{
+			active: {
 				type: 'string',
-				value: '',
-				description: 'Active tab ID.'
+				value: 'overview',
+				description: 'Active tab id. Empty activates the first tab.'
 			},
-			tone:
-			{
+			tone: {
 				type: 'string',
 				value: 'underline',
 				options: ['underline', 'pills', 'contained', 'segmented'],
-				description: 'Visual tone.'
+				description: 'Visual tone of the tabs.'
 			},
-			background:
-			{
-				type: 'string',
-				value: '',
-				options: ['', 'bg-1', 'bg-2', 'bg-3', 'bg-4'],
-				description: 'Background depth.'
+			stretch: {
+				type: 'boolean',
+				value: false,
+				description: 'Stretch to the container width with evenly sized tabs.'
 			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Tab size.'
+			background: {
+				type: 'number',
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the track surface from 1 to 4. Empty renders it bare.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['border', 'stretch'],
-				description: 'Visual modifiers.'
-			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Tab change handler. Receives { event, value }.'
+				description: 'Called with { event, value } when the active tab changes.'
 			}
 		},
 		render: function()
@@ -81,7 +93,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.Compute(() =>
 			{
-				this.contentItems = this.items.filter(item => item.content);
+				this.contentItems = this.items.filter((item) => item.content);
 				this.hasContent = this.contentItems.length > 0;
 			});
 
@@ -89,19 +101,14 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.tone, 'size-' + this.size];
+				const list = ['box', this.tone];
 
 				if(this.background)
 				{
-					list.push(this.background);
+					list.push('bg-' + this.background);
 				}
 
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('stretch'))
+				if(this.stretch)
 				{
 					list.push('stretch');
 				}
@@ -133,10 +140,11 @@ onetype.AddonReady('elements', (elements) =>
 					<nav class="tabs">
 						<a
 							ot-for="item in items"
+							:ot-key="item.id"
 							:class="'tab' + (active === item.id ? ' active' : '') + (item.disabled ? ' disabled' : '')"
-							:href="item.href || 'javascript:void(0)'"
+							:href="item.href ? item.href : 'javascript:void(0)'"
 							:target="item.target"
-							ot-click="(event) => select(item, event)"
+							ot-click="({ event }) => select(item, event)"
 						>
 							<i ot-if="item.icon">{{ item.icon }}</i>
 							<span ot-if="item.label" class="label">{{ item.label }}</span>
@@ -146,8 +154,8 @@ onetype.AddonReady('elements', (elements) =>
 					<div ot-if="hasContent" class="body">
 						<div
 							ot-for="item in contentItems"
+							:ot-key="item.id"
 							:class="'panel' + (active === item.id ? ' active' : '')"
-							:data-panel="item.id"
 						>
 							<span ot-html="item.content"></span>
 						</div>
