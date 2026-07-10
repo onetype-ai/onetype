@@ -6,6 +6,8 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Navbar',
 		description: 'Top toolbar with left, center and right areas, logo, buttons, separators, dropdowns and popups.',
 		category: 'Navigation',
+		collection: 'Home',
+		author: 'OneType',
 		config: {
 			logo: {
 				type: 'string',
@@ -20,7 +22,13 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			items: {
 				type: 'array',
-				value: [],
+				value: [
+					{ id: 'projects', icon: 'stacks', label: 'Projects', active: true },
+					{ id: 'docs', icon: 'menu_book', label: 'Docs' },
+					{ id: 'split', type: 'separator' },
+					{ id: 'search', icon: 'search', tooltip: 'Search', position: 'right' },
+					{ id: 'alerts', icon: 'notifications', tooltip: 'Notifications', badge: 2, position: 'right' }
+				],
 				description: 'Toolbar items.',
 				each: {
 					type: 'object',
@@ -166,7 +174,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.Compute(() =>
 			{
-				this.left = this.items.filter((item) => (item.position || 'left') === 'left');
+				this.left = this.items.filter((item) => (item.position ? item.position : 'left') === 'left');
 				this.center = this.items.filter((item) => item.position === 'center');
 				this.right = this.items.filter((item) => item.position === 'right');
 			});
@@ -175,7 +183,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.kind = (item) =>
 			{
-				return item.type || 'default';
+				return item.type ? item.type : 'default';
 			};
 
 			this.key = (item) =>
@@ -209,7 +217,7 @@ onetype.AddonReady('elements', (elements) =>
 			{
 				item.click && item.click(item);
 
-				if(!item.popup || (item.popup.type || 'default') === 'dropdown')
+				if(!item.popup || (item.popup.type ? item.popup.type : 'default') === 'dropdown')
 				{
 					return;
 				}
@@ -222,7 +230,7 @@ onetype.AddonReady('elements', (elements) =>
 				$ot.float.drawer({
 					...options,
 					content: this.content(item),
-					position: options.position || (item.popup.type === 'drawer' ? 'right' : 'center'),
+					position: options.position ? options.position : (item.popup.type === 'drawer' ? 'right' : 'center'),
 					clean: !options.title && !options.description
 				});
 			};
@@ -239,8 +247,8 @@ onetype.AddonReady('elements', (elements) =>
 				<div ot-for="item in ${position}" :ot-key="key(item)" class="entry">
 					<div ot-if="kind(item) === 'separator'" class="separator"></div>
 					<div ot-if="kind(item) === 'default' && item.render" class="node" ot-node="node(item)"></div>
-					<button :data-navbar-id="item.id" ot-if="kind(item) === 'default' && !item.render && item.popup && (item.popup.type || 'default') === 'dropdown'" :class="classes(item)" :style="'--color: ' + (item.color || 'var(--ot-brand)')" :ot-tooltip="tooltip(item)" :ot-popup="content(item)" ot-click="click(item)">${inner}</button>
-					<button :data-navbar-id="item.id" ot-if="kind(item) === 'default' && !item.render && (!item.popup || (item.popup.type || 'default') !== 'dropdown')" :class="classes(item)" :style="'--color: ' + (item.color || 'var(--ot-brand)')" :ot-tooltip="tooltip(item)" ot-click="click(item)">${inner}</button>
+					<button :data-navbar-id="item.id" ot-if="kind(item) === 'default' && !item.render && item.popup && (item.popup.type ? item.popup.type : 'default') === 'dropdown'" :class="classes(item)" :style="'--color: ' + (item.color ? item.color : 'var(--ot-brand)')" :ot-tooltip="tooltip(item)" :ot-popup="content(item)" ot-click="click(item)">${inner}</button>
+					<button :data-navbar-id="item.id" ot-if="kind(item) === 'default' && !item.render && (!item.popup || (item.popup.type ? item.popup.type : 'default') !== 'dropdown')" :class="classes(item)" :style="'--color: ' + (item.color ? item.color : 'var(--ot-brand)')" :ot-tooltip="tooltip(item)" ot-click="click(item)">${inner}</button>
 				</div>
 			`;
 
