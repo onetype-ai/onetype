@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Terminal Log',
 	description: 'List of recorded command executions.',
 	category: 'Terminal',
-	author: 'OneType',
 	metadata: { addon: 'terminal' },
 	render: function()
 	{
