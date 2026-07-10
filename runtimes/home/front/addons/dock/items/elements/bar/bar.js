@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Dock Rail',
 	description: 'Vertical rail that renders the dock items.',
 	category: 'Dock',
-	author: 'OneType',
 	metadata: { addon: 'ui.dock' },
 	render: function()
 	{
