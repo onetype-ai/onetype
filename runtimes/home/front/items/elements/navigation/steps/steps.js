@@ -4,134 +4,122 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'navigation-steps',
 		icon: 'format_list_numbered',
 		name: 'Steps',
-		description: 'Stepper navigation with done, active and upcoming states.',
+		description: 'Stepper navigation with done, active and upcoming states and a connector line.',
 		category: 'Navigation',
-		config:
-		{
-			items:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			items: {
 				type: 'array',
-				value: [],
-				description: 'Step items.',
-				each:
-				{
+				value: [
+					{ id: 'account', label: 'Account', description: 'Name and workspace URL.' },
+					{ id: 'team', label: 'Invite the team', description: 'Add people by email.' },
+					{ id: 'apps', label: 'Install apps', description: 'Pick your first packages.' },
+					{ id: 'done', label: 'Finish', description: 'Review and launch.' }
+				],
+				each: {
 					type: 'object',
-					config:
-					{
-						id:
-						{
+					config: {
+						id: {
 							type: 'string',
-							description: 'Unique step identifier.'
+							description: 'Unique step id.'
 						},
-						label:
-						{
+						label: {
 							type: 'string',
 							description: 'Step label.'
 						},
-						description:
-						{
+						description: {
 							type: 'string',
-							description: 'Step description.'
+							description: 'Step description below the label.'
 						},
-						icon:
-						{
+						icon: {
 							type: 'string',
-							description: 'Icon for upcoming state.'
+							description: 'Icon for the upcoming state instead of the number.'
 						},
-						disabled:
-						{
+						disabled: {
 							type: 'boolean',
-							description: 'Prevent selection.'
+							description: 'Prevent selecting this step.'
 						}
 					}
-				}
+				},
+				description: 'Steps in order.'
 			},
-			active:
-			{
+			active: {
 				type: 'string',
-				value: '',
-				description: 'Active step id.'
+				value: 'team',
+				description: 'Active step id. Everything before it renders as done.'
 			},
-			orientation:
-			{
+			orientation: {
 				type: 'string',
 				value: 'vertical',
 				options: ['vertical', 'horizontal'],
 				description: 'Layout direction.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-1',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4'],
-				description: 'Background depth.'
+			connected: {
+				type: 'boolean',
+				value: true,
+				description: 'Draw a connector line between the steps.'
 			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Step size.'
+			background: {
+				type: 'number',
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the surface from 1 to 4. Empty renders it bare.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: ['border', 'connected'],
-				each: { type: 'string' },
-				options: ['border', 'border-top', 'border-right', 'border-bottom', 'border-left', 'clean', 'connected'],
-				description: 'Visual modifiers.'
-			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Change handler. Receives { event, value }.'
+				description: 'Called with { event, value } when a step is selected.'
 			}
 		},
 		render: function()
 		{
-			/* ===== STATE ===== */
+			/* ===== DATA ===== */
 
-			this.rebuild = () =>
+			this.Compute(() =>
 			{
-				this.activeIndex = this.items.findIndex(entry => entry.id === this.active);
+				const activeIndex = this.items.findIndex((entry) => entry.id === this.active);
 
 				this.computed = this.items.map((entry, index) =>
 				{
 					let status = 'upcoming';
 
-					if(this.activeIndex !== -1)
+					if(activeIndex !== -1)
 					{
-						if(index < this.activeIndex)
+						if(index < activeIndex)
 						{
 							status = 'done';
 						}
-						else if(index === this.activeIndex)
+						else if(index === activeIndex)
 						{
 							status = 'active';
 						}
 					}
 
-					return {
-						...entry,
-						index,
-						status,
-						number: index + 1
-					};
+					return { ...entry, status, number: index + 1 };
 				});
-			};
-
-			this.rebuild();
+			});
 
 			/* ===== CLASSES ===== */
 
-			this.Compute(() =>
+			this.classes = () =>
 			{
-				this.classes = ['box', this.orientation, this.background, 'size-' + this.size].concat(this.variant).join(' ');
-			});
+				const list = ['box', this.orientation];
+
+				if(this.background)
+				{
+					list.push('bg-' + this.background);
+				}
+
+				if(this.connected)
+				{
+					list.push('connected');
+				}
+
+				return list.join(' ');
+			};
 
 			/* ===== HANDLERS ===== */
 
-			this.select = ({ event }, item) =>
+			this.select = (event, item) =>
 			{
 				if(item.disabled)
 				{
@@ -139,7 +127,6 @@ onetype.AddonReady('elements', (elements) =>
 				}
 
 				this.active = item.id;
-				this.rebuild();
 
 				if(this._change)
 				{
@@ -150,12 +137,13 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<nav :class="classes">
+				<nav :class="classes()">
 					<button
 						ot-for="item in computed"
+						:ot-key="item.id"
 						type="button"
 						:class="'step ' + item.status + (item.disabled ? ' disabled' : '')"
-						ot-click="(event) => select(event, item)"
+						ot-click="({ event }) => select(event, item)"
 					>
 						<span class="marker">
 							<i ot-if="item.status === 'done'">check</i>
