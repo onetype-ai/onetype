@@ -94,6 +94,12 @@ onetype.AddonReady('elements', (elements) =>
 				value: false,
 				description: 'Internal. Marks a submenu panel, positioned to the side of its parent row.'
 			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the panel from 1 to 3.'
+			},
 			_select: {
 				type: 'function',
 				description: 'Called with { event, item } when any item at any depth is picked.'
@@ -105,7 +111,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				return this.nested ? 'box sub' : 'box';
+				return 'box bg-' + this.background + (this.nested ? ' sub' : '');
 			};
 
 			this.state = (item) =>
@@ -170,7 +176,7 @@ onetype.AddonReady('elements', (elements) =>
 							<i ot-if="item.checked" class="check">check</i>
 							<i ot-if="item.items && item.items.length" class="more">chevron_right</i>
 							<div ot-if="item.items && item.items.length" class="flyout">
-								<e-global-menu :items="item.items" :nested="true" :_select="forward"></e-global-menu>
+								<e-global-menu :items="item.items" :nested="true" :background="background" :_select="forward"></e-global-menu>
 							</div>
 						</div>
 					</div>
