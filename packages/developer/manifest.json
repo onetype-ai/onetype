@@ -1,0 +1,14 @@
+{
+	"type": "package",
+	"slug": "developer",
+	"name": "Developer",
+	"version": "0.1.0",
+	"description": "Developer tools for the platform. Browse every element, its config and a live preview.",
+	"icon": "code",
+	"color": "rgba(56, 189, 248, 1)",
+	"core": ">=0.1.0",
+	"status": "enabled",
+	"depends": [],
+	"permissions": [],
+	"config": {}
+}
