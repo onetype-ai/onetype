@@ -6,38 +6,34 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Loading',
 		description: 'Loading state with spinner, optional message and optional surface background.',
 		category: 'Status',
-		config:
-		{
-			text:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			text: {
 				type: 'string',
-				value: '',
-				description: 'Message below spinner.'
+				value: 'Loading...',
+				description: 'Message below spinner. Empty renders the spinner alone.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
 				value: 'brand',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Spinner color.'
 			},
-			background:
-			{
+			background: {
 				type: 'number',
+				options: [1, 2, 3, 4],
 				description: 'Background depth from 1 to 4, renders the loading state on its own bordered surface. Empty keeps it transparent.'
 			},
-			size:
-			{
+			glow: {
 				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Spinner size.'
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
+				description: 'Colored glow on top of the surface. Empty renders no glow.'
 			},
-			auto:
-			{
+			blur: {
 				type: 'boolean',
 				value: false,
-				description: 'Remove min-height constraint.'
+				description: 'Translucent blurred surface instead of a solid one. Applies while background is set.'
 			}
 		},
 		render: function()
@@ -46,16 +42,21 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.color, 'size-' + this.size];
+				const list = ['box', this.color];
 
 				if(this.background)
 				{
 					list.push('bg-' + this.background);
-				}
 
-				if(this.auto)
-				{
-					list.push('auto');
+					if(this.blur)
+					{
+						list.push('blur');
+					}
+
+					if(this.glow)
+					{
+						list.push('glow-' + this.glow);
+					}
 				}
 
 				return list.join(' ');

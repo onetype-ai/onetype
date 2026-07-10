@@ -27,6 +27,43 @@
 .e-691b81f7 > .box.bg-3 { background: var(--ot-bg-3); border: 1px solid var(--ot-bg-3-border); border-radius: var(--ot-radius-l); }
 .e-691b81f7 > .box.bg-4 { background: var(--ot-bg-4); border: 1px solid var(--ot-bg-4-border); border-radius: var(--ot-radius-l); }
 
+.e-691b81f7 > .box.bg-1.blur { background: var(--ot-bg-1-opacity); }
+.e-691b81f7 > .box.bg-2.blur { background: var(--ot-bg-2-opacity); }
+.e-691b81f7 > .box.bg-3.blur { background: var(--ot-bg-3-opacity); }
+.e-691b81f7 > .box.bg-4.blur { background: var(--ot-bg-4-opacity); }
+
+.e-691b81f7 > .box.blur
+{
+	backdrop-filter: var(--ot-blur);
+	-webkit-backdrop-filter: var(--ot-blur);
+}
+
+/* Surface wash — colored glow on top of the surface, set through the glow prop */
+
+.e-691b81f7 > .box.glow-brand { --wash: var(--ot-brand-opacity); }
+.e-691b81f7 > .box.glow-blue { --wash: var(--ot-blue-opacity); }
+.e-691b81f7 > .box.glow-red { --wash: var(--ot-red-opacity); }
+.e-691b81f7 > .box.glow-orange { --wash: var(--ot-orange-opacity); }
+.e-691b81f7 > .box.glow-green { --wash: var(--ot-green-opacity); }
+
+.e-691b81f7 > .box.bg-1::before,
+.e-691b81f7 > .box.bg-2::before,
+.e-691b81f7 > .box.bg-3::before,
+.e-691b81f7 > .box.bg-4::before
+{
+	content: '';
+	position: absolute;
+	top: -30%;
+	left: 50%;
+	width: 65%;
+	height: 55%;
+	transform: translateX(-50%);
+	background: radial-gradient(ellipse, var(--wash, transparent) 0%, transparent 70%);
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+
 /* Circle */
 
 .e-691b81f7 > .box > .circle
@@ -93,35 +130,9 @@
 .e-691b81f7 > .box.orange > .circle > .spin { color: var(--ot-orange); }
 .e-691b81f7 > .box.green > .circle > .spin { color: var(--ot-green); }
 
-/* ===== SIZE ===== */
-
-.e-691b81f7 > .box.size-s
-{
-	min-height: 200px;
-	padding: var(--ot-spacing-m);
-}
-
-.e-691b81f7 > .box.size-s > .circle { width: 56px; height: 56px; }
-.e-691b81f7 > .box.size-s > .circle::after { inset: -48px; }
-.e-691b81f7 > .box.size-s > .circle > .spin { font-size: 24px; }
-.e-691b81f7 > .box.size-s > .text { font-size: var(--ot-size-s); }
-
-.e-691b81f7 > .box.size-l
-{
-	min-height: 440px;
-}
-
-.e-691b81f7 > .box.size-l > .circle { width: 104px; height: 104px; }
-.e-691b81f7 > .box.size-l > .circle::after { inset: -72px; }
-.e-691b81f7 > .box.size-l > .circle > .spin { font-size: 44px; }
-.e-691b81f7 > .box.size-l > .text { font-size: 15px; }
 
 /* ===== AUTO ===== */
 
-.e-691b81f7 > .box.auto
-{
-	min-height: auto;
-}
 
 /* ===== ANIMATIONS ===== */
 
