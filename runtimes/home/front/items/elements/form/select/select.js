@@ -4,88 +4,61 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-select',
 		icon: 'arrow_drop_down',
 		name: 'Select',
-		description: 'Custom dropdown select with search, keyboard navigation and clearable.',
+		description: 'Custom dropdown select with search, keyboard navigation, async options and a clear action.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string|number',
 				description: 'Selected value.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
 				description: 'Hidden input name for forms.'
 			},
-			placeholder:
-			{
+			placeholder: {
 				type: 'string',
-				value: 'Select…',
-				description: 'Placeholder text.'
+				value: 'Choose a team...',
+				description: 'Placeholder text while nothing is selected.'
 			},
-			icon:
-			{
+			icon: {
 				type: 'string',
-				description: 'Left icon on trigger.'
+				description: 'Icon on the left side of the trigger.'
 			},
-			options:
-			{
+			options: {
 				type: 'array|function',
-				value: [],
-				each: { type: 'object|string|number' },
-				description: 'List of options or async function returning options. Strings/numbers auto-wrap to { label, value }.'
+				value: ['Design', 'Engineering', 'Marketing', 'Operations'],
+				each: {
+					type: 'object|string|number',
+					description: 'A single option. Strings and numbers auto-wrap to { label, value }, objects take label, value, icon, description and disabled.'
+				},
+				description: 'List of options, or an async callback(value, type). Called with (query, "search") while typing and with ([values], "selected") to resolve labels for already selected values. Objects resolve their label from label, title or name.'
 			},
-			searchable:
-			{
+			searchable: {
+				type: 'boolean',
+				value: true,
+				description: 'Show a search input inside the dropdown.'
+			},
+			clearable: {
 				type: 'boolean',
 				value: false,
-				description: 'Show search input in dropdown.'
+				description: 'Show a clear action while a value is selected.'
 			},
-			clearable:
-			{
-				type: 'boolean',
-				value: false,
-				description: 'Show clear button when value set.'
-			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Background depth.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the control surface from 1 to 4.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Trigger size.'
-			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Change handler. Receives { value }.'
-			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to set the value via the variable builder modal.'
+				description: 'Called with { value } when the selection changes.'
 			}
 		},
 		render: function()
@@ -95,70 +68,25 @@ onetype.AddonReady('elements', (elements) =>
 			this.open = false;
 			this.above = false;
 			this.query = '';
-			this.activeIndex = 0;
-			this.loading = false;
+			this.active = null;
 
-			this.normalize = (list) =>
+			/* ===== SOURCE ===== */
+
+			elements.Fn('source', this, () => this.options);
+
+			this.Compute(() =>
 			{
-				return list.map(option =>
+				if(this.sourced && this.value !== null && this.value !== undefined && this.value !== '')
 				{
-					if(typeof option === 'object' && option !== null)
-					{
-						return option;
-					}
-
-					return { label: String(option), value: option };
-				});
-			};
-
-			/* ===== ASYNC OPTIONS ===== */
-
-			this.optionsCallback = null;
-			this.resolved = [];
-
-			this.fetchOptions = async (search) =>
-			{
-				this.loading = true;
-				this.State.ready && this.Update();
-
-				try
-				{
-					const selected = this.value !== null && this.value !== undefined && this.value !== '' ? [this.value] : [];
-					const result = await this.optionsCallback.call(this, { search: search || '', selected });
-					this.resolved = Array.isArray(result) ? this.normalize(result) : [];
+					this.resolve([this.value]);
 				}
-				catch(error)
-				{
-					this.resolved = [];
-				}
-
-				this.loading = false;
-				this.State.ready && this.Update();
-			};
-
-			this.fetchOptionsDebounced = onetype.HelperDebounce((search) => this.fetchOptions(search), 300);
-
-			/* Props can re-push the raw options on every data update, so the template never
-			   reads them directly. list() resolves at read time, a function becomes the
-			   fetched list, an array is normalized. */
+			});
 
 			this.list = () =>
 			{
-				if(typeof this.options === 'function')
+				if(this.sourced)
 				{
-					if(this.optionsCallback !== this.options)
-					{
-						this.optionsCallback = this.options;
-						this.resolved = [];
-						this.fetchOptions(this.query || '');
-					}
-
-					return this.resolved;
-				}
-
-				if(this.optionsCallback)
-				{
-					return this.resolved;
+					return this.results;
 				}
 
 				return this.normalize(Array.isArray(this.options) ? this.options : []);
@@ -168,22 +96,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', 'size-' + this.size];
-
-				if(this.background)
-				{
-					list.push(this.background);
-				}
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
-				}
+				const list = ['box', 'bg-' + this.background];
 
 				if(this.open)
 				{
@@ -207,18 +120,23 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.current = () =>
 			{
-				return this.list().find(o => o.value === this.value);
+				if(this.sourced)
+				{
+					return this.find(this.value);
+				}
+
+				return this.list().find((option) => option.value === this.value);
 			};
 
 			this.filtered = () =>
 			{
-				if(this.optionsCallback || !this.query)
+				if(this.sourced || !this.query)
 				{
 					return this.list();
 				}
 
-				return this.list().filter(o =>
-					String(o.label || '').toLowerCase().includes(this.query.toLowerCase())
+				return this.list().filter((option) =>
+					String(option.label ? option.label : '').toLowerCase().includes(this.query.toLowerCase())
 				);
 			};
 
@@ -242,14 +160,13 @@ onetype.AddonReady('elements', (elements) =>
 
 				const box = this.Element.querySelector('.box');
 				const rect = box.getBoundingClientRect();
-				const space = window.innerHeight - rect.bottom;
 
-				this.above = space < 320;
+				this.above = window.innerHeight - rect.bottom < 320;
 
+				const current = this.current();
 				const filtered = this.filtered();
-				const currentIndex = filtered.findIndex(o => o.value === this.value);
 
-				this.activeIndex = currentIndex >= 0 ? currentIndex : 0;
+				this.active = current ? current.value : (filtered.length ? filtered[0].value : null);
 
 				window.addEventListener('scroll', this.handleScroll, true);
 				window.addEventListener('resize', this.close);
@@ -259,7 +176,7 @@ onetype.AddonReady('elements', (elements) =>
 				{
 					setTimeout(() =>
 					{
-						const search = this.Element?.querySelector('.search > input');
+						const search = this.Element ? this.Element.querySelector('.search > input') : null;
 
 						if(search)
 						{
@@ -274,7 +191,7 @@ onetype.AddonReady('elements', (elements) =>
 				this.open = false;
 				this.above = false;
 				this.query = '';
-				this.activeIndex = 0;
+				this.active = null;
 
 				window.removeEventListener('scroll', this.handleScroll, true);
 				window.removeEventListener('resize', this.close);
@@ -307,14 +224,17 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
-			this.search = ({ value }) =>
+			this.typing = ({ value }) =>
 			{
 				this.query = value;
-				this.activeIndex = 0;
 
-				if(this.optionsCallback)
+				const filtered = this.filtered();
+
+				this.active = filtered.length ? filtered[0].value : null;
+
+				if(this.sourced)
 				{
-					this.fetchOptionsDebounced(value);
+					this.search(value);
 				}
 			};
 
@@ -331,6 +251,20 @@ onetype.AddonReady('elements', (elements) =>
 				}
 
 				this.close();
+			};
+
+			this.move = (step) =>
+			{
+				const filtered = this.filtered();
+
+				if(!filtered.length)
+				{
+					return;
+				}
+
+				const index = filtered.findIndex((option) => option.value === this.active);
+
+				this.active = filtered[Math.min(Math.max(index + step, 0), filtered.length - 1)].value;
 			};
 
 			this.handleKey = (event) =>
@@ -352,28 +286,28 @@ onetype.AddonReady('elements', (elements) =>
 				if(event.key === 'ArrowDown')
 				{
 					event.preventDefault();
-					this.activeIndex = Math.min(this.activeIndex + 1, filtered.length - 1);
+					this.move(1);
 					return;
 				}
 
 				if(event.key === 'ArrowUp')
 				{
 					event.preventDefault();
-					this.activeIndex = Math.max(this.activeIndex - 1, 0);
+					this.move(-1);
 					return;
 				}
 
 				if(event.key === 'Home')
 				{
 					event.preventDefault();
-					this.activeIndex = 0;
+					this.active = filtered.length ? filtered[0].value : null;
 					return;
 				}
 
 				if(event.key === 'End')
 				{
 					event.preventDefault();
-					this.activeIndex = Math.max(filtered.length - 1, 0);
+					this.active = filtered.length ? filtered[filtered.length - 1].value : null;
 					return;
 				}
 
@@ -381,80 +315,19 @@ onetype.AddonReady('elements', (elements) =>
 				{
 					event.preventDefault();
 
-					if(filtered[this.activeIndex])
+					const option = filtered.find((entry) => entry.value === this.active);
+
+					if(option)
 					{
-						this.select(filtered[this.activeIndex]);
+						this.select(option);
+						return;
 					}
 
-					return;
-				}
-			};
-
-			/* ===== VARIABLES ===== */
-
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return /^\{\{\s*[\s\S]+\s*\}\}$/.test(String(this.value || '').trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = this.value || '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
+					if(filtered.length)
 					{
-						this._change({ value: wrapped });
+						this.select(filtered[0]);
 					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = '';
-
-				if(this._change)
-				{
-					this._change({ value: '' });
 				}
-
-				this.Update();
 			};
 
 			/* ===== RENDER ===== */
@@ -462,31 +335,12 @@ onetype.AddonReady('elements', (elements) =>
 			return /* html */ `
 				<div :class="classes()" ot-click-outside="dismiss">
 					<input type="hidden" :name="name" :value="value" />
-
-					<e-variable-chip
-						ot-if="isExpression()"
-						:value="value"
-						:size="size"
-						:disabled="disabled"
-						:_edit="openVariableBuilder"
-						:_clear="clearExpression"
-					></e-variable-chip>
-
-					<div ot-if="!isExpression()" class="trigger" ot-click="toggle">
+					<div class="trigger" ot-click="toggle">
 						<i ot-if="icon" class="icon">{{ icon }}</i>
 						<i ot-if="!icon && current() && current().icon" class="icon">{{ current().icon }}</i>
 						<span ot-if="current()" class="selected">{{ current().label }}</span>
 						<span ot-if="!current() && loading" class="placeholder">Loading…</span>
 						<span ot-if="!current() && !loading" class="placeholder">{{ placeholder }}</span>
-						<button
-							ot-if="hasVariables() && !disabled"
-							type="button"
-							class="action"
-							ot-click.stop="openVariableBuilder"
-							:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-						>
-							<i>data_object</i>
-						</button>
 						<button
 							ot-if="clearable && value && !disabled"
 							type="button"
@@ -498,25 +352,26 @@ onetype.AddonReady('elements', (elements) =>
 						</button>
 						<i class="arrow">expand_more</i>
 					</div>
-					<div ot-if="!isExpression() && open" class="dropdown">
+					<div ot-if="open" class="dropdown">
 						<div ot-if="searchable" class="search">
 							<i>search</i>
-							<input type="text" :value="query" placeholder="Search…" autocomplete="off" ot-input="search" />
+							<input type="text" :value="query" placeholder="Search…" autocomplete="off" ot-input="typing" />
 						</div>
 						<div class="list">
-							<button
-								ot-for="option, index in filtered()"
-								type="button"
-								:class="'option' + (option.value === value ? ' selected' : '') + (activeIndex === index ? ' active' : '') + (option.disabled ? ' disabled' : '')"
-								ot-click="() => select(option)"
-							>
-								<i ot-if="option.icon" class="icon">{{ option.icon }}</i>
-								<span class="text">
-									<span class="label">{{ option.label }}</span>
-									<span ot-if="option.description" class="description">{{ option.description }}</span>
-								</span>
-								<i ot-if="option.value === value" class="check">check</i>
-							</button>
+							<div ot-for="option in filtered()" :ot-key="option.value">
+								<button
+									type="button"
+									:class="'option' + (option.value === value ? ' selected' : '') + (option.value === active ? ' active' : '') + (option.disabled ? ' disabled' : '')"
+									ot-click="() => select(option)"
+								>
+									<i ot-if="option.icon" class="icon">{{ option.icon }}</i>
+									<span class="text">
+										<span class="label">{{ option.label }}</span>
+										<span ot-if="option.description" class="description">{{ option.description }}</span>
+									</span>
+									<i ot-if="option.value === value" class="check">check</i>
+								</button>
+							</div>
 							<div ot-if="filtered().length === 0 && !loading" class="empty">No results</div>
 							<div ot-if="loading" class="empty">Loading…</div>
 						</div>
