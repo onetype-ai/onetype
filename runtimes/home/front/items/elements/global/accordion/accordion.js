@@ -69,9 +69,8 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				value: 2,
-				options: [0, 1, 2, 3, 4],
-				description: 'Background depth of the surface from 1 to 4. Zero renders the panels bare, separated by hairlines only.'
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the surface from 1 to 4. Empty renders the panels bare, separated by hairlines only.'
 			},
 			blur: {
 				type: 'boolean',

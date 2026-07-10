@@ -11,7 +11,6 @@ onetype.AddonReady('elements', (elements) =>
 		config: {
 			eyebrow: {
 				type: 'string',
-				value: 'Marketplace',
 				description: 'Uppercase label above the title.'
 			},
 			icon: {
