@@ -1,6 +1,6 @@
 pages.Item({
 	id: 'home',
-	route: '/',
+	route: '/*',
 	title: 'OneType - Platform',
 	grid: {
 		template: '"app"',
