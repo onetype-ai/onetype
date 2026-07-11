@@ -4,11 +4,11 @@ ui.screens.Fn('match', function(path)
 	{
 		for(const route of [].concat(item.Get('route') || []))
 		{
-			const parameters = onetype.RouteMatch(route, path);
+			const result = onetype.RouteMatch(route, path);
 
-			if(parameters)
+			if(result.match)
 			{
-				return { item, parameters };
+				return { item, parameters: result.params };
 			}
 		}
 	}
