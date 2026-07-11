@@ -8,12 +8,9 @@ import '@onetype/framework/database';
 import './kernel/core/register/middlewares.js';
 import './kernel/core/register/emitters.js';
 
-/* Services */
-import '#auth-service/load.js';
 
 /* Addons */
 import '#config/load.js';
-import '#collections/load.js';
 import '#runtimes/load.js';
 import '#packages/load.js';
 
