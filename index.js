@@ -20,6 +20,7 @@ import '#packages/load.js';
 import './addons/workspace/teams/back/load.js';
 import './addons/workspace/users/back/load.js';
 import './addons/workspace/projects/back/load.js';
+import './addons/workspace/tokens/back/load.js';
 
 /* Items */
 import './kernel/items/assets/assets.js';
