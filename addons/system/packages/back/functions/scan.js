@@ -4,7 +4,7 @@ import { resolve, join } from 'path';
 
 packages.Fn('scan', function()
 {
-	const directory = resolve(import.meta.dirname, '..', '..', '..', '..', '..', 'packages');
+	const directory = resolve(process.cwd(), 'packages');
 
 	if(!existsSync(directory))
 	{

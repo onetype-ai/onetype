@@ -1,3 +1,3 @@
 import { resolve } from 'path';
 
-process.loadEnvFile(resolve(import.meta.dirname, '..', '.env'));
+process.loadEnvFile(resolve(process.cwd(), '.env'));

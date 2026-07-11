@@ -5,7 +5,7 @@ import { resolve } from 'path';
 
 onetype.MiddlewareIntercept('boot', async (middleware) =>
 {
-	const raw = readFileSync(resolve(import.meta.dirname, '..', '..', '..', '..', '..', '..', 'config.json'), 'utf8');
+	const raw = readFileSync(resolve(process.cwd(), 'config.json'), 'utf8');
 
 	config.Item({ id: 'kernel', ...JSON.parse(raw) });
 
