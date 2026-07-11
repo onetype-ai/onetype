@@ -21,20 +21,20 @@ collections.Fn('export', async function(slug = null, connection = 'primary')
 		const runtime = collections.Fn('get', item.Get('slug'));
 		const entries = [];
 
-		let page = 1;
+		let last = 0;
 
 		while(true)
 		{
-			const batch = await runtime.Find().sort('id', 'asc').page(page).limit(500).plain();
+			const batch = await runtime.Find().filter('id', last, 'GREATER').sort('id', 'asc').limit(500).many();
 
-			entries.push(...batch.items);
+			entries.push(...batch.map((one) => one.GetData()));
 
-			if(page >= batch.pages)
+			if(batch.length < 500)
 			{
 				break;
 			}
 
-			page++;
+			last = batch.at(-1).Get('id');
 		}
 
 		const translations = await knex('database_translations')
