@@ -28,6 +28,8 @@ import './functions/partition.js';
 import './functions/apply.js';
 import './functions/sync.js';
 import './functions/get.js';
+import './functions/export.js';
+import './functions/import.js';
 
 /* Commands */
 import './items/commands/types.js';
@@ -36,5 +38,7 @@ import './items/commands/get.js';
 import './items/commands/create.js';
 import './items/commands/update.js';
 import './items/commands/delete.js';
+import './items/commands/export.js';
+import './items/commands/import.js';
 
 export default collections;
