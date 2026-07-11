@@ -30,7 +30,7 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			columns: {
 				type: 'number',
-				value: 3,
+				value: 5,
 				options: [2, 3, 4, 5],
 				description: 'Number of masonry columns.'
 			},
