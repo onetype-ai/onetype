@@ -1,10 +1,12 @@
 const system = {};
 const modules = {};
 const ui = {};
+const workspace = {};
 
 $ot.system = {};
 $ot.modules = {};
 $ot.ui = {};
+$ot.workspace = {};
 
 $ot.boot = new Promise((resolve) =>
 {

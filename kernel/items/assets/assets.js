@@ -42,15 +42,18 @@ assets.Item({ type: 'css', order: 550, path: resolve(addons, 'modules') });
 assets.Item({ type: 'js', order: 550, path: resolve(addons, 'other') });
 assets.Item({ type: 'css', order: 550, path: resolve(addons, 'other') });
 
-for(const name of readdirSync(resolve(addons, 'system'), { withFileTypes: true }))
+for(const category of ['system', 'workspace'])
 {
-	if(!name.isDirectory())
+	for(const name of readdirSync(resolve(addons, category), { withFileTypes: true }))
 	{
-		continue;
-	}
+		if(!name.isDirectory())
+		{
+			continue;
+		}
 
-	assets.Item({ type: 'js', order: 550, path: resolve(addons, 'system', name.name, 'front') });
-	assets.Item({ type: 'css', order: 550, path: resolve(addons, 'system', name.name, 'front') });
+		assets.Item({ type: 'js', order: 550, path: resolve(addons, category, name.name, 'front') });
+		assets.Item({ type: 'css', order: 550, path: resolve(addons, category, name.name, 'front') });
+	}
 }
 
 assets.Fn('import', ['boot'], 600);

@@ -9,7 +9,7 @@ onetype.AddonReady('modules.settings', (settings) =>
 			id: 'user',
 			label: 'User',
 			icon: 'person',
-			options: () => Object.values(users.Items()).map((item) =>
+			options: () => Object.values(workspace.users.Items()).map((item) =>
 			{
 				return { label: item.Get('name'), value: item.Get('id') };
 			}),

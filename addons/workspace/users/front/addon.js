@@ -1,4 +1,4 @@
-const users = onetype.Addon('users', (addon) =>
+workspace.users = onetype.Addon('workspace.users', (addon) =>
 {
 	addon.Field('id', {
 		type: 'string',

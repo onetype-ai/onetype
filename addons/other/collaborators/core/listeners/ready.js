@@ -3,7 +3,7 @@
 
 onetype.EmitOn('@document.ready', () =>
 {
-	const person = users.ItemGet('dejan');
+	const person = workspace.users.ItemGet('dejan');
 
 	$ot.command('collaborators:join', { id: 'dejan', name: person ? person.Get('name') : 'Dejan', self: true });
 	$ot.command('collaborators:join', { id: 'assistant', name: 'Assistant', type: 'agent', color: 'brand' });

@@ -1,7 +1,7 @@
 onetype.AddonReady('modules.settings', (settings) =>
 {
 	settings.Item({
-		id: 'users.list',
+		id: 'workspace.users.list',
 		label: 'Users',
 		type: 'table',
 		columns: [
@@ -9,7 +9,7 @@ onetype.AddonReady('modules.settings', (settings) =>
 			{ id: 'name', label: 'Name', type: 'text', width: '1fr' },
 			{ id: 'email', label: 'Email', type: 'text', width: '2fr' }
 		],
-		options: () => Object.values(users.Items()).map((item) =>
+		options: () => Object.values(workspace.users.Items()).map((item) =>
 		{
 			return {
 				id: item.Get('id'),
@@ -18,7 +18,7 @@ onetype.AddonReady('modules.settings', (settings) =>
 			};
 		}),
 		storage: 'custom',
-		metadata: { addon: 'users' },
+		metadata: { addon: 'workspace.users' },
 		description: 'Everyone with access to this site.'
 	});
 });
