@@ -22,7 +22,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 			'cms_content_view': {
 				type: 'string',
 				value: 'table',
-				options: ['table', 'grid', 'list', 'board', 'calendar', 'gallery', 'timeline', 'tree', 'map'],
+				options: ['table', 'grid', 'cards', 'list', 'board', 'calendar', 'gallery', 'timeline', 'tree', 'map'],
 				description: 'Active listing view of the collection.'
 			}
 		},
@@ -30,7 +30,8 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 		{
 			this.views = [
 				{ id: 'table', icon: 'table' },
-				{ id: 'grid', icon: 'grid_view' },
+				{ id: 'grid', icon: 'grid_on' },
+				{ id: 'cards', icon: 'cards' },
 				{ id: 'list', icon: 'list' },
 				{ id: 'board', icon: 'view_kanban' },
 				{ id: 'calendar', icon: 'calendar_month' },
