@@ -2,7 +2,9 @@ ui.layouts.Fn('data', function(values)
 {
 	if(values)
 	{
-		$ot.modules.settings.set('ui.layouts.data', onetype.DataDefine({ ...this.Fn('data'), ...values }, this.Fn('config')));
+		const saved = $ot.modules.settings.get('ui.layouts.data', {});
+
+		$ot.modules.settings.set('ui.layouts.data', onetype.DataDefine({ ...saved, ...values }, this.Fn('config')));
 
 		onetype.Emit('ui.layouts.data', { values });
 	}
