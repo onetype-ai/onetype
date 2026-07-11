@@ -1,5 +1,5 @@
 {
-    "name": "onetype",
+    "name": "@onetype/platform",
     "version": "0.1.0",
     "description": "Visual website editor for OneType Sites.",
     "type": "module",
@@ -7,7 +7,7 @@
     "author": "Dejan Tomic <hi@iamdejan.com>",
     "repository": {
         "type": "git",
-        "url": "https://github.com/onetype-ai/onetype.git"
+        "url": "https://github.com/onetype-ai/platform.git"
     },
     "imports": {
         "#auth-service/*": "./kernel/services/auth/*",

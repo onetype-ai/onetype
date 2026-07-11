@@ -1,4 +1,4 @@
-# OneType
+# OneType Platform
 
 **One Workspace. Everything Connected. Everything Yours.**
 

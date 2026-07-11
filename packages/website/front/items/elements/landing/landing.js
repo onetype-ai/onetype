@@ -62,7 +62,7 @@ elements.ItemAdd({
 					<p>OneType is an open source workspace platform where every app is a package, every action is a command and one universal database powers all of it. Built for people, driven by AI.</p>
 					<div class="actions">
 						<button type="button" class="cta solid" ot-click="() => jump('site-pricing')">Get started<i>arrow_forward</i></button>
-						<a class="cta ghost" href="https://github.com/onetype-ai/onetype" target="_blank"><i>code</i>View on GitHub</a>
+						<a class="cta ghost" href="https://github.com/onetype-ai/platform" target="_blank"><i>code</i>View on GitHub</a>
 					</div>
 					<div class="float one"><i>database</i>CMS</div>
 					<div class="float two"><i>design_services</i>Builder</div>
@@ -162,7 +162,7 @@ elements.ItemAdd({
 					<h2>The platform <em>is</em> the website.</h2>
 					<p>This page is a OneType package, rendered by the same engine that runs your workspace. What you are reading is the product working.</p>
 					<div class="actions">
-						<a class="cta solid" href="https://github.com/onetype-ai/onetype" target="_blank"><i>star</i>Star on GitHub</a>
+						<a class="cta solid" href="https://github.com/onetype-ai/platform" target="_blank"><i>star</i>Star on GitHub</a>
 					</div>
 					<div class="base">
 						<span>© 2026 OneType</span>
