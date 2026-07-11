@@ -1,0 +1,160 @@
+/* ===== VIEWS TREE ===== */
+
+.e-1728f5cd
+{
+	display: block;
+	width: 100%;
+}
+
+/* Colors */
+
+.e-1728f5cd .brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
+.e-1728f5cd .blue { --accent: var(--ot-blue); --tint: var(--ot-blue-opacity); }
+.e-1728f5cd .red { --accent: var(--ot-red); --tint: var(--ot-red-opacity); }
+.e-1728f5cd .orange { --accent: var(--ot-orange); --tint: var(--ot-orange-opacity); }
+.e-1728f5cd .green { --accent: var(--ot-green); --tint: var(--ot-green-opacity); }
+
+/* Box */
+
+.e-1728f5cd > .box
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	width: 100%;
+}
+
+/* Row */
+
+.e-1728f5cd > .box > .node > .row
+{
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	height: 36px;
+	padding: 0 var(--ot-spacing-s);
+	border-radius: var(--ot-radius-m);
+	transition: background var(--ot-transition-fast);
+}
+
+.e-1728f5cd > .box.clickable > .node > .row
+{
+	cursor: pointer;
+}
+
+.e-1728f5cd > .box.clickable > .node > .row:hover
+{
+	background: var(--ot-bg-2-hover);
+}
+
+/* Caret */
+
+.e-1728f5cd > .box > .node > .row > .caret
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 18px;
+	height: 18px;
+	border-radius: var(--ot-radius-s);
+	font-size: 16px;
+	color: var(--ot-text-3);
+	cursor: pointer;
+	transition: transform var(--ot-transition-fast), color var(--ot-transition-fast);
+	flex-shrink: 0;
+}
+
+.e-1728f5cd > .box > .node > .row > .caret:hover
+{
+	color: var(--ot-text-1);
+}
+
+.e-1728f5cd > .box > .node > .row > .caret.turned
+{
+	transform: rotate(90deg);
+}
+
+.e-1728f5cd > .box > .node > .row > .gap
+{
+	width: 18px;
+	flex-shrink: 0;
+}
+
+/* Lead */
+
+.e-1728f5cd > .box > .node > .row > .lead
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: var(--ot-radius-s);
+	background: var(--tint);
+	flex-shrink: 0;
+}
+
+.e-1728f5cd > .box > .node > .row > .lead > i
+{
+	font-size: 14px;
+	color: var(--accent);
+}
+
+/* Title */
+
+.e-1728f5cd > .box > .node > .row > .title
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: var(--ot-size-s);
+	font-weight: 500;
+	color: var(--ot-text-1);
+	flex: 1;
+}
+
+/* Badge */
+
+.e-1728f5cd > .box > .node > .row > .badge
+{
+	display: inline-flex;
+	align-items: center;
+	height: 20px;
+	padding: 0 8px;
+	border-radius: 99px;
+	background: var(--tint);
+	font-size: 11px;
+	font-weight: 550;
+	color: var(--accent);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+/* Count */
+
+.e-1728f5cd > .box > .node > .row > .count
+{
+	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	font-size: 11px;
+	color: var(--ot-text-3);
+	flex-shrink: 0;
+}
+
+/* Children */
+
+.e-1728f5cd > .box > .node > .children
+{
+	margin-left: 20px;
+	padding-left: 10px;
+	border-left: 1px solid var(--ot-bg-2-border);
+}
+
+/* Empty */
+
+.e-1728f5cd > .box > .empty
+{
+	padding: var(--ot-spacing-l);
+	text-align: center;
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-3);
+}
