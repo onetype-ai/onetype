@@ -7,7 +7,6 @@ ui.screens.Fn('close', function()
 		return false;
 	}
 
-	console.log('[screens] close', active.Get('id'));
 	$ot.modules.settings.set('ui.screens.active', null);
 
 	if(active.Get('route') && window.location.pathname !== '/')
