@@ -5,5 +5,7 @@ onetype.MiddlewareIntercept('boot', async (middleware) =>
 {
 	packages.Fn('scan');
 
+	await packages.Fn('back');
+
 	await middleware.next();
 });
