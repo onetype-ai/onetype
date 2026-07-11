@@ -1,7 +1,7 @@
 pages.Item({
 	id: 'home',
 	route: '/',
-	title: 'OneType Sites',
+	title: 'OneType - Platform',
 	grid: {
 		template: '"app"',
 		columns: '1fr',

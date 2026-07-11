@@ -20,19 +20,19 @@ assets.Fn('import', [
 	'variables'
 ], 400);
 
-const home = resolve(root, 'runtimes', 'home', 'front');
+const shell = resolve(root, 'runtimes', 'shell', 'front');
 
-assets.Item({ type: 'css', order: 110, path: resolve(home, 'styles') });
+assets.Item({ type: 'css', order: 110, path: resolve(shell, 'styles') });
 
-assets.Item({ type: 'js', order: 450, path: resolve(home, 'items') });
-assets.Item({ type: 'css', order: 450, path: resolve(home, 'items') });
+assets.Item({ type: 'js', order: 450, path: resolve(shell, 'items') });
+assets.Item({ type: 'css', order: 450, path: resolve(shell, 'items') });
 
-assets.Item({ type: 'js', order: 500, path: resolve(home, 'core') });
+assets.Item({ type: 'js', order: 500, path: resolve(shell, 'core') });
 
-assets.Item({ type: 'js', order: 540, path: home, ignore: [resolve(home, 'addons'), resolve(home, 'styles'), resolve(home, 'items'), resolve(home, 'core')] });
+assets.Item({ type: 'js', order: 540, path: shell, ignore: [resolve(shell, 'addons'), resolve(shell, 'styles'), resolve(shell, 'items'), resolve(shell, 'core')] });
 
-assets.Item({ type: 'js', order: 550, path: resolve(home, 'addons') });
-assets.Item({ type: 'css', order: 550, path: resolve(home, 'addons') });
+assets.Item({ type: 'js', order: 550, path: resolve(shell, 'addons') });
+assets.Item({ type: 'css', order: 550, path: resolve(shell, 'addons') });
 
 const addons = resolve(root, 'addons');
 
