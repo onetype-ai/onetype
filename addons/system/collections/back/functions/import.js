@@ -5,6 +5,7 @@ collections.Fn('import', async function(data, connection = 'primary')
 {
 	const knex = database.Fn('connection', connection);
 	const map = {};
+	const deferred = [];
 	const summary = { collections: 0, entries: 0 };
 
 	for(const entry of data.collections)
@@ -25,76 +26,105 @@ collections.Fn('import', async function(data, connection = 'primary')
 			});
 		}
 
-		const runtime = collections.Fn('get', entry.slug);
-
 		map[entry.slug] = {};
-
-		for(const record of entry.entries)
-		{
-			const { id, collection, deleted_at, ...values } = record;
-			const created = await runtime.ItemAdd(values).Create();
-
-			map[entry.slug][String(id)] = created.Get('id');
-			summary.entries++;
-		}
-
-		summary.collections++;
 	}
 
-	for(const entry of data.collections)
+	await knex.transaction(async (trx) =>
 	{
-		const references = entry.fields.filter((field) => field.reference && map[field.reference]);
-		const runtime = collections.Fn('get', entry.slug);
-
-		for(const record of entry.entries)
+		for(const entry of data.collections)
 		{
-			const update = {};
+			const runtime = collections.Fn('get', entry.slug);
+			const references = entry.fields.filter((field) => field.reference && map[field.reference]);
 
-			for(const field of references)
+			for(const record of entry.entries)
 			{
+				const { id, collection, deleted_at, ...values } = record;
+				const missing = [];
+
+				for(const field of references)
+				{
+					const target = map[field.reference];
+					const value = values[field.name];
+
+					if(value === null || value === undefined)
+					{
+						continue;
+					}
+
+					if(Array.isArray(value))
+					{
+						if(value.some((one) => !(String(one) in target)))
+						{
+							missing.push(field.name);
+							continue;
+						}
+
+						values[field.name] = value.map((one) => target[String(one)]);
+					}
+					else if(String(value) in target)
+					{
+						values[field.name] = target[String(value)];
+					}
+					else
+					{
+						missing.push(field.name);
+					}
+				}
+
+				const created = await runtime.ItemAdd(values).Create({ connection: trx });
+
+				map[entry.slug][String(id)] = created.Get('id');
+				summary.entries++;
+
+				if(missing.length)
+				{
+					deferred.push({ slug: entry.slug, id: String(id), fields: missing, record });
+				}
+			}
+
+			summary.collections++;
+		}
+
+		for(const need of deferred)
+		{
+			const runtime = collections.Fn('get', need.slug);
+			const definition = data.collections.find((entry) => entry.slug === need.slug);
+			const item = await runtime.Find({ connection: trx }).filter('id', map[need.slug][need.id]).one();
+
+			for(const name of need.fields)
+			{
+				const field = definition.fields.find((one) => one.name === name);
 				const target = map[field.reference];
-				const value = record[field.name];
+				const value = need.record[name];
 
-				if(value === null || value === undefined)
-				{
-					continue;
-				}
-
-				update[field.name] = Array.isArray(value)
+				item.Set(name, Array.isArray(value)
 					? value.map((one) => target[String(one)] ?? one)
-					: (target[String(value)] ?? value);
+					: (target[String(value)] ?? value));
 			}
 
-			if(Object.keys(update).length)
-			{
-				const item = await runtime.Find().filter('id', map[entry.slug][String(record.id)]).one();
-
-				for(const [field, value] of Object.entries(update))
-				{
-					item.Set(field, value);
-				}
-
-				await item.Update().whitelist(references.map((field) => field.name));
-			}
+			await item.Update({ connection: trx }).whitelist(need.fields);
 		}
 
-		const rows = (entry.translations || []).map((row) => ({
-			entity: 'collections.' + entry.slug,
-			entity_id: String(map[entry.slug][String(row.entity_id)] ?? row.entity_id),
-			language: row.language,
-			field: row.field,
-			value: row.value,
-			updated_at: new Date().toISOString()
-		}));
-
-		if(rows.length)
+		for(const entry of data.collections)
 		{
-			await knex('database_translations')
-				.insert(rows)
-				.onConflict(['entity', 'entity_id', 'language', 'field'])
-				.merge(['value', 'updated_at']);
+			const rows = (entry.translations || []).map((row) => ({
+				entity: 'collections.' + entry.slug,
+				entity_id: String(map[entry.slug][String(row.entity_id)] ?? row.entity_id),
+				language: row.language,
+				field: row.field,
+				value: row.value,
+				updated_at: new Date().toISOString()
+			}));
+
+			if(rows.length)
+			{
+				await trx('database_translations')
+					.insert(rows)
+					.onConflict(['entity', 'entity_id', 'language', 'field'])
+					.merge(['value', 'updated_at']);
+			}
 		}
-	}
+	});
 
 	console.log('Import done — :1 collections, :2 entries', summary.collections, summary.entries);
 
