@@ -10,7 +10,6 @@ import './back/core/register/emitters.js';
 
 
 /* Addons */
-import '#config/load.js';
 import '#collections/load.js';
 import '#runtimes/load.js';
 import '#packages/load.js';
