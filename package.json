@@ -17,10 +17,10 @@
         "url": "https://github.com/onetype-ai/platform.git"
     },
     "imports": {
-        "#elements-service/*": "./kernel/services/elements/*",
+        "#elements-service/*": "./back/services/elements/*",
         "#packages/*": "./addons/system/packages/back/*",
         "#runtimes/*": "./addons/system/runtimes/back/*",
-        "#config/*": "./addons/system/config/back/*",
+        "#config/*": "./addons/system/config/back/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"

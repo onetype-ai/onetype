@@ -1,12 +1,12 @@
-import './kernel/env.js';
+import './back/env.js';
 
 import onetype from '@onetype/framework';
 import '@onetype/framework/commands';
 import '@onetype/framework/database';
 
 /* Register */
-import './kernel/core/register/middlewares.js';
-import './kernel/core/register/emitters.js';
+import './back/core/register/middlewares.js';
+import './back/core/register/emitters.js';
 
 
 /* Addons */
@@ -21,16 +21,16 @@ import './addons/workspace/projects/back/load.js';
 import './addons/workspace/tokens/back/load.js';
 
 /* Items */
-import './kernel/items/assets/assets.js';
-import './kernel/items/database/primary.js';
-import './kernel/items/commands/health.js';
-import './kernel/items/commands/crawl.js';
-import './kernel/items/commands/html.js';
-import './kernel/items/html/icons.js';
+import './back/items/assets/assets.js';
+import './back/items/database/primary.js';
+import './back/items/commands/health.js';
+import './back/items/commands/crawl.js';
+import './back/items/commands/html.js';
+import './back/items/html/icons.js';
 
 /* Boot */
 await onetype.Middleware('boot');
 onetype.Emit('boot');
 
 /* Servers */
-await import('./kernel/items/servers/http.js');
+await import('./back/items/servers/http.js');
