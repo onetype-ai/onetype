@@ -4,7 +4,7 @@ import { resolve, join } from 'path';
 
 packages.Fn('directories', function()
 {
-	const list = [];
+	const list = [process.cwd()];
 	const roots = [resolve(process.cwd(), 'packages'), resolve(process.cwd(), 'node_modules')];
 
 	for(const root of roots)
