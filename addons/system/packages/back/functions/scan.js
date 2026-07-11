@@ -1,28 +1,26 @@
 import packages from '#packages/addon.js';
-import { readFileSync, readdirSync, existsSync } from 'fs';
-import { resolve, join } from 'path';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
 
 packages.Fn('scan', function()
 {
-	const directory = resolve(process.cwd(), 'packages');
-
-	if(!existsSync(directory))
+	for(const directory of this.Fn('directories'))
 	{
-		return this.Items();
-	}
+		const file = join(directory, 'onetype.json');
 
-	for(const entry of readdirSync(directory, { withFileTypes: true }))
-	{
-		const file = join(directory, entry.name, 'onetype.json');
-
-		if(!entry.isDirectory() || !existsSync(file))
+		if(!existsSync(file))
 		{
 			continue;
 		}
 
 		const manifest = JSON.parse(readFileSync(file, 'utf8'));
 
-		this.Item({ ...manifest, path: join(directory, entry.name) });
+		if(Object.values(this.Items()).some((item) => item.Get('slug') === manifest.slug))
+		{
+			continue;
+		}
+
+		this.Item({ ...manifest, path: directory });
 	}
 
 	return this.Items();
