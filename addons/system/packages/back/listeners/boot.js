@@ -7,5 +7,7 @@ onetype.MiddlewareIntercept('boot', async (middleware) =>
 
 	await packages.Fn('back');
 
+	$ot.set('packages', packages.Fn('list'));
+
 	await middleware.next();
 });
