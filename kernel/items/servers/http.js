@@ -3,7 +3,7 @@ import commands from '@onetype/framework/commands';
 commands.Fn('http.server', 3000, {
 	onStart: () =>
 	{
-		console.log('Sites running on :3000');
+		console.log('OneType - Platform running on :3000.');
 	},
 	onRequest: (http) =>
 	{

@@ -1,7 +1,7 @@
 {
     "name": "@onetype/platform",
     "version": "0.1.0",
-    "description": "Visual website editor for OneType Sites.",
+    "description": "Open source workspace platform. Everything is a package, every action is a command, one universal database underneath.",
     "type": "module",
     "exports": {
         ".": "./index.js",
