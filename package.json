@@ -20,7 +20,8 @@
         "#elements-service/*": "./back/services/elements/*",
         "#packages/*": "./addons/system/packages/back/*",
         "#runtimes/*": "./addons/system/runtimes/back/*",
-        "#config/*": "./addons/system/config/back/*"
+        "#config/*": "./addons/system/config/back/*",
+        "#collections/*": "./addons/system/collections/back/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"
