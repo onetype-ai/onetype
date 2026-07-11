@@ -6,10 +6,16 @@ onetype.MiddlewareIntercept('boot', async (middleware) =>
 {
 	await database.Fn('ready');
 
-	for(const definition of collections.StoreGet('declared') || [])
+	const declared = collections.StoreGet('declared') || [];
+
+	for(const definition of declared)
 	{
 		await collections.Fn('sync', definition);
 	}
+
+	const total = await collections.Find().count();
+
+	console.log('Collections ready — :1 declared, :2 total', declared.length, total);
 
 	await middleware.next();
 });

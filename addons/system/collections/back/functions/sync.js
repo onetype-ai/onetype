@@ -1,5 +1,9 @@
 import collections from '../addon.js';
 
+const stable = (value) => JSON.stringify(value, (key, entry) => entry && typeof entry === 'object' && !Array.isArray(entry)
+	? Object.keys(entry).sort().reduce((sorted, name) => (sorted[name] = entry[name], sorted), {})
+	: entry);
+
 collections.Fn('sync', async function(definition)
 {
 	let item = await collections.Find().filter('slug', definition.slug).one();
@@ -7,10 +11,11 @@ collections.Fn('sync', async function(definition)
 	if(!item)
 	{
 		item = await collections.ItemAdd({ ...definition }).Create();
+		console.log('Collection :1 created (:2, :3 fields)', definition.slug, 'entries_' + item.Get('id'), definition.fields.length);
 	}
 	else if(definition.system)
 	{
-		const changed = ['name', 'icon', 'fields', 'search', 'versions'].some((key) => JSON.stringify(item.Get(key)) !== JSON.stringify(definition[key]));
+		const changed = ['name', 'icon', 'fields', 'search', 'versions'].some((key) => stable(item.Get(key)) !== stable(definition[key]));
 
 		if(changed)
 		{
@@ -22,6 +27,7 @@ collections.Fn('sync', async function(definition)
 			item.Set('versions', definition.versions);
 
 			await item.Update();
+			console.log('Collection :1 definition updated (:2 fields)', definition.slug, definition.fields.length);
 		}
 	}
 
