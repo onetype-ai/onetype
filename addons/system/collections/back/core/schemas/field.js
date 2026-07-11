@@ -44,6 +44,11 @@ onetype.DataSchema('collections.field', {
 		value: false,
 		description: 'Whether the field gets a btree index for filtering and sorting.'
 	},
+	search: {
+		type: 'boolean',
+		value: false,
+		description: 'Whether the field is matched by search. Joined with the collection level search list.'
+	},
 	reference: {
 		type: 'string',
 		description: 'Slug of the collection this field references. The value stores the referenced entry id.'

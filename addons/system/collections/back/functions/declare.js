@@ -48,6 +48,7 @@ collections.Fn('declare', function(slug, callback)
 				locked: options.locked === true,
 				unique: options.unique === true,
 				index: options.index === true,
+				search: options.search === true,
 				reference: options.collection || null
 			});
 		}
