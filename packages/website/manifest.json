@@ -1,0 +1,14 @@
+{
+	"type": "package",
+	"slug": "website",
+	"name": "Website",
+	"version": "0.1.0",
+	"description": "The public onetype.ai website as a package. The platform presents itself, the site and the product are the same thing.",
+	"icon": "language",
+	"color": "rgba(99, 102, 241, 1)",
+	"core": ">=0.1.0",
+	"status": "enabled",
+	"depends": [],
+	"permissions": [],
+	"config": {}
+}
