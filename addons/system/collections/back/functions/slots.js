@@ -2,11 +2,11 @@ import collections from '../addon.js';
 import types from '../types.js';
 
 const POOLS = {
-	string: ['t1', 't2', 't3'],
-	number: ['n1', 'n2'],
-	date: ['d1'],
-	reference: ['r1', 'r2'],
-	boolean: ['b1']
+	string: ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10'],
+	number: ['n1', 'n2', 'n3', 'n4', 'n5'],
+	date: ['d1', 'd2', 'd3', 'd4'],
+	reference: ['r1', 'r2', 'r3', 'r4', 'r5'],
+	boolean: ['b1', 'b2', 'b3']
 };
 
 collections.Fn('slots', function(fields)

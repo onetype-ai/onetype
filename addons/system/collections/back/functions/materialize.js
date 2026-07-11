@@ -35,23 +35,8 @@ collections.Fn('materialize', function(definition)
 	const lines = runtime.Schema();
 
 	lines.length = 0;
-
 	lines.push('id bigserial primary key');
-	lines.push('collection bigint not null');
-	lines.push('t1 text');
-	lines.push('t2 text');
-	lines.push('t3 text');
-	lines.push('n1 numeric');
-	lines.push('n2 numeric');
-	lines.push('d1 timestamptz');
-	lines.push('r1 bigint');
-	lines.push('r2 bigint');
-	lines.push('b1 boolean');
-	lines.push('fts tsvector');
-	lines.push('data jsonb');
-	lines.push('created_at timestamptz');
-	lines.push('updated_at timestamptz');
-	lines.push('deleted_at timestamptz');
+	lines.push(...collections.Fn('lines'));
 
 	for(const field of definition.fields)
 	{
@@ -84,9 +69,11 @@ collections.Fn('materialize', function(definition)
 		runtime.Translations(translate);
 	}
 
-	if(definition.search?.length)
+	const search = [...new Set([...(definition.search || []), ...definition.fields.filter((field) => field.search).map((field) => field.name)])];
+
+	if(search.length)
 	{
-		runtime.Search(definition.search);
+		runtime.Search(search);
 	}
 
 	return runtime;
