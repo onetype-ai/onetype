@@ -1,0 +1,164 @@
+/* ===== VIEWS GALLERY ===== */
+
+.e-c1fdc9d
+{
+	display: block;
+	width: 100%;
+}
+
+/* Colors */
+
+.e-c1fdc9d .brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
+.e-c1fdc9d .blue { --accent: var(--ot-blue); --tint: var(--ot-blue-opacity); }
+.e-c1fdc9d .red { --accent: var(--ot-red); --tint: var(--ot-red-opacity); }
+.e-c1fdc9d .orange { --accent: var(--ot-orange); --tint: var(--ot-orange-opacity); }
+.e-c1fdc9d .green { --accent: var(--ot-green); --tint: var(--ot-green-opacity); }
+
+/* Box */
+
+.e-c1fdc9d > .box
+{
+	width: 100%;
+	column-gap: var(--ot-spacing-m);
+}
+
+/* Tile */
+
+.e-c1fdc9d > .box > .tile
+{
+	position: relative;
+	display: block;
+	width: 100%;
+	margin-bottom: var(--ot-spacing-m);
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-l);
+	overflow: hidden;
+	break-inside: avoid;
+	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast);
+}
+
+.e-c1fdc9d > .box.clickable > .tile
+{
+	cursor: pointer;
+}
+
+.e-c1fdc9d > .box.clickable > .tile:hover
+{
+	border-color: var(--ot-bg-3-border);
+	transform: translateY(-2px);
+}
+
+.e-c1fdc9d > .box > .tile > img
+{
+	display: block;
+	width: 100%;
+	transition: transform var(--ot-transition);
+}
+
+.e-c1fdc9d > .box.clickable > .tile:hover > img
+{
+	transform: scale(1.03);
+}
+
+/* Fallback */
+
+.e-c1fdc9d > .box > .tile > .fallback
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 4 / 3;
+	background: linear-gradient(135deg, var(--tint), transparent 70%);
+}
+
+.e-c1fdc9d > .box > .tile > .fallback > i
+{
+	font-size: 32px;
+	color: var(--accent);
+}
+
+/* Pill */
+
+.e-c1fdc9d > .box > .tile > .pill
+{
+	position: absolute;
+	top: var(--ot-spacing-s);
+	right: var(--ot-spacing-s);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 24px;
+	padding: 0 10px;
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: 99px;
+	background: var(--ot-bg-1);
+	font-size: 11px;
+	font-weight: 550;
+	color: var(--ot-text-1);
+	opacity: 0;
+	transform: translateY(-4px);
+	transition: opacity var(--ot-transition-fast), transform var(--ot-transition-fast);
+}
+
+.e-c1fdc9d > .box > .tile:hover > .pill
+{
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.e-c1fdc9d > .box > .tile > .pill > .dot
+{
+	width: 6px;
+	height: 6px;
+	border-radius: 99px;
+	background: var(--accent);
+}
+
+/* Veil */
+
+.e-c1fdc9d > .box > .tile > .veil
+{
+	position: absolute;
+	inset: auto 0 0 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: var(--ot-spacing-l) var(--ot-spacing-m) var(--ot-spacing-s);
+	background: linear-gradient(to top, rgba(8, 10, 14, 0.82), transparent);
+	opacity: 0;
+	transform: translateY(6px);
+	transition: opacity var(--ot-transition-fast), transform var(--ot-transition-fast);
+}
+
+.e-c1fdc9d > .box > .tile:hover > .veil
+{
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.e-c1fdc9d > .box > .tile > .veil > .title
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: var(--ot-size-s);
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.e-c1fdc9d > .box > .tile > .veil > .date
+{
+	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	font-size: 11px;
+	color: rgba(255, 255, 255, 0.65);
+}
+
+/* Empty */
+
+.e-c1fdc9d > .box > .empty
+{
+	padding: var(--ot-spacing-l);
+	text-align: center;
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-3);
+}
