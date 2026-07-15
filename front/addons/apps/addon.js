@@ -30,7 +30,7 @@ ui.apps = onetype.Addon('ui.apps', (addon) =>
 
 	addon.Field('scheme', {
 		type: 'string',
-		value: 'studio',
+		value: 'midnight',
 		options: ['midnight', 'studio', 'daylight', 'eclipse'],
 		description: 'Color scheme while the app is active. Midnight is dark shell with a dark workspace, studio is dark shell with a light workspace, daylight is light shell with a light workspace, eclipse is light shell with a dark workspace.'
 	});
