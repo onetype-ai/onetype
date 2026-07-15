@@ -7,13 +7,17 @@ packages.Fn('back', async function()
 {
 	for(const item of Object.values(this.Items()))
 	{
-		const file = join(item.Get('path'), 'back', 'load.js');
-
-		if(item.Get('status') !== 'enabled' || !existsSync(file))
+		if(item.Get('status') !== 'enabled')
 		{
 			continue;
 		}
 
-		await import(pathToFileURL(file));
+		for(const file of [join(item.Get('path'), 'shared', 'load.js'), join(item.Get('path'), 'back', 'load.js')])
+		{
+			if(existsSync(file))
+			{
+				await import(pathToFileURL(file));
+			}
+		}
 	}
 });

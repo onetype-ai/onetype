@@ -10,14 +10,20 @@ packages.Fn('assets', function(type)
 
 	for(const item of Object.values(this.Items()))
 	{
-		const front = join(item.Get('path'), 'front');
-
-		if(item.Get('status') !== 'enabled' || !existsSync(front))
+		if(item.Get('status') !== 'enabled')
 		{
 			continue;
 		}
 
-		files.push(...assets.Fn('scan.files', front, type));
+		for(const directory of ['shared', 'front'])
+		{
+			const path = join(item.Get('path'), directory);
+
+			if(existsSync(path))
+			{
+				files.push(...assets.Fn('scan.files', path, type));
+			}
+		}
 	}
 
 	return assets.Fn('utils.read', files).join('\n');
