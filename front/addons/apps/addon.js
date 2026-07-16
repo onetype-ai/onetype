@@ -83,6 +83,12 @@ ui.apps = onetype.Addon('ui.apps', (addon) =>
 		description: 'Shows the app on the dock rail. When false the app still exists and can be switched to, it just has no icon.'
 	});
 
+	addon.Field('isHidden', {
+		type: 'boolean',
+		value: false,
+		description: 'Removes the app from every surface: the dock rail, the apps list and the explorer. The app still exists and can be opened programmatically.'
+	});
+
 	addon.Field('render', {
 		type: 'string|function',
 		description: 'Panel content. When set, clicking the app toggles a dock panel instead of switching.'

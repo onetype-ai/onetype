@@ -1,6 +1,6 @@
 ui.apps.ItemOn('modified', (item) =>
 {
-	if(!item.Get('isVisible'))
+	if(!item.Get('isVisible') || item.Get('isHidden'))
 	{
 		ui.dock.ItemRemove(item.Get('id'));
 	}
@@ -20,15 +20,22 @@ ui.apps.ItemOn('modified', (item) =>
 		});
 	}
 
-	ui.explorer.Item({
-		id: 'app-' + item.Get('id'),
-		order: 10,
-		group: 'Applications',
-		prefix: 'apps',
-		icon: item.Get('icon'),
-		label: item.Get('name'),
-		hint: 'Open application',
-		keywords: [item.Get('id')],
-		callback: () => $ot.ui.apps.open(item.Get('id'))
-	});
+	if(item.Get('isHidden'))
+	{
+		ui.explorer.ItemRemove('app-' + item.Get('id'));
+	}
+	else
+	{
+		ui.explorer.Item({
+			id: 'app-' + item.Get('id'),
+			order: 10,
+			group: 'Applications',
+			prefix: 'apps',
+			icon: item.Get('icon'),
+			label: item.Get('name'),
+			hint: 'Open application',
+			keywords: [item.Get('id')],
+			callback: () => $ot.ui.apps.open(item.Get('id'))
+		});
+	}
 });

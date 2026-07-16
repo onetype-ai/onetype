@@ -2,7 +2,7 @@ ui.apps.ItemOn('add', (item) =>
 {
 	onetype.AddonReady('ui.dock', (dock) =>
 	{
-		if(!item.Get('isVisible'))
+		if(!item.Get('isVisible') || item.Get('isHidden'))
 		{
 			return;
 		}
@@ -24,6 +24,11 @@ ui.apps.ItemOn('add', (item) =>
 
 	onetype.AddonReady('ui.explorer', (explorer) =>
 	{
+		if(item.Get('isHidden'))
+		{
+			return;
+		}
+
 		explorer.Item({
 			id: 'app-' + item.Get('id'),
 			order: 10,

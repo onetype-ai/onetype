@@ -1,5 +1,10 @@
 ui.apps.Fn('item.visible', function(item)
 {
+	if(item.Get('isHidden'))
+	{
+		return false;
+	}
+
 	const condition = item.Get('condition');
 
 	const mode = $ot.ui.modes.active()?.Get('id');
