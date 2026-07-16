@@ -9,12 +9,6 @@ const tokens = onetype.Addon('workspace.tokens', (addon) =>
 		description: 'Unique token id.'
 	});
 
-	addon.Field('team_id', {
-		type: 'number',
-		required: true,
-		description: 'Id of the team the token belongs to.'
-	});
-
 	addon.Field('user_id', {
 		type: 'number',
 		required: true,
@@ -68,7 +62,6 @@ const tokens = onetype.Addon('workspace.tokens', (addon) =>
 	});
 
 	addon.Schema('id bigserial primary key');
-	addon.Schema('team_id bigint not null');
 	addon.Schema('user_id bigint not null');
 	addon.Schema('type varchar(50) not null');
 	addon.Schema('token varchar(255) not null');

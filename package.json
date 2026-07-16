@@ -5,9 +5,7 @@
     "type": "module",
     "exports": {
         ".": "./index.js",
-        "./workspace/teams": "./addons/workspace/teams/back/load.js",
         "./workspace/users": "./addons/workspace/users/back/load.js",
-        "./workspace/projects": "./addons/workspace/projects/back/load.js",
         "./workspace/tokens": "./addons/workspace/tokens/back/load.js"
     },
     "license": "MIT",

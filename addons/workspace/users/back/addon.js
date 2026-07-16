@@ -9,12 +9,6 @@ const users = onetype.Addon('workspace.users', (addon) =>
 		description: 'Unique user id.'
 	});
 
-	addon.Field('team_id', {
-		type: 'number',
-		required: true,
-		description: 'Id of the team the user belongs to.'
-	});
-
 	addon.Field('name', {
 		type: 'string',
 		required: true,
@@ -58,7 +52,6 @@ const users = onetype.Addon('workspace.users', (addon) =>
 	});
 
 	addon.Schema('id bigserial primary key');
-	addon.Schema('team_id bigint not null');
 	addon.Schema('name varchar(255) not null');
 	addon.Schema('email varchar(255) not null');
 	addon.Schema('password varchar(255) not null');
@@ -67,7 +60,6 @@ const users = onetype.Addon('workspace.users', (addon) =>
 	addon.Schema('created_at timestamptz not null default now()');
 	addon.Schema('deleted_at timestamptz');
 	addon.Schema('unique (email)');
-	addon.Schema('index (team_id)');
 });
 
 export default users;

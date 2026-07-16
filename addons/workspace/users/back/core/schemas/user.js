@@ -5,10 +5,6 @@ onetype.DataSchema('workspace.user', {
 		type: 'number',
 		description: 'Unique user id.'
 	},
-	team_id: {
-		type: 'number',
-		description: 'Id of the team the user belongs to.'
-	},
 	name: {
 		type: 'string',
 		description: 'Display name shown across the platform.'

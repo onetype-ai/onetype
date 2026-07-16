@@ -5,10 +5,6 @@ onetype.DataSchema('workspace.token', {
 		type: 'number',
 		description: 'Unique token id.'
 	},
-	team_id: {
-		type: 'number',
-		description: 'Id of the team the token belongs to.'
-	},
 	user_id: {
 		type: 'number',
 		description: 'Id of the user the token was issued to.'
