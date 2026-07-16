@@ -61,11 +61,6 @@ ui.dashboard = onetype.Addon('ui.dashboard', (addon) =>
 					value: false,
 					description: 'When true, the section shows only while a user is logged in.'
 				},
-				project: {
-					type: 'boolean',
-					value: false,
-					description: 'When true, the section shows only while a project is active.'
-				},
 				permission: {
 					type: 'array',
 					value: [],
@@ -74,7 +69,7 @@ ui.dashboard = onetype.Addon('ui.dashboard', (addon) =>
 				},
 				callback: {
 					type: 'function',
-					description: 'Custom check called with the section item. Return false to hide. Runs after mode, user, project and permission pass.'
+					description: 'Custom check called with the section item. Return false to hide. Runs after mode, user and permission pass.'
 				}
 			},
 			description: 'Visibility rules. Empty object means the section shows everywhere its widgets do.'
@@ -164,11 +159,6 @@ ui.dashboard = onetype.Addon('ui.dashboard', (addon) =>
 					value: false,
 					description: 'When true, the widget shows only while a user is logged in.'
 				},
-				project: {
-					type: 'boolean',
-					value: false,
-					description: 'When true, the widget shows only while a project is active.'
-				},
 				permission: {
 					type: 'array',
 					value: [],
@@ -177,7 +167,7 @@ ui.dashboard = onetype.Addon('ui.dashboard', (addon) =>
 				},
 				callback: {
 					type: 'function',
-					description: 'Custom check called with the widget item. Return false to hide. Runs after mode, user, project and permission pass.'
+					description: 'Custom check called with the widget item. Return false to hide. Runs after mode, user and permission pass.'
 				}
 			},
 			description: 'Visibility rules. Empty object means the widget shows everywhere.'

@@ -70,11 +70,6 @@ ui.explorer = onetype.Addon('ui.explorer', (addon) =>
 				value: false,
 				description: 'When true, the entry shows only while a user is logged in.'
 			},
-			project: {
-				type: 'boolean',
-				value: false,
-				description: 'When true, the entry shows only while a project is active.'
-			},
 			permission: {
 				type: 'array',
 				value: [],
@@ -83,7 +78,7 @@ ui.explorer = onetype.Addon('ui.explorer', (addon) =>
 			},
 			callback: {
 				type: 'function',
-				description: 'Custom check called with the item. Return false to hide. Runs after app, mode, user and project pass.'
+				description: 'Custom check called with the item. Return false to hide. Runs after app, mode, user pass.'
 			}
 		},
 		description: 'Visibility rules. Empty object means the entry shows everywhere.'

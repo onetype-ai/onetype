@@ -48,11 +48,6 @@ modules.shortcuts = onetype.Addon('modules.shortcuts', (addon) =>
 				value: false,
 				description: 'When true, the shortcut fires only while a user is logged in.'
 			},
-			project: {
-				type: 'boolean',
-				value: false,
-				description: 'When true, the shortcut fires only while a project is active.'
-			},
 			permission: {
 				type: 'array',
 				value: [],
@@ -61,7 +56,7 @@ modules.shortcuts = onetype.Addon('modules.shortcuts', (addon) =>
 			},
 			callback: {
 				type: 'function',
-				description: 'Custom check called with the item and the keyboard event. Return false to skip. Runs after app, mode, user and project pass.'
+				description: 'Custom check called with the item and the keyboard event. Return false to skip. Runs after app, mode, user pass.'
 			}
 		},
 		description: 'Firing rules. Empty object means the shortcut fires everywhere.'

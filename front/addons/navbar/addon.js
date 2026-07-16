@@ -39,11 +39,6 @@ ui.navbar = onetype.Addon('ui.navbar', (addon) =>
 				value: false,
 				description: 'When true, the item shows only while a user is logged in.'
 			},
-			project: {
-				type: 'boolean',
-				value: false,
-				description: 'When true, the item shows only while a project is active.'
-			},
 			permission: {
 				type: 'array',
 				value: [],
@@ -52,7 +47,7 @@ ui.navbar = onetype.Addon('ui.navbar', (addon) =>
 			},
 			callback: {
 				type: 'function',
-				description: 'Custom check called with the item. Return false to hide. Runs after app, mode, user, project and permission pass.'
+				description: 'Custom check called with the item. Return false to hide. Runs after app, mode, user and permission pass.'
 			}
 		},
 		description: 'Visibility rules. Empty object means the item shows everywhere.'

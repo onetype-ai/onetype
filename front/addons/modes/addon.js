@@ -33,11 +33,6 @@ ui.modes = onetype.Addon('ui.modes', (addon) =>
 				value: false,
 				description: 'When true, the mode shows only while a user is logged in.'
 			},
-			project: {
-				type: 'boolean',
-				value: false,
-				description: 'When true, the mode shows only while a project is active.'
-			},
 			permission: {
 				type: 'array',
 				value: [],
@@ -46,7 +41,7 @@ ui.modes = onetype.Addon('ui.modes', (addon) =>
 			},
 			callback: {
 				type: 'function',
-				description: 'Custom check called with the item. Return false to hide. Runs after user, project and permission pass.'
+				description: 'Custom check called with the item. Return false to hide. Runs after user and permission pass.'
 			}
 		},
 		description: 'Visibility rules. Empty object means the mode shows everywhere.'

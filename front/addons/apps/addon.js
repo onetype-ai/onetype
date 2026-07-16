@@ -63,11 +63,6 @@ ui.apps = onetype.Addon('ui.apps', (addon) =>
 				value: false,
 				description: 'When true, the app shows only while a user is logged in.'
 			},
-			project: {
-				type: 'boolean',
-				value: false,
-				description: 'When true, the app shows only while a project is active.'
-			},
 			permission: {
 				type: 'array',
 				value: [],
@@ -76,7 +71,7 @@ ui.apps = onetype.Addon('ui.apps', (addon) =>
 			},
 			callback: {
 				type: 'function',
-				description: 'Custom check called with the item. Return false to hide. Runs after mode, user, project and permission pass.'
+				description: 'Custom check called with the item. Return false to hide. Runs after mode, user and permission pass.'
 			}
 		},
 		description: 'Visibility rules. Empty object means the app shows everywhere.'
