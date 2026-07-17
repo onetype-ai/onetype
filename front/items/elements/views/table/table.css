@@ -22,6 +22,7 @@
 	width: 100%;
 }
 
+.e-320277d9 > .box.bg-0 { --fill: transparent; --line: transparent; }
 .e-320277d9 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); }
 .e-320277d9 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); }
 .e-320277d9 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); }
@@ -30,7 +31,7 @@
 .e-320277d9 > .box.bg-2,
 .e-320277d9 > .box.bg-3
 {
-	padding: var(--ot-spacing-s) var(--ot-spacing-l);
+	padding: var(--ot-spacing-s) var(--ot-spacing-m);
 	border: 1px solid var(--line);
 	border-radius: var(--ot-radius-l);
 	background: var(--fill);

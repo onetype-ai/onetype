@@ -32,8 +32,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Background depth, renders the article on its own bordered surface.'
+				options: [0, 1, 2, 3],
+				description: 'Background depth, renders the article on its own bordered surface. 0 renders transparent, without background or borders.'
 			},
 			glow: {
 				type: 'string',
@@ -51,15 +51,58 @@ onetype.AddonReady('elements', (elements) =>
 
 				this.segments = [];
 
+				const table = (block) =>
+				{
+					const lines = block.trim().split('\n');
+					const cells = (line) => line.trim().replace(/^\||\|$/g, '').split('|').map((cell) => cell.trim().replace(/`/g, ''));
+					const fields = cells(lines[0]).map((label, index) => ({ key: 'c' + index, label, type: 'text' }));
+
+					const items = lines.slice(2).map((line, index) =>
+					{
+						const values = cells(line);
+						const item = { id: index + 1 };
+
+						fields.forEach((field, position) => item[field.key] = values[position] !== undefined ? values[position] : '');
+
+						return item;
+					});
+
+					return { fields, items };
+				};
+
+				const text = (part) =>
+				{
+					const chunks = part.split(/((?:[ \t]*\|.*\|[ \t]*(?:\n|$)){2,})/);
+
+					for(let i = 0; i < chunks.length; i++)
+					{
+						const chunk = chunks[i];
+
+						if(!chunk || !chunk.trim())
+						{
+							continue;
+						}
+
+						if(i % 2)
+						{
+							this.segments.push({ key: this.segments.length, type: 'table', ...table(chunk) });
+						}
+						else
+						{
+							this.segments.push({ key: this.segments.length, type: 'html', content: onetype.Markdown(chunk) });
+						}
+					}
+				};
+
 				for(let i = 0; i < parts.length; i += 3)
 				{
-					const text = parts[i];
+					const part = parts[i];
 					const language = parts[i + 1];
 					const source = parts[i + 2];
 
-					if(text && text.trim())
+					if(part && part.trim())
 					{
-						this.segments.push({ key: this.segments.length, type: 'html', content: onetype.Markdown(text) });
+						text(part);
 					}
 
 					if(source !== undefined)
@@ -75,7 +118,7 @@ onetype.AddonReady('elements', (elements) =>
 			{
 				const list = ['box'];
 
-				if(this.background)
+				if(this.background || this.background === 0)
 				{
 					list.push('bg-' + this.background);
 				}
@@ -107,7 +150,14 @@ onetype.AddonReady('elements', (elements) =>
 									ot-if="segment.type === 'code'"
 									:source="segment.source"
 									:language="segment.language"
+									:background="Math.min(background + 1, 3)"
 								></e-global-code>
+								<e-views-table
+									ot-if="segment.type === 'table'"
+									:fields="segment.fields"
+									:items="segment.items"
+									:background="Math.min(background + 1, 3)"
+								></e-views-table>
 							</div>
 						</div>
 					</div>

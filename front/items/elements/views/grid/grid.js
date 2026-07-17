@@ -63,8 +63,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Surface depth of the grid, 1 sits on the canvas and 3 on the deepest panel. 0 renders transparent cells straight on the canvas.'
+				options: [0, 1, 2, 3],
+				description: 'Surface depth of the grid, 1 sits on the canvas and 3 on the deepest panel. 0 renders transparent cells straight on the canvas, without background or borders.'
 			},
 			group: {
 				type: 'string',

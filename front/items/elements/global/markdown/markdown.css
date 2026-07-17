@@ -26,6 +26,7 @@
 	background: var(--fill);
 }
 
+.e-4696d703 > .box.bg-0 { --fill: transparent; --line: transparent; --above: var(--ot-bg-1); --edge: var(--ot-bg-1-border); }
 .e-4696d703 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); }
 .e-4696d703 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
 .e-4696d703 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
@@ -173,7 +174,7 @@
 {
 	width: 100%;
 	margin: 0 0 1em;
-	border: 1px solid var(--ot-bg-2-border);
+	border: 1px solid var(--edge);
 	border-radius: var(--ot-radius-m);
 	border-collapse: separate;
 	border-spacing: 0;
@@ -184,7 +185,7 @@
 .e-4696d703 > .box > .body > .prose table th
 {
 	padding: var(--ot-spacing-s) var(--ot-spacing-m);
-	background: var(--ot-bg-3);
+	background: var(--above);
 	color: var(--ot-text-3);
 	font-size: 11px;
 	font-weight: 650;
@@ -196,7 +197,7 @@
 .e-4696d703 > .box > .body > .prose table td
 {
 	padding: var(--ot-spacing-s) var(--ot-spacing-m);
-	border-top: 1px solid var(--ot-bg-2-border);
+	border-top: 1px solid var(--edge);
 	color: var(--ot-text-2);
 }
 

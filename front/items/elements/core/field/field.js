@@ -37,6 +37,12 @@ onetype.AddonReady('elements', (elements) =>
 				value: 'horizontal',
 				options: ['horizontal', 'vertical'],
 				description: 'Label and control side by side, or stacked.'
+			},
+			background: {
+				type: 'number',
+				value: 0,
+				options: [0, 1, 2, 3],
+				description: 'Background depth from 1 to 3, 0 for none. Without a background the field has no padding.'
 			}
 		},
 		render: function()
@@ -54,6 +60,11 @@ onetype.AddonReady('elements', (elements) =>
 			this.classes = () =>
 			{
 				const list = ['box', this.orientation];
+
+				if(this.background)
+				{
+					list.push('filled', 'bg-' + this.background);
+				}
 
 				if(this.hasError)
 				{
