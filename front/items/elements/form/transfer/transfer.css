@@ -262,6 +262,7 @@
 
 /* ===== SURFACE ===== */
 
+.e-1e66ff82 > .box.bg-0 > .panel { background: transparent; border-color: transparent; }
 .e-1e66ff82 > .box.bg-1 > .panel { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-1e66ff82 > .box.bg-2 > .panel { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-1e66ff82 > .box.bg-3 > .panel { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }

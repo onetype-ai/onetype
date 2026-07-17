@@ -311,6 +311,9 @@
 
 /* ===== SURFACE ===== */
 
+.e-2248d40 > .box.bg-0 { background: transparent; border-color: transparent; }
+.e-2248d40 > .box.bg-0 > .bar { background: transparent; border-bottom-color: transparent; }
+
 .e-2248d40 > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-2248d40 > .box.bg-1 > .bar { background: var(--ot-bg-1); border-bottom-color: var(--ot-bg-1-border); }
 

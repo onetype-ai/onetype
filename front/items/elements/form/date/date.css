@@ -175,6 +175,7 @@
 
 /* ===== SURFACE ===== */
 
+.e-283879c1 > .box.bg-0 > .field { background: transparent; border-color: transparent; }
 .e-283879c1 > .box.bg-1 > .field { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-283879c1 > .box.bg-2 > .field { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-283879c1 > .box.bg-3 > .field { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }

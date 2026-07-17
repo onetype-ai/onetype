@@ -21,6 +21,7 @@
 
 /* Surface */
 
+.e-283fbe2c > .box.bg-0 { background: transparent; border-color: transparent; }
 .e-283fbe2c > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-283fbe2c > .box.bg-2 { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-283fbe2c > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }

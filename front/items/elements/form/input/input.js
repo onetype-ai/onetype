@@ -30,7 +30,6 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			icon: {
 				type: 'string',
-				value: 'search',
 				description: 'Icon on the left side of the input.'
 			},
 			iconRight: {
@@ -58,6 +57,11 @@ onetype.AddonReady('elements', (elements) =>
 				type: 'boolean',
 				value: false,
 				description: 'Only allow values from options.'
+			},
+			reveal: {
+				type: 'boolean',
+				value: true,
+				description: 'Shows the visibility toggle on password inputs.'
 			},
 			clearable: {
 				type: 'boolean',
@@ -93,8 +97,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Background depth of the control surface from 1 to 3.'
+				options: [0, 1, 2, 3],
+				description: 'Background depth of the control surface from 1 to 3. 0 renders transparent, without background or borders.'
 			},
 			_input: {
 				type: 'function',
@@ -384,7 +388,7 @@ onetype.AddonReady('elements', (elements) =>
 							<i>close</i>
 						</button>
 						<button
-							ot-if="isPassword && !disabled"
+							ot-if="reveal && isPassword && !disabled"
 							type="button"
 							class="action"
 							ot-click.stop="togglePassword"

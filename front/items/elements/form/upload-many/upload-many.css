@@ -37,6 +37,7 @@
 	transition: border-color var(--ot-transition), background var(--ot-transition);
 }
 
+.e-3f8bc2c8 > .box.bg-0 > .zone { background: transparent; border-color: transparent; }
 .e-3f8bc2c8 > .box.bg-1 > .zone { background: var(--ot-bg-1); }
 .e-3f8bc2c8 > .box.bg-2 > .zone { background: var(--ot-bg-2); }
 .e-3f8bc2c8 > .box.bg-3 > .zone { background: var(--ot-bg-3); }
@@ -102,6 +103,7 @@
 	transition: border-color var(--ot-transition), transform var(--ot-transition), box-shadow var(--ot-transition), opacity var(--ot-transition);
 }
 
+.e-3f8bc2c8 > .box.bg-0 > .grid > div > .tile { background: transparent; border-color: transparent; }
 .e-3f8bc2c8 > .box.bg-1 > .grid > div > .tile { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-3f8bc2c8 > .box.bg-2 > .grid > div > .tile { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-3f8bc2c8 > .box.bg-3 > .grid > div > .tile { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
