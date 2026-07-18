@@ -65,12 +65,17 @@ onetype.AddonReady('elements', (elements) =>
 				type: 'string',
 				options: ['s', 'm', 'l', 'full'],
 				description: 'Constrains the content to a centered container of that size, for full width headers with a background. Empty spans the parent.'
+			},
+			pattern: {
+				type: 'string',
+				options: ['dots', 'lines'],
+				description: 'Backdrop pattern drawn across the header surface while a background is set. Empty renders a plain surface.'
 			}
 		},
 		render: function()
 		{
 			return /* html */ `
-				<div :class="background ? 'box bg-' + background : 'box'" :style="'--accent: ' + accent">
+				<div :class="'box' + (background ? ' bg-' + background : '') + (background && pattern ? ' ' + pattern : '')" :style="'--accent: ' + accent">
 					<div :class="container ? 'inner ot-container-' + container : 'inner'">
 						<div class="top"><slot name="top"></slot></div>
 						<div class="row">

@@ -36,6 +36,52 @@
 	border-radius: var(--ot-radius-l);
 }
 
+/* Pattern — falls from the top edge and fades out downward */
+
+.e-236b31a1 > .box.dots,
+.e-236b31a1 > .box.lines
+{
+	--pattern: color-mix(in srgb, var(--ot-text-3) 4.4%, transparent);
+
+	position: relative;
+}
+
+.e-236b31a1 > .box.dots::before,
+.e-236b31a1 > .box.lines::before
+{
+	content: '';
+	position: absolute;
+	inset: 0;
+	mask-image:
+		linear-gradient(to bottom, transparent, black 15%, black 50%, transparent 100%),
+		linear-gradient(to right, transparent, black 48px, black calc(100% - 48px), transparent);
+	mask-composite: intersect;
+	-webkit-mask-image:
+		linear-gradient(to bottom, transparent, black 15%, black 50%, transparent 100%),
+		linear-gradient(to right, transparent, black 48px, black calc(100% - 48px), transparent);
+	-webkit-mask-composite: source-in;
+	pointer-events: none;
+}
+
+.e-236b31a1 > .box.dots::before
+{
+	background-image: radial-gradient(var(--pattern) 1px, transparent 1px);
+	background-size: 22px 22px;
+}
+
+.e-236b31a1 > .box.lines::before
+{
+	background-image:
+		linear-gradient(var(--pattern) 1px, transparent 1px),
+		linear-gradient(90deg, var(--pattern) 1px, transparent 1px);
+	background-size: 48px 48px;
+}
+
+.e-236b31a1 .inner
+{
+	position: relative;
+}
+
 /* Inner */
 
 .e-236b31a1 .inner
