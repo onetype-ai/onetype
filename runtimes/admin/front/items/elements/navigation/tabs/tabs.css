@@ -304,24 +304,3 @@
 .e-1a8b6ac1 > .box.bg-2 .tab > .count { background: var(--ot-bg-3); }
 .e-1a8b6ac1 > .box.bg-3 .tab > .count { background: var(--ot-bg-3); }
 
-/* ===== STRETCH ===== */
-
-.e-1a8b6ac1 > .box.stretch
-{
-	width: 100%;
-}
-
-.e-1a8b6ac1 > .box.stretch > .tabs
-{
-	width: 100%;
-}
-
-.e-1a8b6ac1 > .box.stretch.segmented > .tabs
-{
-	align-self: stretch;
-}
-
-.e-1a8b6ac1 > .box.stretch > .tabs > .tab
-{
-	flex: 1;
-}

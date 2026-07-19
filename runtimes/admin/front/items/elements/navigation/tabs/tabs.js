@@ -67,11 +67,6 @@ onetype.AddonReady('elements', (elements) =>
 				options: ['underline', 'pills', 'contained', 'segmented'],
 				description: 'Visual tone of the tabs.'
 			},
-			stretch: {
-				type: 'boolean',
-				value: false,
-				description: 'Stretch to the container width with evenly sized tabs.'
-			},
 			background: {
 				type: 'number',
 				value: 1,
@@ -107,11 +102,6 @@ onetype.AddonReady('elements', (elements) =>
 				if(this.background || this.background === 0)
 				{
 					list.push('bg-' + this.background);
-				}
-
-				if(this.stretch)
-				{
-					list.push('stretch');
 				}
 
 				return list.join(' ');
