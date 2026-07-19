@@ -26,7 +26,6 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			action: {
 				type: 'string',
-				value: 'Try Again',
 				description: 'Retry button label. Empty hides button.'
 			},
 			color: {
