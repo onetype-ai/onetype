@@ -56,9 +56,9 @@
 .e-3152fd59 > .box > .plane > .wires > path
 {
 	fill: none;
-	stroke-width: 1.5px;
-	stroke: var(--ot-bg-3-border);
-	stroke-dasharray: 4 4;
+	stroke-width: 2px;
+	stroke: color-mix(in srgb, var(--ot-text-3) 35%, transparent);
+	stroke-dasharray: 5 5;
 }
 
 .e-3152fd59 > .box > .plane > .wires > circle
