@@ -64,7 +64,7 @@ onetype.AddonReady('elements', (elements) =>
 				type: 'number',
 				value: 1,
 				options: [0, 1, 2, 3],
-				description: 'Background depth of the entry cards from 1 to 3. 0 renders transparent, without background or borders.'
+				description: 'Background depth the board sits on from 0 to 3. Cards and column outlines sit one step above it.'
 			},
 			_open: {
 				type: 'function',
@@ -121,7 +121,7 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div :class="_open ? 'box clickable ot-scrollbar' : 'box ot-scrollbar'">
+				<div :class="'box bg-' + background + (_open ? ' clickable' : '') + ' ot-scrollbar'">
 					<div ot-for="lane in lanes" :ot-key="lane.key" :class="'lane ' + lane.color">
 						<div class="head">
 							<span class="dot"></span>
@@ -129,7 +129,7 @@ onetype.AddonReady('elements', (elements) =>
 							<span class="count">{{ lane.count }}</span>
 						</div>
 						<div class="cards">
-							<div ot-for="card in lane.cards" :ot-key="card.key" :class="'card bg-' + background" ot-click="({ event }) => open(event, card.item)">
+							<div ot-for="card in lane.cards" :ot-key="card.key" class="card" ot-click="({ event }) => open(event, card.item)">
 								<img ot-if="card.image" class="cover" :src="card.image" loading="lazy" />
 								<span class="title">{{ card.title }}</span>
 								<span ot-if="card.description" class="description">{{ card.description }}</span>

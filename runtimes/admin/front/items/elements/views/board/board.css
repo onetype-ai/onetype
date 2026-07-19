@@ -26,6 +26,13 @@
 	padding-bottom: var(--ot-spacing-s);
 }
 
+/* Depth — the box carries the surface, everything inside sits one step above */
+
+.e-310b2af1 > .box.bg-0 { --fill: transparent; --line: transparent; --above: var(--ot-bg-1); --edge: var(--ot-bg-1-border); --hover: var(--ot-bg-1-hover); }
+.e-310b2af1 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); --hover: var(--ot-bg-2-hover); }
+.e-310b2af1 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
+.e-310b2af1 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
+
 /* Lane */
 
 .e-310b2af1 > .box > .lane
@@ -87,7 +94,7 @@
 	flex-direction: column;
 	gap: var(--ot-spacing-s);
 	padding: var(--ot-spacing-s);
-	border: 1px dashed var(--ot-bg-2-border);
+	border: 1px dashed var(--edge);
 	border-radius: var(--ot-radius-l);
 	min-height: 120px;
 }
@@ -98,16 +105,11 @@
 	flex-direction: column;
 	gap: 6px;
 	padding: var(--ot-spacing-s);
-	border: 1px solid var(--line);
+	border: 1px solid var(--edge);
 	border-radius: var(--ot-radius-m);
-	background: var(--fill);
-	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast);
+	background: var(--above);
+	transition: background var(--ot-transition-fast), transform var(--ot-transition-fast);
 }
-
-.e-310b2af1 > .box > .lane > .cards > .card.bg-0 { --fill: transparent; --line: transparent; --edge: transparent; }
-.e-310b2af1 > .box > .lane > .cards > .card.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --edge: var(--ot-bg-2-border); }
-.e-310b2af1 > .box > .lane > .cards > .card.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --edge: var(--ot-bg-3-border); }
-.e-310b2af1 > .box > .lane > .cards > .card.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --edge: var(--ot-bg-3-border); }
 
 .e-310b2af1 > .box.clickable > .lane > .cards > .card
 {
@@ -116,7 +118,7 @@
 
 .e-310b2af1 > .box.clickable > .lane > .cards > .card:hover
 {
-	border-color: var(--edge);
+	background: var(--hover);
 	transform: translateY(-1px);
 }
 
