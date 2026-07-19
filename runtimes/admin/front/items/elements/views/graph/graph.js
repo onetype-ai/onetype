@@ -4,7 +4,7 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'views-graph',
 		icon: 'graph_3',
 		name: 'Graph View',
-		description: 'Hierarchy drawn as a wide canvas: rich cards with covers laid out left to right by depth, curved connectors between parents and children, panning by scroll.',
+		description: 'Hierarchy drawn as a wide canvas: rich cards flowing top to bottom with covers, avatars, descriptions, detail rows, tags and item lists, wired by curved connectors.',
 		category: 'Views',
 		collection: 'Home',
 		author: 'OneType',
@@ -12,20 +12,17 @@ onetype.AddonReady('elements', (elements) =>
 			items: {
 				type: 'array',
 				value: [
-					{ id: 'ceo', title: 'Vera Antić', subtitle: 'Chief Executive', icon: 'face', color: 'brand', badge: 'Lead', children: [
-						{ id: 'product', title: 'Marko Ilić', subtitle: 'Product', icon: 'face', color: 'blue', children: [
-							{ id: 'design', title: 'Sara Perić', subtitle: 'Design', icon: 'face', color: 'green' },
-							{ id: 'research', title: 'Ivan Simić', subtitle: 'Research', icon: 'face', color: 'orange' }
+					{ id: 'ceo', title: 'Vera Antić', subtitle: 'Chief Executive', avatar: 'VA', color: 'brand', badge: 'Lead', meta: '12 yrs', description: 'Keeps the whole company pointed at one goal and clears the road when teams collide.', tags: ['strategy', 'hiring'], children: [
+						{ id: 'product', title: 'Marko Ilić', subtitle: 'Product', avatar: 'MI', color: 'blue', description: 'Turns customer noise into a roadmap people actually ship.', rows: [{ label: 'Focus', value: 'Q3 launch' }, { label: 'Squad', value: '6 people' }], children: [
+							{ id: 'design', title: 'Sara Perić', subtitle: 'Design', avatar: 'SP', color: 'green', description: 'Owns the design system and the face of every screen.', list: [{ icon: 'palette', label: 'design:tokens' }, { icon: 'brush', label: 'design:review' }] },
+							{ id: 'research', title: 'Ivan Simić', subtitle: 'Research', avatar: 'IS', color: 'orange', description: 'Talks to users so nobody has to guess.' }
 						] },
-						{ id: 'engineering', title: 'Lena Kovač', subtitle: 'Engineering', icon: 'face', color: 'red', children: [
-							{ id: 'platform', title: 'Platform', subtitle: 'Core systems', icon: 'hub', color: 'red' },
-							{ id: 'mobile', title: 'Mobile', subtitle: 'Apps', icon: 'smartphone', color: 'blue' }
-						] }
+						{ id: 'engineering', title: 'Lena Kovač', subtitle: 'Engineering', avatar: 'LK', color: 'red', description: 'Runs the platform and mobile squads, allergic to flaky builds.', list: [{ icon: 'terminal', label: 'ci:deploy' }, { icon: 'bug_report', label: 'ci:test' }] }
 					] }
 				],
 				each: {
 					type: 'object',
-					description: 'A single node: id, title, optional subtitle, icon, color, badge, meta, cover image url and children of the same shape.'
+					description: 'A single node: id, title, subtitle, description, avatar text, icon, color, badge, meta, cover image url, tags array, rows as { label, value }, list as { icon, label, badge } and children of the same shape.'
 				},
 				description: 'Nodes of the first level, nested through children.'
 			},
@@ -51,27 +48,58 @@ onetype.AddonReady('elements', (elements) =>
 		},
 		render: function()
 		{
-			const WIDTH = 250;
-			const HEIGHT = 108;
-			const GAP_X = 90;
-			const GAP_Y = 18;
+			const WIDTH = 300;
+			const GAP_X = 32;
+			const GAP_Y = 70;
 			const PAD = 24;
 
 			this.current = this.active ? this.active : '';
+
+			this.measure = (node) =>
+			{
+				let height = 34 + 30 + 44;
+
+				if(node.description)
+				{
+					height = height + 54;
+				}
+
+				if(Array.isArray(node.tags) && node.tags.length)
+				{
+					height = height + 30;
+				}
+
+				if(Array.isArray(node.rows) && node.rows.length)
+				{
+					height = height + node.rows.length * 22 + 10;
+				}
+
+				if(Array.isArray(node.list) && node.list.length)
+				{
+					height = height + node.list.length * 28 + 10;
+				}
+
+				if(node.badge || node.meta)
+				{
+					height = height + 30;
+				}
+
+				return height;
+			};
 
 			this.layout = () =>
 			{
 				const cards = [];
 				const links = [];
+				const levels = [];
 				let cursor = 0;
 
 				const walk = (node, depth, parent) =>
 				{
 					const children = Array.isArray(node.children) ? node.children : [];
-					const start = cursor;
+					const card = { node, depth, x: 0, y: 0, height: this.measure(node) };
 
-					const card = { node, x: PAD + depth * (WIDTH + GAP_X), y: 0 };
-
+					levels[depth] = Math.max(levels[depth] ? levels[depth] : 0, card.height);
 					cards.push(card);
 
 					if(children.length)
@@ -83,20 +111,18 @@ onetype.AddonReady('elements', (elements) =>
 
 						const mine = cards.filter((entry) => children.includes(entry.node));
 
-						card.y = (Math.min(...mine.map((entry) => entry.y)) + Math.max(...mine.map((entry) => entry.y))) / 2;
+						card.x = (Math.min(...mine.map((entry) => entry.x)) + Math.max(...mine.map((entry) => entry.x))) / 2;
 					}
 					else
 					{
-						card.y = PAD + cursor * (HEIGHT + GAP_Y);
+						card.x = PAD + cursor * (WIDTH + GAP_X);
 						cursor = cursor + 1;
 					}
 
 					if(parent)
 					{
-						links.push({ id: parent.node.id + '-' + node.id, from: card, to: parent, color: node.color ? node.color : 'brand' });
+						links.push({ id: parent.node.id + '-' + node.id, child: card, parent: parent, color: node.color ? node.color : 'brand' });
 					}
-
-					return start;
 				};
 
 				for(const node of this.items)
@@ -104,19 +130,33 @@ onetype.AddonReady('elements', (elements) =>
 					walk(node, 0, null);
 				}
 
-				const width = Math.max(...cards.map((card) => card.x)) + WIDTH + PAD;
-				const height = Math.max(...cards.map((card) => card.y)) + HEIGHT + PAD;
+				const tops = [];
+				let running = PAD;
+
+				for(let depth = 0; depth < levels.length; depth++)
+				{
+					tops[depth] = running;
+					running = running + levels[depth] + GAP_Y;
+				}
+
+				for(const card of cards)
+				{
+					card.y = tops[card.depth];
+				}
 
 				for(const link of links)
 				{
-					const x1 = link.to.x + WIDTH;
-					const y1 = link.to.y + HEIGHT / 2;
-					const x2 = link.from.x;
-					const y2 = link.from.y + HEIGHT / 2;
-					const bend = (x2 - x1) / 2;
+					const x1 = link.parent.x + WIDTH / 2;
+					const y1 = link.parent.y + link.parent.height;
+					const x2 = link.child.x + WIDTH / 2;
+					const y2 = link.child.y;
+					const bend = (y2 - y1) / 2;
 
-					link.d = 'M ' + x1 + ' ' + y1 + ' C ' + (x1 + bend) + ' ' + y1 + ', ' + (x2 - bend) + ' ' + y2 + ', ' + x2 + ' ' + y2;
+					link.d = 'M ' + x1 + ' ' + y1 + ' C ' + x1 + ' ' + (y1 + bend) + ', ' + x2 + ' ' + (y2 - bend) + ', ' + x2 + ' ' + y2;
 				}
+
+				const width = Math.max(...cards.map((card) => card.x)) + WIDTH + PAD;
+				const height = running - GAP_Y + PAD;
 
 				return { cards, links, width, height };
 			};
@@ -145,7 +185,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.place = (card) =>
 			{
-				return 'left: ' + card.x + 'px; top: ' + card.y + 'px; width: ' + WIDTH + 'px; height: ' + HEIGHT + 'px;';
+				return 'left: ' + card.x + 'px; top: ' + card.y + 'px; width: ' + WIDTH + 'px; min-height: ' + card.height + 'px;';
 			};
 
 			this.frame = () =>
@@ -164,12 +204,32 @@ onetype.AddonReady('elements', (elements) =>
 						</svg>
 						<div ot-for="card in layout().cards" :ot-key="card.node.id" :class="stamp(card)" :style="place(card)" ot-click="() => pick(card.node)">
 							<div class="cover" :style="card.node.cover ? 'background-image: url(' + card.node.cover + ')' : ''"></div>
-							<span class="tile"><i>{{ card.node.icon ? card.node.icon : 'circle' }}</i></span>
+							<span class="face">
+								<i ot-if="!card.node.avatar">{{ card.node.icon ? card.node.icon : 'circle' }}</i>
+								<b ot-if="card.node.avatar">{{ card.node.avatar }}</b>
+							</span>
 							<div class="words">
 								<span class="title">{{ card.node.title }}</span>
 								<span ot-if="card.node.subtitle" class="subtitle">{{ card.node.subtitle }}</span>
 							</div>
-							<div class="side">
+							<p ot-if="card.node.description" class="description">{{ card.node.description }}</p>
+							<div ot-if="card.node.tags && card.node.tags.length" class="tags">
+								<span ot-for="tag in card.node.tags" :ot-key="tag" class="tag">{{ tag }}</span>
+							</div>
+							<div ot-if="card.node.rows && card.node.rows.length" class="grid">
+								<div ot-for="row in card.node.rows" :ot-key="row.label" class="pair">
+									<span class="label">{{ row.label }}</span>
+									<span class="value">{{ row.value }}</span>
+								</div>
+							</div>
+							<div ot-if="card.node.list && card.node.list.length" class="list">
+								<div ot-for="entry in card.node.list" :ot-key="entry.label" class="entry">
+									<i ot-if="entry.icon">{{ entry.icon }}</i>
+									<span class="name">{{ entry.label }}</span>
+									<span ot-if="entry.badge" class="mark">{{ entry.badge }}</span>
+								</div>
+							</div>
+							<div ot-if="card.node.badge || card.node.meta" class="side">
 								<span ot-if="card.node.badge" class="chip">{{ card.node.badge }}</span>
 								<span ot-if="card.node.meta" class="meta">{{ card.node.meta }}</span>
 							</div>
