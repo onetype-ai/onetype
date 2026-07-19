@@ -242,14 +242,3 @@
 	color: var(--ot-text-1);
 }
 
-/* Blank */
-
-.e-310b2af1 > .box > .lane > .cards > .blank
-{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex: 1;
-	font-size: var(--ot-size-s);
-	color: var(--ot-text-3);
-}
