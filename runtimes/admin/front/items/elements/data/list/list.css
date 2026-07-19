@@ -34,6 +34,49 @@
 .e-594ac875 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
 .e-594ac875 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
 
+/* Search */
+
+.e-594ac875 > .box > .search
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	height: 34px;
+	padding: 0 var(--ot-spacing-s);
+	margin-bottom: var(--ot-spacing-s);
+	border: 1px solid var(--edge);
+	border-radius: var(--ot-radius-m);
+	background: var(--above);
+	transition: border-color var(--ot-transition-fast);
+}
+
+.e-594ac875 > .box > .search:focus-within
+{
+	border-color: var(--ot-brand);
+}
+
+.e-594ac875 > .box > .search > i
+{
+	font-size: 16px;
+	color: var(--ot-text-3);
+}
+
+.e-594ac875 > .box > .search > input
+{
+	flex: 1;
+	border: none;
+	background: transparent;
+	font-family: inherit;
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-1);
+	outline: none;
+}
+
+.e-594ac875 > .box > .search > input::placeholder
+{
+	color: var(--ot-text-3);
+}
+
 /* Empty */
 
 .e-594ac875 > .box > .empty

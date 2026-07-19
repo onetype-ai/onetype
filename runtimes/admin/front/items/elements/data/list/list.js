@@ -54,6 +54,16 @@ onetype.AddonReady('elements', (elements) =>
 				},
 				description: 'Rows top to bottom.'
 			},
+			search: {
+				type: 'boolean',
+				value: false,
+				description: 'Shows a search field above the rows, filtering by label and sublabel as you type.'
+			},
+			placeholder: {
+				type: 'string',
+				value: 'Search...',
+				description: 'Placeholder of the search field while search is on.'
+			},
 			background: {
 				type: 'number',
 				value: 1,
@@ -68,6 +78,33 @@ onetype.AddonReady('elements', (elements) =>
 		},
 		render: function()
 		{
+			/* ===== STATE ===== */
+
+			this.query = '';
+
+			this.visible = () =>
+			{
+				const query = this.query.trim().toLowerCase();
+
+				if(!query)
+				{
+					return this.rows;
+				}
+
+				return this.rows.filter((row) =>
+				{
+					const label = row.label ? String(row.label).toLowerCase() : '';
+					const sublabel = row.sublabel ? String(row.sublabel).toLowerCase() : '';
+
+					return label.includes(query) || sublabel.includes(query);
+				});
+			};
+
+			this.type = () => ({ value }) =>
+			{
+				this.query = value;
+			};
+
 			/* ===== CLASSES ===== */
 
 			this.classes = () =>
@@ -106,8 +143,12 @@ onetype.AddonReady('elements', (elements) =>
 
 			return /* html */ `
 				<div :class="classes()">
-					<div ot-if="!rows.length" class="empty">No data</div>
-					<div ot-for="row in rows" :ot-key="row.label" :class="state(row)" ot-click="() => run(row)">
+					<div ot-if="search" class="search">
+						<i>search</i>
+						<input type="text" :placeholder="placeholder" ot-input="type()" ot-key="search" />
+					</div>
+					<div ot-if="!visible().length" class="empty">{{ rows.length ? 'No matches' : 'No data' }}</div>
+					<div ot-for="row in visible()" :ot-key="row.label" :class="state(row)" ot-click="() => run(row)">
 						<div ot-if="row.percent != null" class="fill" :style="bar(row)"></div>
 					<i ot-if="row.icon" class="lead">{{ row.icon }}</i>
 						<div class="text">
