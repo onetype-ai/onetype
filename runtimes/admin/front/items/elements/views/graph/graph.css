@@ -1,0 +1,194 @@
+/* ===== VIEWS GRAPH ===== */
+
+.e-3152fd59
+{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* Box */
+
+.e-3152fd59 > .box
+{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+/* Depth */
+
+.e-3152fd59 > .box.bg-0 { --fill: transparent; --line: transparent; --above: var(--ot-bg-1); --edge: var(--ot-bg-1-border); --hover: var(--ot-bg-1-hover); }
+.e-3152fd59 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); --hover: var(--ot-bg-2-hover); }
+.e-3152fd59 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
+.e-3152fd59 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
+
+/* Void */
+
+.e-3152fd59 > .box > .void
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-3);
+}
+
+/* Plane */
+
+.e-3152fd59 > .box > .plane
+{
+	position: relative;
+}
+
+/* Wires */
+
+.e-3152fd59 > .box > .plane > .wires
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+}
+
+.e-3152fd59 > .box > .plane > .wires > path
+{
+	fill: none;
+	stroke-width: 1.5px;
+	stroke: var(--ot-bg-3-border);
+}
+
+.e-3152fd59 > .box > .plane > .wires > path.brand { stroke: color-mix(in srgb, var(--ot-brand) 45%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.blue { stroke: color-mix(in srgb, var(--ot-blue) 45%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.red { stroke: color-mix(in srgb, var(--ot-red) 45%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.orange { stroke: color-mix(in srgb, var(--ot-orange) 45%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.green { stroke: color-mix(in srgb, var(--ot-green) 45%, transparent); }
+
+/* Cards */
+
+.e-3152fd59 > .box > .plane > .card
+{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--edge);
+	border-radius: var(--ot-radius-l);
+	background: var(--above);
+	overflow: hidden;
+	cursor: pointer;
+	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast), box-shadow var(--ot-transition-fast);
+}
+
+.e-3152fd59 > .box > .plane > .card.brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
+.e-3152fd59 > .box > .plane > .card.blue { --accent: var(--ot-blue); --tint: var(--ot-blue-opacity); }
+.e-3152fd59 > .box > .plane > .card.red { --accent: var(--ot-red); --tint: var(--ot-red-opacity); }
+.e-3152fd59 > .box > .plane > .card.orange { --accent: var(--ot-orange); --tint: var(--ot-orange-opacity); }
+.e-3152fd59 > .box > .plane > .card.green { --accent: var(--ot-green); --tint: var(--ot-green-opacity); }
+
+.e-3152fd59 > .box > .plane > .card:hover
+{
+	transform: translateY(-2px);
+	border-color: var(--accent);
+}
+
+.e-3152fd59 > .box > .plane > .card.active
+{
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px var(--tint);
+}
+
+/* Cover */
+
+.e-3152fd59 > .box > .plane > .card > .cover
+{
+	height: 30px;
+	background: linear-gradient(120% 100% at 30% 0%, var(--tint), transparent 80%);
+	background-size: cover;
+	background-position: center;
+	flex-shrink: 0;
+}
+
+/* Tile */
+
+.e-3152fd59 > .box > .plane > .card > .tile
+{
+	position: absolute;
+	left: var(--ot-spacing-s);
+	top: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 99px;
+	border: 2px solid var(--above);
+	background: var(--tint);
+	color: var(--accent);
+}
+
+.e-3152fd59 > .box > .plane > .card > .tile > i
+{
+	font-size: 18px;
+}
+
+/* Words */
+
+.e-3152fd59 > .box > .plane > .card > .words
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	padding: var(--ot-spacing-s) var(--ot-spacing-s) 0 var(--ot-spacing-s);
+	min-width: 0;
+	margin-top: 6px;
+}
+
+.e-3152fd59 > .box > .plane > .card > .words > .title
+{
+	font-size: var(--ot-size-s);
+	font-weight: 600;
+	color: var(--ot-text-1);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.e-3152fd59 > .box > .plane > .card > .words > .subtitle
+{
+	font-size: 12px;
+	color: var(--ot-text-3);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Side */
+
+.e-3152fd59 > .box > .plane > .card > .side
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	padding: 6px var(--ot-spacing-s) var(--ot-spacing-s) var(--ot-spacing-s);
+	margin-top: auto;
+}
+
+.e-3152fd59 > .box > .plane > .card > .side > .chip
+{
+	padding: 2px 8px;
+	border-radius: 99px;
+	background: var(--tint);
+	font-size: 10.5px;
+	font-weight: 600;
+	color: var(--accent);
+}
+
+.e-3152fd59 > .box > .plane > .card > .side > .meta
+{
+	margin-left: auto;
+	font-family: var(--ot-font-mono);
+	font-size: 11px;
+	color: var(--ot-text-3);
+}
