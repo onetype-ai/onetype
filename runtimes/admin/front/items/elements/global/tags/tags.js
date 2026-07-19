@@ -47,6 +47,10 @@ onetype.AddonReady('elements', (elements) =>
 							value: false,
 							description: 'Dims the tag and blocks selection.'
 						},
+						tooltip: {
+							type: 'string',
+							description: 'Tooltip shown on hover.'
+						},
 						onClick: {
 							type: 'function',
 							description: 'Called with { event, tag } on click, before the selection change.'
@@ -173,7 +177,7 @@ onetype.AddonReady('elements', (elements) =>
 			return /* html */ `
 				<div :class="'box bg-' + background">
 					<div ot-for="tag in normalized" :ot-key="tag.id">
-						<button type="button" :class="state(tag)" ot-click="({ event }) => select(tag, event)">
+						<button type="button" :class="state(tag)" :ot-tooltip="tag.tooltip ? tag.tooltip : ''" ot-click="({ event }) => select(tag, event)">
 							<span ot-if="tag.color && !tag.icon" class="dot"></span>
 							<i ot-if="tag.icon">{{ tag.icon }}</i>
 							<span class="label">{{ tag.label }}</span>

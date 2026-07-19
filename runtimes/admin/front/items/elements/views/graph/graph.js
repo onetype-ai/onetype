@@ -162,9 +162,7 @@ onetype.AddonReady('elements', (elements) =>
 				return { cards, links, width, height };
 			};
 
-			this.label = (tag) => typeof tag === 'string' ? tag : tag.label;
-
-			this.tip = (tag) => typeof tag === 'string' ? '' : (tag.tooltip ? tag.tooltip : '');
+			this.chips = (node) => node.tags.map((tag) => typeof tag === 'string' ? { id: tag, label: tag } : { id: tag.label, label: tag.label, tooltip: tag.tooltip ? tag.tooltip : '' });
 
 			this.pick = (node) =>
 			{
@@ -239,7 +237,7 @@ onetype.AddonReady('elements', (elements) =>
 							<div ot-if="card.node.avatar || (card.node.tags && card.node.tags.length)" class="footer">
 								<span ot-if="card.node.avatar" class="avatar" :ot-tooltip="card.node.title">{{ card.node.avatar }}</span>
 								<span ot-if="card.node.tags && card.node.tags.length" class="tags">
-									<span ot-for="tag in card.node.tags" :ot-key="label(tag)" class="tag" :ot-tooltip="tip(tag)">{{ label(tag) }}</span>
+									<e-global-tags :items="chips(card.node)" :background="2"></e-global-tags>
 								</span>
 							</div>
 						</div>
