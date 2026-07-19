@@ -96,8 +96,7 @@
 
 .e-3152fd59 > .box > .plane > .card:hover
 {
-	background: var(--hover);
-	transform: translateY(-1px);
+	border-color: var(--highedge);
 }
 
 .e-3152fd59 > .box > .plane > .card.active
