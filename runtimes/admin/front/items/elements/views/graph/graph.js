@@ -4,7 +4,7 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'views-graph',
 		icon: 'graph_3',
 		name: 'Graph View',
-		description: 'Hierarchy drawn as a wide canvas: rich cards flowing top to bottom with covers, avatars, descriptions, detail rows, tags and item lists, wired by curved connectors.',
+		description: 'Hierarchy drawn as a quiet wide canvas in the board language: kind-labeled cards flowing top to bottom with descriptions, detail rows, item lists and footers, wired by soft connectors.',
 		category: 'Views',
 		collection: 'Home',
 		author: 'OneType',
@@ -22,7 +22,7 @@ onetype.AddonReady('elements', (elements) =>
 				],
 				each: {
 					type: 'object',
-					description: 'A single node: id, title, subtitle, description, avatar text, icon, color, badge, meta, cover image url, tags array, rows as { label, value }, list as { icon, label, badge } with a listLabel caption, and children of the same shape.'
+					description: 'A single node: id, title, subtitle, description, avatar text, color, badge as the kind label, meta, tags array, rows as { label, value }, list as { icon, label, sublabel, badge } with a listLabel caption, and children of the same shape.'
 				},
 				description: 'Nodes of the first level, nested through children.'
 			},
@@ -57,34 +57,29 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.measure = (node) =>
 			{
-				let height = 48 + 34 + 44;
+				let height = 34 + 42;
 
 				if(node.description)
 				{
-					height = height + 54;
-				}
-
-				if(Array.isArray(node.tags) && node.tags.length)
-				{
-					height = height + 30;
+					height = height + 42;
 				}
 
 				if(Array.isArray(node.rows) && node.rows.length)
 				{
-					height = height + node.rows.length * 22 + 10;
+					height = height + node.rows.length * 22 + 12;
 				}
 
 				if(Array.isArray(node.list) && node.list.length)
 				{
-					height = height + node.list.length * 30 + 30;
+					height = height + node.list.length * 38 + 26;
 				}
 
-				if(node.badge || node.meta)
+				if(node.avatar || (Array.isArray(node.tags) && node.tags.length))
 				{
-					height = height + 30;
+					height = height + 34;
 				}
 
-				return height;
+				return height + 10;
 			};
 
 			this.layout = () =>
@@ -208,19 +203,16 @@ onetype.AddonReady('elements', (elements) =>
 							<circle ot-for="link in layout().links" :ot-key="'dot-' + link.id" :class="link.color" :cx="link.x2" :cy="link.y2" r="3"></circle>
 						</svg>
 						<div ot-for="card in layout().cards" :ot-key="card.node.id" :class="stamp(card)" :style="place(card)" ot-click="() => pick(card.node)">
-							<div class="cover" :style="card.node.cover ? 'background-image: url(' + card.node.cover + ')' : ''"></div>
-							<span class="face">
-								<i ot-if="!card.node.avatar">{{ card.node.icon ? card.node.icon : 'circle' }}</i>
-								<b ot-if="card.node.avatar">{{ card.node.avatar }}</b>
-							</span>
+							<div class="head">
+								<span class="dot"></span>
+								<span class="kind">{{ card.node.badge ? card.node.badge : 'Node' }}</span>
+								<span ot-if="card.node.meta" class="meta">{{ card.node.meta }}</span>
+							</div>
 							<div class="words">
 								<span class="title">{{ card.node.title }}</span>
 								<span ot-if="card.node.subtitle" class="subtitle">{{ card.node.subtitle }}</span>
 							</div>
 							<p ot-if="card.node.description" class="description">{{ card.node.description }}</p>
-							<div ot-if="card.node.tags && card.node.tags.length" class="tags">
-								<span ot-for="tag in card.node.tags" :ot-key="tag" class="tag">{{ tag }}</span>
-							</div>
 							<div ot-if="card.node.rows && card.node.rows.length" class="grid">
 								<div ot-for="row in card.node.rows" :ot-key="row.label" class="pair">
 									<span class="label">{{ row.label }}</span>
@@ -231,13 +223,18 @@ onetype.AddonReady('elements', (elements) =>
 								<span class="caption">{{ card.node.listLabel ? card.node.listLabel : 'Items' }} · {{ card.node.list.length }}</span>
 								<div ot-for="entry in card.node.list" :ot-key="entry.label" class="entry">
 									<i ot-if="entry.icon">{{ entry.icon }}</i>
-									<span class="name">{{ entry.label }}</span>
+									<span class="lines">
+										<span class="name">{{ entry.label }}</span>
+										<span ot-if="entry.sublabel" class="sub">{{ entry.sublabel }}</span>
+									</span>
 									<span ot-if="entry.badge" class="mark">{{ entry.badge }}</span>
 								</div>
 							</div>
-							<div ot-if="card.node.badge || card.node.meta" class="side">
-								<span ot-if="card.node.badge" class="chip">{{ card.node.badge }}</span>
-								<span ot-if="card.node.meta" class="meta">{{ card.node.meta }}</span>
+							<div ot-if="card.node.avatar || (card.node.tags && card.node.tags.length)" class="footer">
+								<span ot-if="card.node.avatar" class="avatar" :ot-tooltip="card.node.title">{{ card.node.avatar }}</span>
+								<span class="tags">
+									<span ot-for="tag in card.node.tags" :ot-key="tag" class="tag">{{ tag }}</span>
+								</span>
 							</div>
 						</div>
 					</div>
