@@ -191,8 +191,9 @@
 	flex-direction: column;
 	gap: 2px;
 	padding: 5px var(--ot-spacing-s);
-	border: 1px dashed var(--highedge);
+	border: 1px solid var(--highedge);
 	border-radius: var(--ot-radius-s);
+	background: var(--high);
 }
 
 .e-3152fd59 > .box > .plane > .card > .grid > .pair
