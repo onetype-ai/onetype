@@ -22,7 +22,7 @@ onetype.AddonReady('elements', (elements) =>
 				],
 				each: {
 					type: 'object',
-					description: 'A single node: id, title, subtitle, description, avatar text, icon, color, badge, meta, cover image url, tags array, rows as { label, value }, list as { icon, label, badge } and children of the same shape.'
+					description: 'A single node: id, title, subtitle, description, avatar text, icon, color, badge, meta, cover image url, tags array, rows as { label, value }, list as { icon, label, badge } with a listLabel caption, and children of the same shape.'
 				},
 				description: 'Nodes of the first level, nested through children.'
 			},
@@ -57,7 +57,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.measure = (node) =>
 			{
-				let height = 34 + 30 + 44;
+				let height = 48 + 34 + 44;
 
 				if(node.description)
 				{
@@ -76,7 +76,7 @@ onetype.AddonReady('elements', (elements) =>
 
 				if(Array.isArray(node.list) && node.list.length)
 				{
-					height = height + node.list.length * 28 + 10;
+					height = height + node.list.length * 30 + 30;
 				}
 
 				if(node.badge || node.meta)
@@ -153,6 +153,10 @@ onetype.AddonReady('elements', (elements) =>
 					const bend = (y2 - y1) / 2;
 
 					link.d = 'M ' + x1 + ' ' + y1 + ' C ' + x1 + ' ' + (y1 + bend) + ', ' + x2 + ' ' + (y2 - bend) + ', ' + x2 + ' ' + y2;
+					link.x1 = x1;
+					link.y1 = y1;
+					link.x2 = x2;
+					link.y2 = y2;
 				}
 
 				const width = Math.max(...cards.map((card) => card.x)) + WIDTH + PAD;
@@ -201,6 +205,7 @@ onetype.AddonReady('elements', (elements) =>
 					<div ot-if="items.length" class="plane" :style="frame()">
 						<svg class="wires" :style="frame()">
 							<path ot-for="link in layout().links" :ot-key="link.id" :class="link.color" :d="link.d"></path>
+							<circle ot-for="link in layout().links" :ot-key="'dot-' + link.id" :class="link.color" :cx="link.x2" :cy="link.y2" r="3"></circle>
 						</svg>
 						<div ot-for="card in layout().cards" :ot-key="card.node.id" :class="stamp(card)" :style="place(card)" ot-click="() => pick(card.node)">
 							<div class="cover" :style="card.node.cover ? 'background-image: url(' + card.node.cover + ')' : ''"></div>
@@ -223,6 +228,7 @@ onetype.AddonReady('elements', (elements) =>
 								</div>
 							</div>
 							<div ot-if="card.node.list && card.node.list.length" class="list">
+								<span class="caption">{{ card.node.listLabel ? card.node.listLabel : 'Items' }} · {{ card.node.list.length }}</span>
 								<div ot-for="entry in card.node.list" :ot-key="entry.label" class="entry">
 									<i ot-if="entry.icon">{{ entry.icon }}</i>
 									<span class="name">{{ entry.label }}</span>

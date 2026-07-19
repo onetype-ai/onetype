@@ -17,12 +17,12 @@
 	overflow: auto;
 }
 
-/* Depth */
+/* Depth — the canvas carries the surface, cards sit one step above, card innards one more */
 
-.e-3152fd59 > .box.bg-0 { --fill: transparent; --line: transparent; --above: var(--ot-bg-1); --edge: var(--ot-bg-1-border); --hover: var(--ot-bg-1-hover); }
-.e-3152fd59 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); --hover: var(--ot-bg-2-hover); }
-.e-3152fd59 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
-.e-3152fd59 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
+.e-3152fd59 > .box.bg-0 { --fill: transparent; --line: transparent; --above: var(--ot-bg-1); --edge: var(--ot-bg-1-border); --high: var(--ot-bg-2); --highedge: var(--ot-bg-2-border); --hover: var(--ot-bg-1-hover); }
+.e-3152fd59 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); --high: var(--ot-bg-3); --highedge: var(--ot-bg-3-border); --hover: var(--ot-bg-2-hover); }
+.e-3152fd59 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --high: var(--ot-bg-3); --highedge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
+.e-3152fd59 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); --high: var(--ot-bg-3); --highedge: var(--ot-bg-3-border); --hover: var(--ot-bg-3-hover); }
 
 /* Void */
 
@@ -60,11 +60,22 @@
 	stroke: var(--ot-bg-3-border);
 }
 
-.e-3152fd59 > .box > .plane > .wires > path.brand { stroke: color-mix(in srgb, var(--ot-brand) 45%, transparent); }
-.e-3152fd59 > .box > .plane > .wires > path.blue { stroke: color-mix(in srgb, var(--ot-blue) 45%, transparent); }
-.e-3152fd59 > .box > .plane > .wires > path.red { stroke: color-mix(in srgb, var(--ot-red) 45%, transparent); }
-.e-3152fd59 > .box > .plane > .wires > path.orange { stroke: color-mix(in srgb, var(--ot-orange) 45%, transparent); }
-.e-3152fd59 > .box > .plane > .wires > path.green { stroke: color-mix(in srgb, var(--ot-green) 45%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > circle
+{
+	fill: var(--ot-bg-3-border);
+}
+
+.e-3152fd59 > .box > .plane > .wires > path.brand { stroke: color-mix(in srgb, var(--ot-brand) 50%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.blue { stroke: color-mix(in srgb, var(--ot-blue) 50%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.red { stroke: color-mix(in srgb, var(--ot-red) 50%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.orange { stroke: color-mix(in srgb, var(--ot-orange) 50%, transparent); }
+.e-3152fd59 > .box > .plane > .wires > path.green { stroke: color-mix(in srgb, var(--ot-green) 50%, transparent); }
+
+.e-3152fd59 > .box > .plane > .wires > circle.brand { fill: var(--ot-brand); }
+.e-3152fd59 > .box > .plane > .wires > circle.blue { fill: var(--ot-blue); }
+.e-3152fd59 > .box > .plane > .wires > circle.red { fill: var(--ot-red); }
+.e-3152fd59 > .box > .plane > .wires > circle.orange { fill: var(--ot-orange); }
+.e-3152fd59 > .box > .plane > .wires > circle.green { fill: var(--ot-green); }
 
 /* Cards */
 
@@ -78,6 +89,7 @@
 	background: var(--above);
 	overflow: hidden;
 	cursor: pointer;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast), box-shadow var(--ot-transition-fast);
 }
 
@@ -89,24 +101,28 @@
 
 .e-3152fd59 > .box > .plane > .card:hover
 {
-	transform: translateY(-2px);
-	border-color: var(--accent);
+	transform: translateY(-3px);
+	border-color: color-mix(in srgb, var(--accent) 55%, var(--edge));
+	box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.55);
 }
 
 .e-3152fd59 > .box > .plane > .card.active
 {
 	border-color: var(--accent);
-	box-shadow: 0 0 0 3px var(--tint);
+	box-shadow: 0 0 0 3px var(--tint), 0 14px 30px -18px rgba(0, 0, 0, 0.55);
 }
 
 /* Cover */
 
 .e-3152fd59 > .box > .plane > .card > .cover
 {
-	height: 34px;
-	background: linear-gradient(120% 100% at 30% 0%, var(--tint), transparent 80%);
+	height: 48px;
+	background:
+		radial-gradient(120% 180% at 20% 0%, var(--tint) 0%, transparent 65%),
+		radial-gradient(100% 160% at 90% 10%, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 60%);
 	background-size: cover;
 	background-position: center;
+	border-bottom: 1px solid var(--edge);
 	flex-shrink: 0;
 }
 
@@ -116,26 +132,27 @@
 {
 	position: absolute;
 	left: var(--ot-spacing-s);
-	top: 12px;
+	top: 22px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 44px;
-	height: 44px;
+	width: 48px;
+	height: 48px;
 	border-radius: 99px;
-	border: 2px solid var(--above);
-	background: var(--tint);
+	border: 3px solid var(--above);
+	background: linear-gradient(135deg, var(--tint), color-mix(in srgb, var(--accent) 26%, var(--above)));
 	color: var(--accent);
+	box-shadow: 0 4px 10px -6px rgba(0, 0, 0, 0.4);
 }
 
 .e-3152fd59 > .box > .plane > .card > .face > i
 {
-	font-size: 20px;
+	font-size: 22px;
 }
 
 .e-3152fd59 > .box > .plane > .card > .face > b
 {
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 650;
 	letter-spacing: 0.02em;
 }
@@ -147,14 +164,16 @@
 	display: flex;
 	flex-direction: column;
 	gap: 1px;
-	padding: var(--ot-spacing-x) var(--ot-spacing-s) 0 62px;
+	padding: 8px var(--ot-spacing-s) 0 68px;
 	min-width: 0;
+	min-height: 34px;
 }
 
 .e-3152fd59 > .box > .plane > .card > .words > .title
 {
-	font-size: var(--ot-size-m);
-	font-weight: 600;
+	font-size: 14px;
+	font-weight: 650;
+	letter-spacing: -0.01em;
 	color: var(--ot-text-1);
 	white-space: nowrap;
 	overflow: hidden;
@@ -163,9 +182,11 @@
 
 .e-3152fd59 > .box > .plane > .card > .words > .subtitle
 {
-	font-size: 12px;
+	font-size: 10.5px;
+	font-weight: 650;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
 	color: var(--accent);
-	font-weight: 550;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -175,10 +196,10 @@
 
 .e-3152fd59 > .box > .plane > .card > .description
 {
-	padding: var(--ot-spacing-x) var(--ot-spacing-s) 0 var(--ot-spacing-s);
+	padding: var(--ot-spacing-s) var(--ot-spacing-s) 0 var(--ot-spacing-s);
 	font-size: 12px;
-	line-height: 1.5;
-	color: var(--ot-text-3);
+	line-height: 1.55;
+	color: var(--ot-text-2);
 	display: -webkit-box;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
@@ -192,15 +213,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
-	padding: var(--ot-spacing-x) var(--ot-spacing-s) 0 var(--ot-spacing-s);
+	padding: var(--ot-spacing-s) var(--ot-spacing-s) 0 var(--ot-spacing-s);
 }
 
 .e-3152fd59 > .box > .plane > .card > .tags > .tag
 {
-	padding: 2px 8px;
-	border: 1px solid var(--edge);
+	padding: 2px 9px;
+	border: 1px solid var(--highedge);
 	border-radius: 99px;
-	background: var(--fill);
+	background: var(--high);
 	font-size: 10.5px;
 	font-weight: 500;
 	color: var(--ot-text-2);
@@ -213,11 +234,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
-	margin: var(--ot-spacing-x) var(--ot-spacing-s) 0 var(--ot-spacing-s);
+	margin: var(--ot-spacing-s) var(--ot-spacing-s) 0 var(--ot-spacing-s);
 	padding: 6px var(--ot-spacing-s);
-	border: 1px solid var(--edge);
+	border: 1px solid var(--highedge);
 	border-radius: var(--ot-radius-m);
-	background: var(--fill);
+	background: var(--high);
 }
 
 .e-3152fd59 > .box > .plane > .card > .grid > .pair
@@ -252,20 +273,36 @@
 {
 	display: flex;
 	flex-direction: column;
-	gap: 2px;
-	padding: var(--ot-spacing-x) var(--ot-spacing-s) 0 var(--ot-spacing-s);
+	gap: 3px;
+	padding: var(--ot-spacing-s) var(--ot-spacing-s) 0 var(--ot-spacing-s);
+}
+
+.e-3152fd59 > .box > .plane > .card > .list > .caption
+{
+	font-size: 10px;
+	font-weight: 650;
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	color: var(--ot-text-3);
+	padding-bottom: 2px;
 }
 
 .e-3152fd59 > .box > .plane > .card > .list > .entry
 {
 	display: flex;
 	align-items: center;
-	gap: 6px;
-	height: 26px;
+	gap: 7px;
+	height: 27px;
 	padding: 0 var(--ot-spacing-s);
-	border: 1px solid var(--edge);
+	border: 1px solid var(--highedge);
 	border-radius: var(--ot-radius-s);
-	background: var(--fill);
+	background: var(--high);
+	transition: border-color var(--ot-transition-fast);
+}
+
+.e-3152fd59 > .box > .plane > .card:hover > .list > .entry
+{
+	border-color: color-mix(in srgb, var(--accent) 25%, var(--highedge));
 }
 
 .e-3152fd59 > .box > .plane > .card > .list > .entry > i
@@ -287,10 +324,10 @@
 
 .e-3152fd59 > .box > .plane > .card > .list > .entry > .mark
 {
-	font-size: 10px;
-	font-weight: 600;
+	font-size: 9.5px;
+	font-weight: 650;
 	text-transform: uppercase;
-	letter-spacing: 0.04em;
+	letter-spacing: 0.05em;
 	color: var(--ot-text-3);
 }
 
@@ -301,13 +338,13 @@
 	display: flex;
 	align-items: center;
 	gap: var(--ot-spacing-s);
-	padding: var(--ot-spacing-x) var(--ot-spacing-s);
+	padding: var(--ot-spacing-s);
 	margin-top: auto;
 }
 
 .e-3152fd59 > .box > .plane > .card > .side > .chip
 {
-	padding: 2px 8px;
+	padding: 2px 9px;
 	border-radius: 99px;
 	background: var(--tint);
 	font-size: 10.5px;
