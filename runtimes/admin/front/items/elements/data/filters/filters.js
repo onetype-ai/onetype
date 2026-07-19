@@ -192,10 +192,6 @@ onetype.AddonReady('elements', (elements) =>
 
 			return /* html */ `
 				<div :class="classes()">
-					<div ot-if="active()" class="bar">
-						<span class="total">{{ active() }} active</span>
-						<span class="reset" ot-click="clear">Clear all</span>
-					</div>
 					<div ot-for="group in groups" :ot-key="group.id" class="group">
 						<e-form-input
 							ot-if="group.type === 'search'"
@@ -212,17 +208,29 @@ onetype.AddonReady('elements', (elements) =>
 							<i :class="shown(group) ? 'caret turned' : 'caret'">chevron_right</i>
 						</div>
 						<div ot-if="group.type !== 'search' && group.type !== 'toggle' && shown(group)" class="body">
-							<div ot-if="group.type === 'options' || group.type === 'single'" class="choices">
-								<div
+							<div ot-if="group.type === 'options'" class="choices">
+								<e-form-checkbox
 									ot-for="option in group.options"
 									:ot-key="option.value"
-									:class="picked(group).includes(option.value) ? 'choice checked' : 'choice'"
-									ot-click="() => mark(group, option)"
-								>
-									<span :class="group.type === 'single' ? 'mark round' : 'mark'"><i>check</i></span>
-									<span class="text">{{ option.label }}</span>
-									<span ot-if="option.count != null" class="amount">{{ option.count }}</span>
-								</div>
+									:label="option.label"
+									description=""
+									:count="option.count != null ? option.count : ''"
+									:value="picked(group).includes(option.value)"
+									:_change="() => mark(group, option)"
+								></e-form-checkbox>
+							</div>
+							<div ot-if="group.type === 'single'" class="choices">
+								<e-form-radio
+									ot-for="option in group.options"
+									:ot-key="option.value"
+									:label="option.label"
+									description=""
+									:count="option.count != null ? option.count : ''"
+									:name="group.id"
+									:option="String(option.value)"
+									:value="picked(group).includes(option.value)"
+									:_change="() => mark(group, option)"
+								></e-form-radio>
 							</div>
 							<e-form-select
 								ot-if="group.type === 'select'"
@@ -243,6 +251,10 @@ onetype.AddonReady('elements', (elements) =>
 							<span class="label">{{ group.label }}</span>
 							<e-form-toggle :value="!!state[group.id]" label="" description="" :_change="({ value }) => assign(group, value)"></e-form-toggle>
 						</div>
+					</div>
+					<div class="bar">
+						<span class="total">{{ active() ? active() + ' active' : 'No filters active' }}</span>
+						<span ot-if="active()" class="reset" ot-click="clear">Clear all</span>
 					</div>
 				</div>
 			`;

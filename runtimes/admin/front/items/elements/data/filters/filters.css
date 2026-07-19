@@ -36,6 +36,8 @@
 
 .e-435be612 > .box > .bar
 {
+	margin-top: auto;
+	order: 99;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -146,86 +148,6 @@
 	flex-direction: column;
 }
 
-.e-435be612 > .box > .group > .body > .choices > .choice
-{
-	display: flex;
-	align-items: center;
-	gap: 9px;
-	height: 30px;
-	padding: 0 6px;
-	margin: 0 -6px;
-	border-radius: var(--ot-radius-s);
-	cursor: pointer;
-	transition: background var(--ot-transition-fast);
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice:hover
-{
-	background: var(--ot-bg-2-hover);
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice > .mark
-{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 18px;
-	height: 18px;
-	border: 1px solid var(--ot-bg-3-border);
-	border-radius: var(--ot-radius-s);
-	background: var(--ot-bg-2);
-	transition: background var(--ot-transition-fast), border-color var(--ot-transition-fast);
-	flex-shrink: 0;
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice > .mark.round
-{
-	border-radius: 99px;
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice > .mark > i
-{
-	font-size: 13px;
-	color: #ffffff;
-	opacity: 0;
-	transform: scale(0.5);
-	transition: opacity var(--ot-transition-fast), transform var(--ot-transition-fast);
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice.checked > .mark
-{
-	border-color: var(--ot-brand);
-	background: var(--ot-brand);
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice.checked > .mark > i
-{
-	opacity: 1;
-	transform: scale(1);
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice > .text
-{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	font-size: var(--ot-size-s);
-	color: var(--ot-text-2);
-	flex: 1;
-	transition: color var(--ot-transition-fast);
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice.checked > .text
-{
-	color: var(--ot-text-1);
-}
-
-.e-435be612 > .box > .group > .body > .choices > .choice > .amount
-{
-	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-	font-size: 11px;
-	color: var(--ot-text-3);
-}
 
 /* Switch */
 
