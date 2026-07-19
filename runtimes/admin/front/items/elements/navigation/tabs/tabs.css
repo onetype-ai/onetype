@@ -58,7 +58,6 @@
 .e-1a8b6ac1 .tab.active
 {
 	color: var(--ot-text-1);
-	font-weight: 600;
 }
 
 .e-1a8b6ac1 .tab.disabled
@@ -225,6 +224,7 @@
 .e-1a8b6ac1 > .box.segmented > .tabs
 {
 	padding: 3px;
+	height: 34px;
 	background: var(--ot-bg-3);
 	border-radius: 100px;
 	gap: 0;
@@ -234,7 +234,8 @@
 
 .e-1a8b6ac1 > .box.segmented > .tabs > .tab
 {
-	padding: 8px 18px;
+	padding: 0 16px;
+	height: 28px;
 	border-radius: 100px;
 	flex: 1;
 }
