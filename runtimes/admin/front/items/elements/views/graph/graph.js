@@ -81,7 +81,7 @@ onetype.AddonReady('elements', (elements) =>
 					height = height + 10 + rows * 24;
 				}
 
-				return height + 10;
+				return height + 26;
 			};
 
 			this.layout = () =>
