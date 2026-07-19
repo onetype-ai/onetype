@@ -39,7 +39,7 @@ onetype.AddonReady('elements', (elements) =>
 							options: ['brand', 'blue', 'red', 'orange', 'green'],
 							description: 'Column accent color.'
 						},
-						create: {
+						canCreate: {
 							type: 'boolean',
 							value: true,
 							description: 'Whether the column offers the create action when _create is given.'
@@ -112,7 +112,7 @@ onetype.AddonReady('elements', (elements) =>
 						key: column.value,
 						label: column.label,
 						color: column.color ? column.color : 'brand',
-						create: column.create !== false,
+						canCreate: column.canCreate !== false,
 						count: entries.length,
 						cards: entries.map(card)
 					};
@@ -160,7 +160,7 @@ onetype.AddonReady('elements', (elements) =>
 									<span ot-if="card.date" class="date">{{ card.date }}</span>
 								</span>
 							</div>
-							<button ot-if="_create && lane.create" class="create" ot-click.stop="({ event }) => create(event, lane.key)">
+							<button ot-if="_create && lane.canCreate" class="create" ot-click.stop="({ event }) => create(event, lane.key)">
 								<i>add</i>
 								<span>Create</span>
 							</button>
