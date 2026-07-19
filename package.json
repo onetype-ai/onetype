@@ -17,8 +17,7 @@
     "imports": {
         "#elements-service/*": "./kernel/services/elements/*",
         "#packages/*": "./addons/system/packages/back/*",
-        "#runtimes/*": "./addons/system/runtimes/back/*",
-        "#collections/*": "./addons/system/collections/back/*"
+        "#runtimes/*": "./addons/system/runtimes/back/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"
