@@ -5,8 +5,7 @@
     "type": "module",
     "exports": {
         ".": "./index.js",
-        "./workspace/users": "./addons/workspace/users/back/load.js",
-        "./workspace/tokens": "./addons/workspace/tokens/back/load.js"
+        "./*": "./*"
     },
     "license": "MIT",
     "author": "Dejan Tomic <hi@iamdejan.com>",
@@ -15,9 +14,12 @@
         "url": "https://github.com/onetype-ai/platform.git"
     },
     "imports": {
-        "#elements-service/*": "./kernel/services/elements/*",
-        "#packages/*": "./addons/system/packages/back/*",
-        "#runtimes/*": "./addons/system/runtimes/back/*"
+        "#platform/*": "./back/*",
+        "#packages/*": "./addons/core/packages/back/*",
+        "#persistence/*": "./addons/core/persistence/back/*",
+        "#runtimes/*": "./addons/core/runtimes/back/*",
+        "#tokens/*": "./addons/core/tokens/back/*",
+        "#users/*": "./addons/core/users/back/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"
