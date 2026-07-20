@@ -1,5 +1,3 @@
-$ot.platform = {};
-
 $ot.boot = new Promise((resolve) =>
 {
 	onetype.EmitOn('@document.ready', async () =>

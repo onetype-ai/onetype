@@ -1,4 +1,4 @@
-const ui = onetype.Addon('ui', (addon) =>
+const platform = onetype.Addon('platform', (addon) =>
 {
-    
+	$ot.platform = {};
 });
