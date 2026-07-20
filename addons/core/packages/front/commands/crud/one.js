@@ -1,11 +1,6 @@
-import packages from '#packages/addon.js';
-
 packages.CommandAdd({
 	id: 'one',
 	description: 'Read one package by its slug.',
-	exposed: true,
-	method: 'GET',
-	endpoint: '/api/packages/:slug',
 	in: {
 		slug: {
 			type: 'string',
@@ -16,13 +11,15 @@ packages.CommandAdd({
 	out: 'platform.package',
 	callback: async function(properties, resolve)
 	{
-		const item = packages.one(properties.slug);
+		const { data, message, code } = await packages.one(properties.slug, true);
 
-		if(!item)
+		if(code !== 200)
 		{
-			return resolve(null, 'Package ' + properties.slug + ' not found.', 404);
+			$ot.float.toast({ message, type: 'error' });
+
+			return resolve(null, message, code);
 		}
 
-		resolve(item.GetData());
+		resolve(data);
 	}
 });

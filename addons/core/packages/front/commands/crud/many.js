@@ -1,11 +1,6 @@
-import packages from '#packages/addon.js';
-
 packages.CommandAdd({
 	id: 'many',
 	description: 'List every package of the instance with its manifest and status.',
-	exposed: true,
-	method: 'GET',
-	endpoint: '/api/packages',
 	out: {
 		items: {
 			type: 'array',
@@ -15,6 +10,15 @@ packages.CommandAdd({
 	},
 	callback: async function(properties, resolve)
 	{
-		resolve({ items: packages.many().map((item) => item.GetData()) });
+		const { data, message, code } = await packages.many(true);
+
+		if(code !== 200)
+		{
+			$ot.float.toast({ message, type: 'error' });
+
+			return resolve(null, message, code);
+		}
+
+		resolve(data);
 	}
 });

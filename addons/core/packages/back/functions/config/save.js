@@ -1,3 +1,4 @@
+import config from '#config/addon.js';
 import packages from '#packages/addon.js';
 
 packages.Fn('config.save', function()
@@ -8,5 +9,5 @@ packages.Fn('config.save', function()
 		version: item.Get('version')
 	}));
 
-	$ot.platform.config.one('packages').Set('value', value);
+	config.one('packages').Set('value', value);
 });

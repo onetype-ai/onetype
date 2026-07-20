@@ -1,4 +1,35 @@
 onetype.DataSchema('platform.package', {
+	id: {
+		type: 'string|number',
+		description: 'Runtime item identifier.'
+	},
+	core: {
+		type: 'string',
+		value: '*',
+		description: 'Semver range of the core version this package requires.'
+	},
+	depends: {
+		type: 'array',
+		value: [],
+		each: {
+			type: 'string',
+			description: 'A dependency package slug.'
+		},
+		description: 'Slugs of packages this one depends on.'
+	},
+	runtimes: {
+		type: 'array',
+		value: [],
+		each: {
+			type: 'string',
+			description: 'A runtime slug the package runs on.'
+		},
+		description: 'Runtimes the package belongs to. Empty runs on every runtime.'
+	},
+	path: {
+		type: 'string',
+		description: 'Absolute path to the package folder on disk.'
+	},
 	slug: {
 		type: 'string',
 		required: true,

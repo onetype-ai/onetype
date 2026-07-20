@@ -4,10 +4,19 @@ import packages from './addon.js';
 import './core/schemas/manifest.js';
 import './core/schemas/package.js';
 
+/* Emitters */
+import './core/emitters/enable.js';
+import './core/emitters/disable.js';
+
 /* Functions */
 import './functions/sync.js';
 import './functions/load.js';
 import './functions/config/save.js';
+import './functions/exposed/one.js';
+import './functions/exposed/many.js';
+import './functions/exposed/limits.js';
+import './functions/exposed/enable.js';
+import './functions/exposed/disable.js';
 
 /* Item */
 import './item/functions/find/order.js';
@@ -20,6 +29,8 @@ import './item/catch/modified.js';
 /* Commands */
 import './commands/crud/many.js';
 import './commands/crud/one.js';
+import './commands/enable.js';
+import './commands/disable.js';
 
 /* Items */
 import './items/config/packages.js';
@@ -27,20 +38,5 @@ import './items/config/packages.js';
 /* Listeners */
 import './listeners/boot.js';
 import './listeners/http.js';
-
-$ot.platform.packages = {
-	limits: (slug) =>
-	{
-		return $ot.platform.packages.one(slug)?.Get('limits');
-	},
-	one: (slug) =>
-	{
-		return Object.values(packages.Items()).find((item) => item.Get('slug') === slug);
-	},
-	many: () =>
-	{
-		return Object.values(packages.Items());
-	}
-};
 
 export default packages;
