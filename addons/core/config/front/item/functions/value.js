@@ -10,5 +10,17 @@ config.Fn('item.value', function(item)
 	const define = item.Get('config');
 	const value = data[item.Get('key')];
 
-	return Object.keys(define).length ? onetype.DataDefineOne(value, define) : value;
+	if(!Object.keys(define).length)
+	{
+		return value;
+	}
+
+	try
+	{
+		return onetype.DataDefineOne(value, define);
+	}
+	catch(error)
+	{
+		return item.Get('value');
+	}
 });
