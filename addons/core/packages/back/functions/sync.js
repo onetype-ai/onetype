@@ -23,9 +23,7 @@ packages.Fn('sync', function()
 
 	this.methods.instance = (slug) =>
 	{
-		const value = Object.values(config.Items()).find((item) => item.Get('key') === 'packages').Get('value');
-
-		return value.find((entry) => entry.slug === slug);
+		return config.one('packages').Get('value').find((entry) => entry.slug === slug);
 	};
 
 	this.methods.exists = (slug) =>

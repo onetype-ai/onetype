@@ -36,6 +36,7 @@ onetype.DataSchema('platform.package.manifest', {
 	depends: {
 		type: 'array',
 		value: [],
+		required: true,
 		each: {
 			type: 'string',
 			description: 'A dependency package slug.'
@@ -54,25 +55,29 @@ onetype.DataSchema('platform.package.manifest', {
 	permissions: {
 		type: 'array',
 		value: [],
+		required: true,
 		each: {
 			type: 'string',
-			description: 'A single permission id the package requests, like database or internet.'
+			description: 'A single permission id the package requests, like database or zones:canvas.'
 		},
 		description: 'Permissions the package requests, shown to the user before install.'
 	},
 	limits: {
 		type: 'object',
 		value: {},
+		required: true,
 		description: 'Default limits the package ships, entity key to maximum count. Null means unlimited.'
 	},
 	features: {
 		type: 'object',
 		value: {},
+		required: true,
 		description: 'Feature switches the package ships, feature key to boolean.'
 	},
 	config: {
 		type: 'object',
 		value: {},
+		required: true,
 		description: 'Config schema the package exposes, used to validate install data.'
 	},
 	status: {

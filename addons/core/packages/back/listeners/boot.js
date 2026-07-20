@@ -10,7 +10,7 @@ onetype.MiddlewareIntercept('platform.boot', async (middleware) =>
 
 	for(const item of Object.values(packages.Items()))
 	{
-		list[item.Get('slug')] = item.Get(['slug', 'name', 'version', 'description', 'icon', 'color', 'status', 'permissions', 'features', 'config', 'limits']);
+		list[item.Get('slug')] = item.Get(['slug', 'name', 'version', 'description', 'icon', 'color', 'core', 'depends', 'runtimes', 'status', 'permissions', 'features', 'config', 'limits']);
 	}
 
 	$ot.set('packages', list);

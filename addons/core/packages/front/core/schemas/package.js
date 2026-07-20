@@ -3,33 +3,6 @@ onetype.DataSchema('platform.package', {
 		type: 'string|number',
 		description: 'Runtime item identifier.'
 	},
-	core: {
-		type: 'string',
-		value: '*',
-		description: 'Semver range of the core version this package requires.'
-	},
-	depends: {
-		type: 'array',
-		value: [],
-		each: {
-			type: 'string',
-			description: 'A dependency package slug.'
-		},
-		description: 'Slugs of packages this one depends on.'
-	},
-	runtimes: {
-		type: 'array',
-		value: [],
-		each: {
-			type: 'string',
-			description: 'A runtime slug the package runs on.'
-		},
-		description: 'Runtimes the package belongs to. Empty runs on every runtime.'
-	},
-	path: {
-		type: 'string',
-		description: 'Absolute path to the package folder on disk.'
-	},
 	slug: {
 		type: 'string',
 		required: true,
@@ -57,6 +30,30 @@ onetype.DataSchema('platform.package', {
 		type: 'string',
 		description: 'Accent color as a hex or rgba string.'
 	},
+	core: {
+		type: 'string',
+		value: '*',
+		description: 'Semver range of the core version this package requires.'
+	},
+	depends: {
+		type: 'array',
+		value: [],
+		required: true,
+		each: {
+			type: 'string',
+			description: 'A dependency package slug.'
+		},
+		description: 'Slugs of packages this one depends on.'
+	},
+	runtimes: {
+		type: 'array',
+		value: [],
+		each: {
+			type: 'string',
+			description: 'A runtime slug the package runs on.'
+		},
+		description: 'Runtimes the package belongs to. Empty runs on every runtime.'
+	},
 	permissions: {
 		type: 'array',
 		value: [],
@@ -71,19 +68,23 @@ onetype.DataSchema('platform.package', {
 		type: 'object',
 		value: {},
 		required: true,
-		description: 'Limits of the package, entity key to maximum count. Null means unlimited.'
+		description: 'Default limits the package ships, entity key to maximum count. Null means unlimited, the instance config overrides the numbers.'
 	},
 	features: {
 		type: 'object',
 		value: {},
 		required: true,
-		description: 'Feature switches of the package, feature key to boolean.'
+		description: 'Feature switches the package ships, feature key to boolean. The instance config overrides the values.'
 	},
 	config: {
 		type: 'object',
 		value: {},
 		required: true,
 		description: 'Config schema the package exposes, used to validate install data.'
+	},
+	path: {
+		type: 'string',
+		description: 'Absolute path to the package folder on disk.'
 	},
 	status: {
 		type: 'string',

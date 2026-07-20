@@ -33,6 +33,33 @@ const packages = onetype.Addon('packages', (addon) =>
 		description: 'Accent color as a hex or rgba string.'
 	});
 
+	addon.Field('core', {
+		type: 'string',
+		value: '*',
+		description: 'Semver range of the core version this package requires.'
+	});
+
+	addon.Field('depends', {
+		type: 'array',
+		value: [],
+		required: true,
+		each: {
+			type: 'string',
+			description: 'A dependency package slug.'
+		},
+		description: 'Slugs of packages this one depends on.'
+	});
+
+	addon.Field('runtimes', {
+		type: 'array',
+		value: [],
+		each: {
+			type: 'string',
+			description: 'A runtime slug the package runs on.'
+		},
+		description: 'Runtimes the package belongs to. Empty runs on every runtime.'
+	});
+
 	addon.Field('permissions', {
 		type: 'array',
 		value: [],
