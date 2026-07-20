@@ -1,3 +1,0 @@
-onetype.MiddlewareRegister('boot', {
-	description: 'Runs once before the editor shell renders. Addons intercept it to load their data (apps, settings, workspaces) so the UI draws with everything in place. Each interceptor must call await context.next().'
-});
