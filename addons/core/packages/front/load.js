@@ -1,18 +1,14 @@
 $ot.platform.packages = {
 	limits: (slug) =>
 	{
-		const item = Object.values(packages.Items()).find((item) => item.Get('slug') === slug);
-
-		return item ? item.Get('limits') : {};
+		return $ot.platform.packages.one(slug)?.Get('limits');
 	},
-	get: {
-		one: (slug) =>
-		{
-			return Object.values(packages.Items()).find((item) => item.Get('slug') === slug);
-		},
-		many: () =>
-		{
-			return Object.values(packages.Items());
-		}
+	one: (slug) =>
+	{
+		return Object.values(packages.Items()).find((item) => item.Get('slug') === slug);
+	},
+	many: () =>
+	{
+		return Object.values(packages.Items());
 	}
 };

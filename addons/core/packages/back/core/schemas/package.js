@@ -1,6 +1,10 @@
 import onetype from '@onetype/framework';
 
 onetype.DataSchema('platform.package', {
+	id: {
+		type: 'string|number',
+		description: 'Runtime item identifier.'
+	},
 	slug: {
 		type: 'string',
 		required: true,

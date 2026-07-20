@@ -1,16 +1,6 @@
-import config from '#config/addon.js';
 import packages from '#packages/addon.js';
 
 packages.Fn('item.enable', function(item)
 {
 	item.Set('status', 'enabled');
-
-	const instance = Object.values(config.Items()).find((candidate) => candidate.Get('key') === 'packages');
-	const others = instance.Get('value').filter((entry) => entry.slug !== item.Get('slug'));
-
-	instance.Set('value', [...others, {
-		slug: item.Get('slug'),
-		status: 'enabled',
-		version: item.Get('version')
-	}]);
 });
