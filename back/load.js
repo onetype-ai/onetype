@@ -1,5 +1,8 @@
 import platform from './addon.js';
 
+/* Functions */
+import './functions/author.js';
+
 /* Register */
 import './core/register/middlewares.js';
 import './core/register/emitters.js';
@@ -13,5 +16,7 @@ import './items/html/icons.js';
 
 /* Servers */
 import './items/servers/http.js';
+
+platform.Fn('author');
 
 export default platform;

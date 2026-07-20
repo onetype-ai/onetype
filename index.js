@@ -12,6 +12,7 @@ import '@onetype/framework/html';
 import '#platform/addon.js';
 
 /* Addons */
+import '#config/load.js';
 import '#runtimes/load.js';
 import '#packages/load.js';
 
@@ -19,8 +20,8 @@ import '#packages/load.js';
 process.loadEnvFile(resolve(process.cwd(), '.env'));
 
 /* Boot */
-await onetype.Middleware('boot');
-await onetype.Emit('boot');
+await onetype.Middleware('platform.boot');
+await onetype.Emit('platform.boot');
 
 /* Platform */
 await import('#platform/load.js');
