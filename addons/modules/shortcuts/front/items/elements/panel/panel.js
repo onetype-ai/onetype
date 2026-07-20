@@ -1,0 +1,129 @@
+elements.ItemAdd({
+	id: 'shortcuts-panel',
+	icon: 'keyboard',
+	name: 'Shortcuts Panel',
+	description: 'Every registered shortcut, grouped, with an enable toggle and key rebinding per row.',
+	category: 'Shortcuts',
+	metadata: { addon: 'modules.shortcuts' },
+	render: function()
+	{
+		this.recording = null;
+		this.listener = null;
+		this.query = '';
+
+		const refresh = () =>
+		{
+			this.groups = $ot.modules.shortcuts.Fn('list', this.query);
+		};
+
+		refresh();
+
+		this.On('@addon.item.added', (item) => item.addon.GetName() === 'modules.shortcuts' && refresh());
+		this.On('@addon.item.removed', (item) => item.addon.GetName() === 'modules.shortcuts' && refresh());
+
+		this.On('modules.shortcuts.toggle', refresh);
+		this.On('modules.shortcuts.rebind', refresh);
+
+		this.change = (row) =>
+		{
+			return ({ value }) =>
+			{
+				this.cancel();
+
+				$ot.modules.shortcuts.toggle(row.id, value);
+			};
+		};
+
+		this.cancel = () =>
+		{
+			if(this.listener)
+			{
+				window.removeEventListener('keydown', this.listener, true);
+				this.listener = null;
+			}
+
+			this.recording = null;
+		};
+
+		this.record = (row) =>
+		{
+			const repeated = this.recording === row.id;
+
+			this.cancel();
+
+			if(repeated)
+			{
+				return;
+			}
+
+			this.recording = row.id;
+
+			this.listener = (event) =>
+			{
+				event.preventDefault();
+				event.stopPropagation();
+
+				if(event.key === 'Escape')
+				{
+					this.cancel();
+
+					return;
+				}
+
+				if(['Control', 'Alt', 'Shift', 'Meta'].includes(event.key))
+				{
+					return;
+				}
+
+				const combination = $ot.modules.shortcuts.Fn('parse', event);
+
+				this.cancel();
+
+				$ot.modules.shortcuts.rebind(row.id, combination);
+			};
+
+			window.addEventListener('keydown', this.listener, true);
+		};
+
+		this.reset = (row) =>
+		{
+			this.cancel();
+
+			$ot.modules.shortcuts.rebind(row.id);
+		};
+
+		this.OnUnmounted(() => this.cancel());
+
+		this.input = ({ value }) =>
+		{
+			this.query = value;
+			refresh();
+		};
+
+		return `
+			<div class="box">
+				<div class="finder">
+					<e-form-input icon="search" placeholder="Search shortcuts..." :value="query" :clearable="true" :background="3" :_input="input" :_change="input"></e-form-input>
+				</div>
+				<div ot-if="!groups.length && query" class="blank">No shortcuts match "{{ query }}"</div>
+				<div ot-for="group in groups" :ot-key="group.name" class="group">
+					<div class="head">
+						<span class="title">{{ group.name }}</span>
+						<span class="count">{{ group.shortcuts.length }}</span>
+					</div>
+					<div ot-for="row in group.shortcuts" :ot-key="row.id + ':' + row.enabled" :class="row.enabled ? 'row' : 'row disabled'">
+						<div class="info">
+							<span class="name ot-truncate">{{ row.name }}</span>
+							<span ot-if="row.description" class="description">{{ row.description }}</span>
+						</div>
+						<span class="keys">
+							<i ot-if="row.custom" class="reset" :ot-tooltip="{ text: 'Restore default key', position: { x: 'center', y: 'top' } }" ot-click="reset(row)">history</i>
+							<kbd :class="recording === row.id ? 'recording' : (row.custom ? 'custom' : '')" :ot-tooltip="{ text: 'Click, then press the new keys', position: { x: 'center', y: 'top' } }" ot-click="record(row)">{{ recording === row.id ? 'Press keys' : row.key }}</kbd>
+						</span>
+						<e-form-toggle :value="row.enabled" :_change="change(row)"></e-form-toggle>
+					</div>
+				</div>
+			</div>
+		`;
+	}
+});
