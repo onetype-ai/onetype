@@ -94,6 +94,13 @@ const packages = onetype.Addon('packages', (addon) =>
 		description: 'Config schema the package exposes, used to validate install data.'
 	});
 
+	addon.Field('manifest', {
+		type: 'object',
+		value: {},
+		required: true,
+		description: 'The whole manifest exactly as it stands in onetype.json on disk.'
+	});
+
 	addon.Field('path', {
 		type: 'string',
 		required: true,

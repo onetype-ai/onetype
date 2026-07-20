@@ -1,20 +1,22 @@
 import packages from './addon.js';
 
 /* Schemas */
+import './core/schemas/manifest.js';
 import './core/schemas/package.js';
 
 /* Functions */
-import './functions/directories.js';
-import './functions/scan.js';
-import './functions/order.js';
-import './functions/back.js';
-import './functions/limits.js';
-import './functions/list.js';
-import './functions/assets.js';
+import './functions/sync.js';
+import './functions/load.js';
+
+/* Item */
+import './item/functions/find/order.js';
+import './item/functions/load/back.js';
+import './item/functions/load/front.js';
+import './item/functions/enable.js';
+import './item/functions/disable.js';
 
 /* Items */
-import './items/assets/js.js';
-import './items/assets/css.js';
+import './items/config/packages.js';
 
 /* Listeners */
 import './listeners/boot.js';
@@ -23,7 +25,9 @@ import './listeners/http.js';
 $ot.platform.packages = {
 	limits: (slug) =>
 	{
-		return packages.Fn('limits', slug);
+		const item = Object.values(packages.Items()).find((candidate) => candidate.Get('slug') === slug);
+
+		return item ? item.Get('limits') : {};
 	},
 	get: {
 		one: (slug) =>

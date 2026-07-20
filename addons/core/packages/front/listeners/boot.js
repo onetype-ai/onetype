@@ -1,4 +1,4 @@
-onetype.MiddlewareIntercept('boot', async (context) =>
+onetype.MiddlewareIntercept('platform.boot', async (context) =>
 {
 	packages.ItemsAdd(Object.values($ot.get('packages')));
 

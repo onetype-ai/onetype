@@ -1,9 +1,19 @@
 import onetype from '@onetype/framework';
 import packages from '#packages/addon.js';
 
-onetype.MiddlewareIntercept('boot', async (middleware) =>
+onetype.MiddlewareIntercept('platform.boot', async (middleware) =>
 {
-	$ot.set('packages', packages.Fn('list'));
+	await packages.Fn('sync');
+	await packages.Fn('load');
+
+	const list = {};
+
+	for(const item of Object.values(packages.Items()))
+	{
+		list[item.Get('slug')] = item.Get(['slug', 'name', 'version', 'description', 'icon', 'color', 'status', 'permissions', 'features', 'config', 'limits']);
+	}
+
+	$ot.set('packages', list);
 
 	await middleware.next();
 });
