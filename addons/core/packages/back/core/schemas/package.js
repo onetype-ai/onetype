@@ -92,7 +92,12 @@ onetype.DataSchema('platform.package', {
 	status: {
 		type: 'string',
 		value: 'enabled',
-		options: ['enabled', 'disabled'],
-		description: 'Whether the package is active in this container. Disabled packages exist on disk but do not load.'
+		options: ['enabled', 'disabled', 'blocked'],
+		description: 'Whether the package is active in this container. Disabled packages exist on disk but do not load. Blocked is forced at load time when a dependency is not loaded.'
+	},
+	message: {
+		type: 'string',
+		value: '',
+		description: 'Why the package did not load, like a disabled dependency. Empty while the package loads normally.'
 	}
 });

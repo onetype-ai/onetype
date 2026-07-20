@@ -19,6 +19,7 @@ import './functions/exposed/enable.js';
 import './functions/exposed/disable.js';
 
 /* Item */
+import './item/functions/is/blocked.js';
 import './item/functions/find/order.js';
 import './item/functions/load/back.js';
 import './item/functions/load/front.js';

@@ -13,6 +13,16 @@ packages.Fn('load', async function()
 
 	for(const item of this.methods.ordered())
 	{
+		const blocked = item.Fn('is.blocked');
+
+		if(blocked)
+		{
+			item.Set('status', 'blocked');
+			item.Set('message', blocked);
+
+			continue;
+		}
+
 		item.Fn('load.front');
 
 		await item.Fn('load.back');
