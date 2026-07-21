@@ -11,18 +11,28 @@ import './commands/reload.js';
 import './_/register/middlewares.js';
 import './_/register/emitters.js';
 
+/* Assets */
+import './_/assets/platform.js';
+
 /* Items */
 import './items/assets/assets.js';
 import './items/database/primary.js';
 import './items/commands/health.js';
 import './items/commands/html.js';
 import './items/commands/run.js';
+import './items/html/assets.js.js';
+import './items/html/assets.css.js';
 import './items/html/state.js';
 import './items/html/icons.js';
 
-/* Servers */
-import './items/servers/http.js';
+/* Listeners */
+import './listeners/boot.js';
 
-platform.Fn('author');
+/* Boot */
+await onetype.Middleware('platform.boot');
+await onetype.Emit('platform.boot');
+
+/* Servers */
+await import('./items/servers/http.js');
 
 export default platform;
