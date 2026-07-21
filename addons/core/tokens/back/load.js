@@ -1,5 +1,5 @@
 import tokens from './addon.js';
 
-import './core/schemas/token.js';
+import './_/schemas/token.js';
 
 export default tokens;

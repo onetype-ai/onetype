@@ -8,8 +8,8 @@ import './functions/exposed/reload.js';
 import './commands/reload.js';
 
 /* Register */
-import './core/register/middlewares.js';
-import './core/register/emitters.js';
+import './_/register/middlewares.js';
+import './_/register/emitters.js';
 
 /* Items */
 import './items/assets/assets.js';

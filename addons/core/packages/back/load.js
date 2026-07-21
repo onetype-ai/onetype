@@ -1,12 +1,12 @@
 import packages from './addon.js';
 
 /* Schemas */
-import './core/schemas/manifest.js';
-import './core/schemas/package.js';
+import './_/schemas/manifest.js';
+import './_/schemas/package.js';
 
 /* Emitters */
-import './core/emitters/enable.js';
-import './core/emitters/disable.js';
+import './_/emitters/enable.js';
+import './_/emitters/disable.js';
 
 /* Functions */
 import './functions/sync.js';

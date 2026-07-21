@@ -1,7 +1,7 @@
 import config from './addon.js';
 
 /* Emitters */
-import './core/emitters/set.js';
+import './_/emitters/set.js';
 
 /* Functions */
 import './functions/read.js';
