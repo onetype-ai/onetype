@@ -3,6 +3,7 @@ import { resolve } from 'path';
 
 /* Framework */
 import '@onetype/framework/commands';
+import '@onetype/framework/pipelines';
 import '@onetype/framework/database';
 import '@onetype/framework/servers';
 import '@onetype/framework/assets';

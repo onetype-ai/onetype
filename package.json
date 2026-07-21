@@ -6,6 +6,8 @@
     "exports": {
         ".": "./index.js",
         "./server": "./server.js",
+        "./config": "./addons/core/config/back/load.js",
+        "./packages": "./addons/core/packages/back/load.js",
         "./runtimes": "./addons/core/runtimes/back/load.js",
         "./users": "./addons/core/users/back/load.js",
         "./tokens": "./addons/core/tokens/back/load.js",
