@@ -1,6 +1,6 @@
 config.Fn('write', function()
 {
-	const data = {};
+	const data = this.Fn('read');
 
 	for(const item of Object.values(this.Items()))
 	{
