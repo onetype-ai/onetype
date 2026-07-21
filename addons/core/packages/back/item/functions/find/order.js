@@ -13,7 +13,7 @@ packages.Fn('item.find.order', function(item)
 
 		let deepest = 0;
 
-		for(const slug of candidate.Get('depends'))
+		for(const slug of candidate.Get('depends').concat(candidate.Get('bundle')))
 		{
 			const dependency = this.methods.find(slug);
 

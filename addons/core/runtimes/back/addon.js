@@ -22,17 +22,6 @@ const runtimes = onetype.Addon('runtimes', (addon) =>
 		description: 'Hostname this runtime answers on, like admin.example.com. Empty serves every domain that nothing else claims.'
 	});
 
-	addon.Field('modules', {
-		type: 'array',
-		value: [],
-		each: {
-			type: 'string',
-			options: ['shortcuts', 'collaborators'],
-			description: 'Name of a module folder under modules.'
-		},
-		description: 'Modules this runtime loads on top of its base, like shortcuts, sources or actions.'
-	});
-
 	addon.Field('path', {
 		type: 'string',
 		value: '/',

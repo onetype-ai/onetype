@@ -4,7 +4,7 @@ packages.Fn('item.is.blocked', function(item, seen = new Set())
 {
 	seen.add(item.Get('slug'));
 
-	for(const slug of item.Get('depends'))
+	for(const slug of item.Get('depends').concat(item.Get('bundle')))
 	{
 		if(seen.has(slug))
 		{

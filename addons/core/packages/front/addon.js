@@ -47,7 +47,18 @@ const packages = onetype.Addon('packages', (addon) =>
 			type: 'string',
 			description: 'A dependency package slug.'
 		},
-		description: 'Slugs of packages this one depends on.'
+		description: 'Slugs of packages this one depends on. They must be enabled, they load in their own runtimes.'
+	});
+
+	addon.Field('bundle', {
+		type: 'array',
+		value: [],
+		required: true,
+		each: {
+			type: 'string',
+			description: 'A bundled package slug.'
+		},
+		description: 'Slugs of packages whose front loads inside the runtimes of this one, transitively through their own bundle lists.'
 	});
 
 	addon.Field('runtimes', {

@@ -10,14 +10,7 @@ packages.Fn('item.load.front', function(item)
 
 	const condition = function()
 	{
-		const runtimes = item.Get('runtimes');
-
-		if(!runtimes.length)
-		{
-			return true;
-		}
-
-		return runtimes.includes(this.assets.scope);
+		return item.Fn('is.scoped', this.assets.scope);
 	};
 
 	assets.Item({ type: 'js', order, path: front, condition });

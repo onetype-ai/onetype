@@ -4,10 +4,14 @@ onetype.AssetsRegister('platform', import.meta.url, {
 	js: [
 		'../../../front',
 		'../../../addons/core/config/front',
-		'../../../addons/core/packages/front'
+		'../../../addons/core/packages/front',
+		'../../../addons/modules/shortcuts/front',
+		'../../../addons/modules/collaborators/front'
 	],
 	css: [
 		'../../../addons/core/config/front',
-		'../../../addons/core/packages/front'
+		'../../../addons/core/packages/front',
+		'../../../addons/modules/shortcuts/front',
+		'../../../addons/modules/collaborators/front'
 	]
 });
