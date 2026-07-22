@@ -1,6 +1,6 @@
 import commands from '@onetype/framework/commands';
 
-commands.Fn('http.server', 3000, {
+commands.Fn('run.http', 3000, {
     onStart: () =>
     {
         console.log('OneType - Platform running on :3000.');
