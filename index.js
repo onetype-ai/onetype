@@ -19,7 +19,7 @@ import '#packages/load.js';
 process.loadEnvFile(resolve(process.cwd(), '.env'));
 
 /* Strict */
-onetype.strict = true;
+onetype.Strict(true);
 
 /* Platform */
 await import('#platform/load.js');

@@ -75,19 +75,19 @@ onetype.SchemasRegister('platform.package', {
         description: 'Permissions the package requests, shown to the user before install.'
     },
     limits: {
-        type: 'object',
+        type: 'json',
         value: {},
         required: true,
         description: 'Default limits the package ships, entity key to maximum count. Null means unlimited, the instance config overrides the numbers.'
     },
     features: {
-        type: 'object',
+        type: 'json',
         value: {},
         required: true,
         description: 'Feature switches the package ships, feature key to boolean. The instance config overrides the values.'
     },
     config: {
-        type: 'object',
+        type: 'json',
         value: {},
         required: true,
         description: 'Config schema the package exposes, used to validate install data.'

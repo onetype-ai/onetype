@@ -61,13 +61,13 @@ onetype.SchemasRegister('platform.package.manifest', {
         description: 'Permissions the package requests, shown to the user before install.'
     },
     limits: {
-        type: 'object',
+        type: 'json',
         value: {},
         required: true,
         description: 'Default limits the package ships, entity key to maximum count. Null means unlimited.'
     },
     features: {
-        type: 'object',
+        type: 'json',
         value: {},
         required: true,
         description: 'Feature switches the package ships, feature key to boolean.'
