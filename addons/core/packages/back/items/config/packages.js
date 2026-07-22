@@ -1,7 +1,7 @@
 import config from '#config/addon.js';
 
 config.Item({
-	key: 'packages',
+	id: 'packages',
 	description: 'Instance state of every package, one entry per slug.',
 	value: [],
 	config: {

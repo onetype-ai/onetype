@@ -32,10 +32,10 @@ import './item/functions/disable.js';
 import './item/catch/modified.js';
 
 /* Commands */
-import './commands/crud/many.js';
-import './commands/crud/one.js';
-import './commands/enable.js';
-import './commands/disable.js';
+import './items/commands/many.js';
+import './items/commands/one.js';
+import './items/commands/enable.js';
+import './items/commands/disable.js';
 
 /* Items */
 import './items/config/packages.js';
