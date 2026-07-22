@@ -6,11 +6,11 @@
     "exports": {
         ".": "./index.js",
         "./server": "./server.js",
-        "./config": "./addons/core/config/back/load.js",
-        "./packages": "./addons/core/packages/back/load.js",
-        "./runtimes": "./addons/core/runtimes/back/load.js",
-        "./users": "./addons/core/users/back/load.js",
-        "./tokens": "./addons/core/tokens/back/load.js",
+        "./config": "./back/addons/config/load.js",
+        "./packages": "./back/addons/packages/load.js",
+        "./runtimes": "./back/addons/runtimes/load.js",
+        "./users": "./back/addons/users/load.js",
+        "./tokens": "./back/addons/tokens/load.js",
         "./*": "./*"
     },
     "license": "SEE LICENSE IN LICENSE.md",
@@ -20,12 +20,7 @@
         "url": "https://github.com/onetype-ai/platform.git"
     },
     "imports": {
-        "#config/*": "./addons/core/config/back/*",
-        "#platform/*": "./back/*",
-        "#packages/*": "./addons/core/packages/back/*",
-        "#runtimes/*": "./addons/core/runtimes/back/*",
-        "#tokens/*": "./addons/core/tokens/back/*",
-        "#users/*": "./addons/core/users/back/*"
+        "#platform/*": "./back/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"

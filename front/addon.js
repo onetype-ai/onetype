@@ -1,17 +1,10 @@
-const platform = onetype.Addon('platform', (addon) =>
+const platform = onetype.Addon('platform', () =>
 {
-    $ot.platform = {};
-
-    $ot.platform.boot = new Promise((resolve) =>
+    onetype.EmitOn('onetype.document.ready', async () =>
     {
-        onetype.EmitOn('onetype.document.ready', async () =>
-        {
-            await onetype.Middleware('platform.boot');
-            await onetype.Emit('platform.boot');
+        await onetype.Middleware('platform.boot');
+        await onetype.Emit('platform.boot');
 
-            platform.Fn('do.author');
-
-            resolve();
-        });
+        platform.Fn('do.author');
     });
 });

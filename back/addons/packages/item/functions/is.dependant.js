@@ -1,0 +1,9 @@
+import platform from '#platform/addon.js';
+
+platform.packages.Fn('item.is.dependant', function(item)
+{
+    return Object.values(this.Items())
+        .filter((candidate) => candidate.Get('status') !== 'disabled')
+        .filter((candidate) => candidate.Get('depends').concat(candidate.Get('bundle')).includes(item.Get('slug')))
+        .map((candidate) => candidate.Get('slug'));
+});
