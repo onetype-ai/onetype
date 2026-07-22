@@ -16,11 +16,6 @@ onetype.SchemasRegister('platform.package', {
             required: true,
             description: 'Package name shown in the catalog and on the rail.'
         },
-        version: {
-            type: 'string',
-            required: true,
-            description: 'Semver version read from the manifest on disk.'
-        },
         description: {
             type: 'string',
             description: 'Short one line description of what the package does.'

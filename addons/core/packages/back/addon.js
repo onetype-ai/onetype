@@ -12,12 +12,6 @@ const packages = onetype.Addon('packages', (addon) =>
         description: 'Package name shown in the catalog and on the rail.'
     });
 
-    addon.Field('version', {
-        type: 'string',
-        required: true,
-        description: 'Semver version read from the manifest on disk.'
-    });
-
     addon.Field('description', {
         type: 'string',
         description: 'Short one line description of what the package does.'

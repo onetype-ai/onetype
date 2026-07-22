@@ -22,10 +22,6 @@ config.Item({
                     value: 'enabled',
                     options: ['enabled', 'disabled'],
                     description: 'Whether the package is active on this instance.'
-                },
-                version: {
-                    type: 'string',
-                    description: 'Version of the package the instance last saw.'
                 }
             }
         }
