@@ -16,7 +16,7 @@ packages.FnExpose('disable', function(slug)
 
     item.Fn('disable');
 
-    onetype.Emit('platform.packages.disable', { slug: item.Get('slug') });
+    onetype.Emit('packages.disable', { slug: item.Get('slug') });
 
     return true;
 });

@@ -1,4 +1,4 @@
-onetype.SchemasRegister('platform.package.manifest', {
+onetype.SchemasRegister('packages.manifest', {
     description: 'The platform package manifest shape.',
     addon: 'packages',
     config: {

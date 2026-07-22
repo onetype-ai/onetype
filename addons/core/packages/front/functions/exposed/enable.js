@@ -4,7 +4,7 @@ packages.FnExpose('enable', async function(slug)
 
     if(response.code === 200)
     {
-        onetype.Emit('platform.packages.enable', { slug: response.data.slug });
+        onetype.Emit('packages.enable', { slug: response.data.slug });
     }
 
     return response;

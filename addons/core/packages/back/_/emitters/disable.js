@@ -1,6 +1,6 @@
-onetype.EmitRegister('platform.packages.disable', {
+onetype.EmitRegister('packages.disable', {
     description: 'Fires after a package is disabled on the instance. The package stops loading on the next boot.',
-    metadata: { addon: 'packages' },
+    addon: 'packages',
     config: {
         slug: {
             type: 'string',

@@ -39,7 +39,7 @@ packages.Fn('sync', function()
             continue;
         }
 
-        const manifest = onetype.DataDefine(JSON.parse(readFileSync(file, 'utf8')), 'platform.package.manifest', true);
+        const manifest = onetype.DataDefine(JSON.parse(readFileSync(file, 'utf8')), 'packages.manifest', true);
 
         if(this.methods.exists(manifest.slug))
         {

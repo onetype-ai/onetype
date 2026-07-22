@@ -16,7 +16,7 @@ onetype.AddonReady('commands', (commands) =>
                 description: 'Slug of the package to read.'
             }
         },
-        out: 'platform.package',
+        out: 'packages.package',
         callback: async function(properties, resolve)
         {
             const item = packages.one(properties.slug);

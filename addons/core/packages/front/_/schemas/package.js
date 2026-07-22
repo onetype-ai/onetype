@@ -1,4 +1,4 @@
-onetype.SchemasRegister('platform.package', {
+onetype.SchemasRegister('packages.package', {
     description: 'The platform package shape.',
     addon: 'packages',
     config: {

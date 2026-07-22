@@ -12,7 +12,7 @@ onetype.AddonReady('commands', (commands) =>
                 description: 'Slug of the package to enable.'
             }
         },
-        out: 'platform.package',
+        out: 'packages.package',
         callback: async function(properties, resolve)
         {
             const { data, message, code } = await packages.enable(properties.slug);

@@ -20,7 +20,7 @@ packages.FnExpose('enable', function(slug)
 
     item.Set('message', blocked ? blocked : '');
 
-    onetype.Emit('platform.packages.enable', { slug: item.Get('slug') });
+    onetype.Emit('packages.enable', { slug: item.Get('slug') });
 
     return true;
 });

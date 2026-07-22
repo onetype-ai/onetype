@@ -1,6 +1,6 @@
-onetype.EmitRegister('platform.packages.enable', {
+onetype.EmitRegister('packages.enable', {
     description: 'Fires after a package is enabled on the instance. The package loads on the next boot.',
-    metadata: { addon: 'packages' },
+    addon: 'packages',
     config: {
         slug: {
             type: 'string',

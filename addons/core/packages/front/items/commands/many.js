@@ -8,7 +8,7 @@ onetype.AddonReady('commands', (commands) =>
         out: {
             items: {
                 type: 'array',
-                each: 'platform.package',
+                each: 'packages.package',
                 description: 'Every package of the instance.'
             }
         },
