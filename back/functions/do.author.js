@@ -1,6 +1,6 @@
 import platform from '#platform/addon.js';
 
-platform.Fn('author', function()
+platform.Fn('do.author', function()
 {
     const colors = ['\x1b[38;5;167m', '\x1b[38;5;173m', '\x1b[38;5;209m', '\x1b[38;5;209m', '\x1b[38;5;216m', '\x1b[38;5;223m'];
 

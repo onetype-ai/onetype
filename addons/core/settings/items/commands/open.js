@@ -51,7 +51,7 @@ onetype.AddonReady('commands', (commands) =>
             }
             else if(properties.group)
             {
-                const group = $ot.modules.settings.Fn('groups', '').find((entry) => entry.id === properties.group);
+                const group = $ot.modules.settings.Fn('get.groups', '').find((entry) => entry.id === properties.group);
 
                 if(!group)
                 {

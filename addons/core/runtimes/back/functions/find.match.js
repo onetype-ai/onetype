@@ -1,6 +1,6 @@
 import runtimes from '#runtimes/addon.js';
 
-runtimes.Fn('match', function(hostname, pathname)
+runtimes.Fn('find.match', function(hostname, pathname)
 {
     let matched = null;
     let score = -1;

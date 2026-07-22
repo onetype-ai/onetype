@@ -1,6 +1,6 @@
 import packages from '#packages/addon.js';
 
-packages.Fn('scoped', function(scope)
+packages.Fn('get.scoped', function(scope)
 {
     const list = new Set();
 

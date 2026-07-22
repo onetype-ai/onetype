@@ -1,4 +1,4 @@
-$ot.modules.settings.Fn('persist', function()
+$ot.modules.settings.Fn('do.persist', function()
 {
     if(onetype.iframe)
     {

@@ -1,4 +1,4 @@
-shortcuts.Fn('editing', function(target)
+shortcuts.Fn('is.editing', function(target)
 {
     if(!target)
     {

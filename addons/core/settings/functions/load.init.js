@@ -1,4 +1,4 @@
-$ot.modules.settings.Fn('init', function()
+$ot.modules.settings.Fn('load.init', function()
 {
     if(onetype.iframe)
     {

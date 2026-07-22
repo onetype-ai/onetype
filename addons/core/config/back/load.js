@@ -4,8 +4,8 @@ import config from './addon.js';
 import './_/emitters/set.js';
 
 /* Functions */
-import './functions/read.js';
-import './functions/write.js';
+import './functions/get.read.js';
+import './functions/set.write.js';
 import './functions/exposed/get.js';
 import './functions/exposed/set.js';
 import './functions/exposed/one.js';

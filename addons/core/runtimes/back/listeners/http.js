@@ -4,7 +4,7 @@ onetype.MiddlewareIntercept('servers.http.request', async (middleware) =>
 {
     const http = middleware.value;
 
-    const matched = runtimes.Fn('match', http.url.hostname, http.url.pathname);
+    const matched = runtimes.Fn('find.match', http.url.hostname, http.url.pathname);
     const base = matched && matched.Get('path') !== '/' ? matched.Get('path') : '';
 
     http.state.runtime = matched ? matched.Get('id') : null;

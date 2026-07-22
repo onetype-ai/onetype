@@ -1,4 +1,4 @@
-platform.Fn('author', function()
+platform.Fn('do.author', function()
 {
     console.log(
         '%c ◆ OneType %c Platform Ready! %c\nBuilt by %cDejan Tomic%c · with Stefan Pakic · design Petr Bilek',

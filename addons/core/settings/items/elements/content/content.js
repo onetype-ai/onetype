@@ -32,17 +32,17 @@ elements.ItemAdd({
 
             if(this.mode === 'search')
             {
-                this.results = $ot.modules.settings.Fn('search', this.query);
+                this.results = $ot.modules.settings.Fn('find.search', this.query);
             }
             else if(this.mode === 'scope')
             {
                 const selected = this.instance || this.chosen || null;
 
-                this.section = $ot.modules.settings.Fn('scoped', { [this.scope]: selected }, '').find((scope) => scope.id === this.scope) || { id: this.scope, label: this.scope, icon: 'category', instances: [], selected: null, items: [] };
+                this.section = $ot.modules.settings.Fn('get.scoped', { [this.scope]: selected }, '').find((scope) => scope.id === this.scope) || { id: this.scope, label: this.scope, icon: 'category', instances: [], selected: null, items: [] };
             }
             else
             {
-                const groups = $ot.modules.settings.Fn('groups', '');
+                const groups = $ot.modules.settings.Fn('get.groups', '');
 
                 this.section = groups.find((group) => group.id === this.group) || groups[0] || { id: this.group, label: this.group, icon: 'extension', items: [] };
             }

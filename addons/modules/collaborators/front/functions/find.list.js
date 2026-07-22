@@ -1,4 +1,4 @@
-collaborators.Fn('list', function()
+collaborators.Fn('find.list', function()
 {
     return Object.values(this.Items()).sort((a, b) =>
     {

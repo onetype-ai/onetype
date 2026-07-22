@@ -1,4 +1,4 @@
-config.Fn('read', function()
+config.Fn('get.read', function()
 {
     const stored = localStorage.getItem('onetype-config');
 

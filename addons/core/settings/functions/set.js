@@ -33,7 +33,7 @@ $ot.modules.settings.Fn('set', function(id, value, instance = null)
 
     if(item.Get('storage') === 'local')
     {
-        this.Fn('persist');
+        this.Fn('do.persist');
     }
 
     if(item.Get('onChange'))

@@ -12,7 +12,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 
             const build = () =>
             {
-                const groups = $ot.modules.settings.Fn('groups', '').map((group) =>
+                const groups = $ot.modules.settings.Fn('get.groups', '').map((group) =>
                 {
                     return { icon: group.icon, label: group.label, value: 'group:' + group.id };
                 });

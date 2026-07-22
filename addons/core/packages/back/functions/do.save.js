@@ -1,7 +1,7 @@
 import config from '#config/addon.js';
 import packages from '#packages/addon.js';
 
-packages.Fn('config.save', function()
+packages.Fn('do.save', function()
 {
     const value = Object.values(this.Items()).map((item) => ({
         slug: item.Get('slug'),

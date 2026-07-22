@@ -1,7 +1,7 @@
 import platform from './addon.js';
 
 /* Functions */
-import './functions/author.js';
+import './functions/do.author.js';
 import './functions/exposed/reload.js';
 
 /* Commands */

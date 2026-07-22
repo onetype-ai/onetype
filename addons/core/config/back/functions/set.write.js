@@ -2,7 +2,7 @@ import config from '#config/addon.js';
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-config.Fn('write', function()
+config.Fn('set.write', function()
 {
     const data = {};
 

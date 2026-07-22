@@ -2,7 +2,7 @@ import config from '#config/addon.js';
 import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 
-config.Fn('read', function()
+config.Fn('get.read', function()
 {
     const file = resolve(process.cwd(), 'onetype-config.json');
 

@@ -1,4 +1,4 @@
-$ot.modules.settings.Fn('search', function(query)
+$ot.modules.settings.Fn('find.search', function(query)
 {
     const results = [];
 

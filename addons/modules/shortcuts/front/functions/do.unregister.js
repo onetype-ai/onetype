@@ -1,4 +1,4 @@
-shortcuts.Fn('unregister', function()
+shortcuts.Fn('do.unregister', function()
 {
     if(!this.StoreGet('registered'))
     {

@@ -1,4 +1,4 @@
-$ot.modules.settings.Fn('scoped', function(selection = {}, query = '')
+$ot.modules.settings.Fn('get.scoped', function(selection = {}, query = '')
 {
     return Object.values(this.Fn('scopes')).map((scope) =>
     {

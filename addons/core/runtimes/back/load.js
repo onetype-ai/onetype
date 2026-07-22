@@ -1,7 +1,7 @@
 import runtimes from './addon.js';
 
 /* Functions */
-import './functions/match.js';
+import './functions/find.match.js';
 
 /* Item */
 import './item/catch/added.js';

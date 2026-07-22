@@ -1,4 +1,4 @@
-$ot.modules.settings.Fn('groups', function(query = '')
+$ot.modules.settings.Fn('get.groups', function(query = '')
 {
     const groups = {};
 

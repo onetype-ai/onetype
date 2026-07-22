@@ -1,6 +1,6 @@
 config.Fn('item.value', function(item)
 {
-    const data = this.Fn('read');
+    const data = this.Fn('get.read');
 
     if(!(item.Get('id') in data))
     {

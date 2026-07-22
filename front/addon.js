@@ -9,7 +9,7 @@ const platform = onetype.Addon('platform', (addon) =>
             await onetype.Middleware('platform.boot');
             await onetype.Emit('platform.boot');
 
-            platform.Fn('author');
+            platform.Fn('do.author');
 
             resolve();
         });

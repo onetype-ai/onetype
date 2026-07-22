@@ -1,4 +1,4 @@
-$ot.modules.settings.Fn('scope.register', function(definition)
+$ot.modules.settings.Fn('do.scope', function(definition)
 {
     const scopes = this.StoreGet('scopes') || {};
 

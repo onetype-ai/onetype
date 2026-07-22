@@ -1,4 +1,4 @@
-shortcuts.Fn('register', function()
+shortcuts.Fn('do.register', function()
 {
     if(this.StoreGet('registered'))
     {

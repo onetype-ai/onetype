@@ -8,7 +8,7 @@ collaborators.ElementAdd({
     {
         const refresh = () =>
         {
-            this.people = collaborators.Fn('list');
+            this.people = collaborators.Fn('find.list');
             this.others = this.people.filter((person) => !person.self);
         };
 

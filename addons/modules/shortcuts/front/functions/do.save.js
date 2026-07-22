@@ -1,4 +1,4 @@
-shortcuts.Fn('save', function(id, changes)
+shortcuts.Fn('do.save', function(id, changes)
 {
     const saved = { ...config.get('shortcuts.state') };
     const entry = { ...saved[id], ...changes };
