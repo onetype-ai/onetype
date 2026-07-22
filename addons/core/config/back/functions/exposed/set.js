@@ -1,8 +1,8 @@
 import config from '#config/addon.js';
 
-config.FnExpose('set', function(key, value)
+config.FnExpose('set', function(id, value)
 {
-	const item = this.one(key);
+	const item = this.one(id);
 
 	if(!item)
 	{
@@ -11,7 +11,7 @@ config.FnExpose('set', function(key, value)
 
 	item.Set('value', value);
 
-	onetype.Emit('platform.config.set', { key, value });
+	onetype.Emit('platform.config.set', { id, value });
 
 	return true;
 });

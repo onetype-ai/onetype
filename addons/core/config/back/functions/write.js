@@ -8,7 +8,7 @@ config.Fn('write', function()
 
 	for(const item of Object.values(this.Items()))
 	{
-		data[item.Get('key')] = item.Get('value');
+		data[item.Get('id')] = item.Get('value');
 	}
 
 	writeFileSync(resolve(process.cwd(), 'onetype-config.json'), JSON.stringify(data, null, '\t') + '\n');

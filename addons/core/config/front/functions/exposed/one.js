@@ -1,4 +1,4 @@
-config.FnExpose('one', function(key)
+config.FnExpose('one', function(id)
 {
-	return Object.values(this.Items()).find((item) => item.Get('key') === key);
+	return this.Item(id);
 });

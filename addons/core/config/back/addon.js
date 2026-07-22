@@ -1,9 +1,9 @@
 const config = onetype.Addon('config', (addon) =>
 {
-	addon.Field('key', {
+	addon.Field('id', {
 		type: 'string',
 		required: true,
-		description: 'Unique config key, one key is one entry in the instance config file.'
+		description: 'Unique config id, one id is one entry in the instance config file.'
 	});
 
 	addon.Field('description', {
