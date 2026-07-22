@@ -7,7 +7,7 @@ shortcuts.FnExpose('rebind', function(id, key)
         return false;
     }
 
-    this.Fn('save', id, { key: key === item.Get('key') ? undefined : key });
+    this.Fn('do.save', id, { key: key === item.Get('key') ? undefined : key });
 
     onetype.Emit('platform.shortcuts.rebind', { id, key });
 

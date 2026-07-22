@@ -7,7 +7,7 @@ shortcuts.FnExpose('toggle', function(id, enabled)
         return false;
     }
 
-    this.Fn('save', id, { enabled: enabled === item.Get('enabled') ? undefined : enabled });
+    this.Fn('do.save', id, { enabled: enabled === item.Get('enabled') ? undefined : enabled });
 
     onetype.Emit('platform.shortcuts.toggle', { id, enabled });
 
