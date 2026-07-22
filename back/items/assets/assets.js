@@ -9,4 +9,4 @@ assets.Fn('import', ['directives'], 420);
 assets.Fn('import', ['float'], 430);
 assets.Fn('import', ['platform'], 500);
 
-assets.expose.commands();
+assets.get.commands();
