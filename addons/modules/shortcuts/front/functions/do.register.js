@@ -7,14 +7,14 @@ shortcuts.Fn('do.register', function()
 
     const handler = (event) =>
     {
-        if(this.Fn('editing', event.target) && !event.ctrlKey && !event.altKey && !event.metaKey)
+        if(this.Fn('is.editing', event.target) && !event.ctrlKey && !event.altKey && !event.metaKey)
         {
             return;
         }
 
-        const key = this.Fn('parse', event);
+        const key = this.Fn('exposed.parse', event);
 
-        for(const item of this.Fn('match', key))
+        for(const item of this.Fn('find.match', key))
         {
             if(!item.Fn('active', event))
             {

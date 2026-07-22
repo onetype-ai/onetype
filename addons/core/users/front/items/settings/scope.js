@@ -5,7 +5,7 @@ onetype.AddonReady('modules.settings', (settings) =>
 
     queueMicrotask(() =>
     {
-        settings.Fn('scope.register', {
+        settings.Fn('do.scope', {
             id: 'user',
             label: 'User',
             icon: 'person',

@@ -13,7 +13,7 @@ onetype.AddonReady('commands', (commands) =>
         silent: true,
         callback: async function(properties, resolve)
         {
-            resolve(html.Fn('render', this));
+            resolve(html.Fn('make.render', this));
         }
     });
 });
