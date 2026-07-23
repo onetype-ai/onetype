@@ -1,4 +1,4 @@
-import html from '@onetype/framework/html';
+import html from 'addon-html';
 
 html.Item({
     id: 'assets-css',

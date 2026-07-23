@@ -1,6 +1,6 @@
 import platform from '#platform/addon.js';
 
-onetype.MiddlewareIntercept('servers.http.request', async (middleware) =>
+onetype.middlewares.intercept('servers.http.request', async (middleware) =>
 {
     const http = middleware.value;
 

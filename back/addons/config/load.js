@@ -2,7 +2,7 @@ import platform from '#platform/addon.js';
 
 import './addon.js';
 
-import './_/emitters/set.js';
+import './items/onetype-emitters/platform.config.set.js';
 
 import './functions/get.read.js';
 import './functions/set.write.js';

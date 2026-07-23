@@ -1,4 +1,4 @@
-onetype.EmitOn('onetype.document.ready', () =>
+onetype.emitters.catch('onetype.document.ready', () =>
 {
     platform.shortcuts.Fn('do.register');
 });

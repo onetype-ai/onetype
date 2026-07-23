@@ -60,7 +60,7 @@ onetype.AddonReady('commands', (commands) =>
                 self: properties.self
             });
 
-            onetype.Emit('platform.collaborators.join', { id: properties.id });
+            onetype.emitters.fire('platform.collaborators.join', { id: properties.id });
 
             resolve({ id: properties.id, color }, 'Collaborator ' + properties.name + ' joined the editor.');
         }

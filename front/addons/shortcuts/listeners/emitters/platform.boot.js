@@ -1,4 +1,4 @@
-onetype.EmitOn('platform.boot', () =>
+onetype.emitters.catch('platform.boot', () =>
 {
     for(const item of Object.values(platform.shortcuts.Items()))
     {

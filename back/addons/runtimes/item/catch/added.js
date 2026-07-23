@@ -1,4 +1,4 @@
-import html from '@onetype/framework/html';
+import html from 'addon-html';
 import platform from '#platform/addon.js';
 
 platform.runtimes.ItemOn('added', (item) =>

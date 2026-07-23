@@ -9,7 +9,7 @@ platform.config.FnExpose('set', function(id, value)
 
     item.Set('value', value);
 
-    onetype.Emit('platform.config.set', { id, value });
+    onetype.emitters.fire('platform.config.set', { id, value });
 
     return true;
 });

@@ -1,0 +1,14 @@
+onetype.AddonReady('onetype.emitters', function(emitters)
+{
+    emitters.ItemAdd({
+        id: 'platform.collaborators.join',
+        description: 'Fired after a collaborator joins the editor. The navbar avatars and the cursor layer refresh on this event.',
+        addon: 'platform.collaborators',
+        config: {
+            id: {
+                type: 'string',
+                description: 'ID of the collaborator that joined.'
+            }
+        }
+    });
+});

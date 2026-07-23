@@ -1,4 +1,4 @@
-import html from '@onetype/framework/html';
+import html from 'addon-html';
 
 onetype.AddonReady('commands', (commands) =>
 {

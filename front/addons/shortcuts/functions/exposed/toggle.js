@@ -9,7 +9,7 @@ platform.shortcuts.FnExpose('toggle', function(id, enabled)
 
     this.Fn('do.save', id, { enabled: enabled === item.Get('enabled') ? undefined : enabled });
 
-    onetype.Emit('platform.shortcuts.toggle', { id, enabled });
+    onetype.emitters.fire('platform.shortcuts.toggle', { id, enabled });
 
     return true;
 });

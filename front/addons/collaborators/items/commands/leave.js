@@ -32,7 +32,7 @@ onetype.AddonReady('commands', (commands) =>
             platform.collaborators.ItemRemove(properties.id);
             platform.collaborators.StoreDelete('cursor:' + properties.id);
 
-            onetype.Emit('platform.collaborators.leave', { id: properties.id });
+            onetype.emitters.fire('platform.collaborators.leave', { id: properties.id });
 
             resolve({ id: properties.id }, 'Collaborator ' + name + ' left the editor.');
         }

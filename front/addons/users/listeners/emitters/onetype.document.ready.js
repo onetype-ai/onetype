@@ -1,4 +1,4 @@
-onetype.EmitOn('onetype.document.ready', () =>
+onetype.emitters.catch('onetype.document.ready', () =>
 {
     platform.settings.Fn('do.scope', {
         id: 'user',
@@ -6,7 +6,10 @@ onetype.EmitOn('onetype.document.ready', () =>
         icon: 'person',
         options: () => Object.values(platform.users.Items()).map((item) =>
         {
-            return { label: item.Get('name'), value: item.Get('id') };
+            return {
+                label: item.Get('name'),
+                value: item.Get('id')
+            };
         }),
         active: () => 'dejan'
     });

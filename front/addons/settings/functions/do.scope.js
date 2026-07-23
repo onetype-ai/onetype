@@ -6,7 +6,7 @@ platform.settings.Fn('do.scope', function(definition)
 
     this.StoreSet('scopes', scopes);
 
-    onetype.Emit('platform.settings.scope', { id: definition.id });
+    onetype.emitters.fire('platform.settings.scope', { id: definition.id });
 
     return definition;
 });

@@ -1,6 +1,6 @@
 import platform from '#platform/addon.js';
 
-onetype.MiddlewareIntercept('platform.boot', async (middleware) =>
+onetype.middlewares.intercept('platform.boot', async (middleware) =>
 {
     await platform.packages.Fn('sync');
     await platform.packages.Fn('load');

@@ -20,7 +20,7 @@ platform.runtimes.Fn('find.match', function(hostname, pathname)
             continue;
         }
 
-        if(!onetype.RouteMatch(path === '/' ? '/*' : path + '/*', pathname).match)
+        if(!onetype.route.match(path === '/' ? '/*' : path + '/*', pathname).match)
         {
             continue;
         }

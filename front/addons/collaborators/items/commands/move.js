@@ -38,7 +38,7 @@ onetype.AddonReady('commands', (commands) =>
 
             platform.collaborators.StoreSet('cursor:' + properties.id, { x: properties.x, y: properties.y });
 
-            onetype.Emit('platform.collaborators.move', { id: properties.id, x: properties.x, y: properties.y });
+            onetype.emitters.fire('platform.collaborators.move', { id: properties.id, x: properties.x, y: properties.y });
 
             resolve({ id: properties.id }, 'Collaborator ' + properties.id + ' cursor at ' + properties.x + ', ' + properties.y + '.');
         }

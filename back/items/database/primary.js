@@ -1,4 +1,4 @@
-import database from '@onetype/framework/database';
+import database from 'addon-database';
 
 database.Item({
     id: 'primary',

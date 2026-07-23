@@ -4,7 +4,7 @@ platform.packages.FnExpose('disable', async function(slug)
 
     if(response.code === 200)
     {
-        onetype.Emit('platform.packages.disable', { slug: response.data.slug });
+        onetype.emitters.fire('platform.packages.disable', { slug: response.data.slug });
     }
 
     return response;

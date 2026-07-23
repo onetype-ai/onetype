@@ -1,12 +1,12 @@
 import platform from '#platform/addon.js';
+import './items/onetype-schemas/platform.packages.manifest.js';
+import './items/onetype-schemas/platform.packages.package.js';
 
 import './addon.js';
 
-import './_/schemas/manifest.js';
-import './_/schemas/package.js';
 
-import './_/emitters/enable.js';
-import './_/emitters/disable.js';
+import './items/onetype-emitters/platform.packages.enable.js';
+import './items/onetype-emitters/platform.packages.disable.js';
 
 import './functions/sync.js';
 import './functions/load.js';

@@ -9,7 +9,7 @@ platform.shortcuts.FnExpose('rebind', function(id, key)
 
     this.Fn('do.save', id, { key: key === item.Get('key') ? undefined : key });
 
-    onetype.Emit('platform.shortcuts.rebind', { id, key });
+    onetype.emitters.fire('platform.shortcuts.rebind', { id, key });
 
     return true;
 });

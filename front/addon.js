@@ -1,9 +1,12 @@
 const platform = onetype.Addon('platform', () =>
 {
-    onetype.EmitOn('onetype.document.ready', async () =>
+    onetype.emitters.catch('onetype.document.ready', async () =>
     {
-        await onetype.Middleware('platform.boot');
-        await onetype.Emit('platform.boot');
+        await onetype.middlewares.run('platform.boot');
+
+        onetype.StateSet('platform.booted', true);
+
+        await onetype.emitters.fire('platform.boot');
 
         platform.Fn('do.author');
     });

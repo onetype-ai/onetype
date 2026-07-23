@@ -1,6 +1,6 @@
 import platform from '#platform/addon.js';
 
-onetype.EmitOn('platform.boot', () =>
+onetype.emitters.catch('platform.boot', () =>
 {
     platform.Fn('do.author');
 });

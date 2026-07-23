@@ -1,4 +1,4 @@
-import assets from '@onetype/framework/assets';
+import assets from 'addon-assets';
 import platform from '#platform/addon.js';
 import { join } from 'path';
 

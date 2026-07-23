@@ -20,7 +20,7 @@ platform.packages.FnExpose('enable', function(slug)
 
     item.Set('message', blocked ? blocked : '');
 
-    onetype.Emit('platform.packages.enable', { slug: item.Get('slug') });
+    onetype.emitters.fire('platform.packages.enable', { slug: item.Get('slug') });
 
     return true;
 });

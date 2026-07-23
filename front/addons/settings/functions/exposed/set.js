@@ -41,7 +41,7 @@ platform.settings.FnExpose('set', function(id, value, instance = null)
         item.Get('onChange')(value, item, instance);
     }
 
-    onetype.Emit('platform.settings.change', { id, value, instance });
+    onetype.emitters.fire('platform.settings.change', { id, value, instance });
 
     return item;
 });

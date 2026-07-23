@@ -1,6 +1,6 @@
 import platform from '#platform/addon.js';
 
-import commands from '@onetype/framework/commands';
+import commands from 'addon-commands';
 
 platform.Fn('run.server', function()
 {

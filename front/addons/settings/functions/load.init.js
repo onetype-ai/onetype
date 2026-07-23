@@ -23,6 +23,6 @@ platform.settings.Fn('load.init', function()
 
         item.Set('value', value);
 
-        onetype.Emit('platform.settings.change', { id, value });
+        onetype.emitters.fire('platform.settings.change', { id, value });
     });
 });

@@ -1,4 +1,4 @@
-onetype.EmitOn('onetype.document.ready', () =>
+onetype.emitters.catch('onetype.document.ready', () =>
 {
     const user = $ot.get('user');
 
